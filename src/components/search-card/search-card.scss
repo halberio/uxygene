@@ -1,0 +1,53 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.search-card {
+  width: 100%;
+  height: 70px;
+  padding: 0 20px;
+  @include flexbox();
+  column-span: all;
+  @media (min-width: 768px) {
+    display: inline-flex;
+
+    column-span: unset;
+  }
+  @include flex-direction(row);
+  @include align-items(center);
+  @include justify-content(space-between);
+  svg {
+    max-width: 30px;
+    cursor: pointer;
+    &:hover {
+      path {
+        @include transition(all, 0.2s, ease-in-out);
+        fill: $black-text;
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    svg {
+      max-width: unset;
+    }
+    max-width: unset;
+    @include justify-content(center);
+    width: 260px;
+    @include flex-direction(column);
+    height: 240px;
+  }
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
+
+  h1 {
+    color: $dark-silver;
+    font-family: "Babas", sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    max-width: 180px;
+    @media (min-width: 992px) {
+      font-size: 30px;
+    }
+  }
+}

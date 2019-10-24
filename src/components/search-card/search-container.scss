@@ -1,0 +1,103 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.search-container {
+  display: none;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(center);
+  .logo-container {
+    @include flexbox();
+    @include align-items(flex-start);
+    @include justify-content(flex-start);
+    position: absolute;
+    left: 10.248901903367496%;
+    top: 5.9282576866764276%;
+    width: 144px;
+    height: 76px;
+    svg {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 100%;
+      min-width: 100%;
+    }
+  }
+  z-index: 9999999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  background: $primary-color;
+  padding: 2.9282576866764276% 10.248901903367496%;
+  .has-error .ant-input,
+  .has-error .ant-input:hover {
+    background: $primary-color;
+    border-color: $dark-silver;
+    outline: none;
+    box-shadow: none !important;
+  }
+  .ant-form-explain {
+    font-family: "Babas", sans-serif;
+    color: $dark-silver !important;
+  }
+  .ant-form {
+    @include flexbox();
+    @include align-items(center);
+    width: 100%;
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+    @media (min-width: 992px) {
+      @include justify-content(space-between);
+    }
+  }
+  input {
+    font-size: 100px;
+    max-width: 800px;
+    height: unset;
+    font-family: "Babas", sans-serif;
+    font-weight: bold;
+    color: $black-text;
+    background: $primary-color;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $black-text;
+    box-shadow: none;
+    outline: none;
+    &::placeholder {
+      color: $black-text;
+    }
+    &:focus,
+    &:focus-within {
+      box-shadow: none;
+      outline: none;
+      border-color: $black-text;
+    }
+  }
+  .container-switch {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+    margin-top: 2%;
+    @media (min-width: 992px) {
+      margin-top: 0;
+    }
+    .ant-switch {
+      height: 50px;
+      margin-right: 20px;
+      margin-left: 20px;
+      width: 94px;
+      background-color: white;
+      &:after {
+        background: $primary-color;
+        box-shadow: none;
+        height: 42px;
+        top: 2px;
+        margin-left: 0;
+        width: 42px;
+        border-radius: 100%;
+      }
+    }
+  }
+}

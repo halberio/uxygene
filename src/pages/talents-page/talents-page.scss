@@ -1,0 +1,23 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.talents-page {
+  .cards-container {
+    @include flexbox();
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+  }
+  .columns-container {
+    column-count: 2;
+    @media (min-width: 768px) {
+      column-count: 3;
+    }
+    @media (min-width: 992px) {
+      column-count: 3;
+    }
+    @media (min-width: 1300px) {
+      column-count: 4;
+    }
+    column-gap: 20px;
+  }
+}

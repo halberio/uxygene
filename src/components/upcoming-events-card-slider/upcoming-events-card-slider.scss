@@ -1,0 +1,140 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.upcoming-events-card-slider {
+  @include flexbox();
+  @include flex-direction(column);
+  width: 100%;
+  background: white;
+  padding: 30px;
+  h3 {
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 30px;
+    font-family: "Babas", sans-serif;
+    color: $primary-color;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .content {
+    @include flexbox();
+    width: 100%;
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    @include align-items(flex-start);
+    .text {
+      @include flexbox();
+      @include flex-direction(column);
+      .item {
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(flex-start);
+        span.icon {
+          @include flexbox();
+          @include align-items(center);
+          @include justify-content(flex-end);
+          width: 24px;
+          height: 30px;
+          margin-right: 10px;
+          flex: 1;
+          svg {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        h4 {
+          @include flexbox();
+          @include align-items(center);
+          @include justify-content(flex-start);
+          flex: 12;
+          width: 100%;
+          font-family: "Avenir", sans-serif;
+          font-size: 18px;
+          font-weight: 800;
+          margin-top: 10px;
+        }
+        h5 {
+          @include flexbox();
+          width: 100%;
+          @include align-items(center);
+          @include justify-content(flex-start);
+          flex: 12;
+          font-family: "Avenir", sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+        }
+        h6 {
+          @include flexbox();
+          width: 100%;
+          @include align-items(center);
+          @include justify-content(flex-start);
+          flex: 12;
+          font-family: "Avenir", sans-serif;
+          font-size: 14px;
+          margin-top: 10px;
+          font-weight: 800;
+        }
+      }
+    }
+    .free-or-paid {
+      background: $primary-color;
+      padding: 8px 16px;
+      color: $black-text;
+      text-transform: lowercase;
+      border-radius: 10px;
+      font-family: "Avenir", sans-serif;
+      font-weight: 800;
+    }
+  }
+  .description {
+    font-family: "Avenir", sans-serif;
+    font-size: 12px;
+    color: $black-text;
+    line-height: 20px;
+    margin-top: 6px;
+  }
+  .footer {
+    @include flexbox();
+    @include justify-content(space-between);
+    padding-top: 30px;
+    svg {
+      cursor: pointer;
+      @include transition(all, 0.2s, ease-in-out);
+      path {
+        @include transition(all, 0.2s, ease-in-out);
+      }
+      &:hover {
+        path {
+          fill: $primary-color;
+        }
+      }
+    }
+
+    .dots {
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      .dot {
+        flex: 1;
+        margin-right: 6px;
+        &:last-child {
+          margin-right: 0;
+        }
+        width: 21px;
+        height: 21px;
+        background: transparent;
+        border: 1px solid $primary-color;
+        border-radius: 100%;
+        &.active {
+          background: $primary-color;
+        }
+      }
+    }
+  }
+}

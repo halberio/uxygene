@@ -1,0 +1,43 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.filter-card {
+  width: 100%;
+  height: 70px;
+  padding: 0 20px;
+  @include flexbox();
+  column-span: all;
+  @media (min-width: 768px) {
+    display: inline-flex;
+
+    column-span: unset;
+  }
+  @include align-items(center);
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  svg {
+    max-width: 30px;
+  }
+  margin-bottom: 20px;
+  @media (min-width: 992px) {
+    margin-bottom: 0px;
+    max-width: unset;
+    svg {
+      max-width: unset;
+    }
+    @include justify-content(center);
+    width: 260px;
+    @include flex-direction(column);
+    height: 240px;
+  }
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
+  h1 {
+    color: $dark-silver;
+    font-family: "Babas", sans-serif;
+    text-transform: uppercase;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+  }
+}

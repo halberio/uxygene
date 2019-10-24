@@ -1,0 +1,107 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.user-talent-card {
+  width: 100%;
+  min-width: 146px;
+  height: 202px;
+  column-fill: balance;
+  display: inline-block;
+
+  @media (min-width: 992px) {
+    width: 100%;
+    min-width: 260px;
+    background: $light-silver;
+    max-width: 260px;
+    max-height: 360px;
+    min-height: 360px;
+  }
+  border-radius: 10px;
+  position: relative;
+  margin-top: 20%;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-animation: fade-in 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fade-in 1s forwards; /* Firefox < 16 */
+  -ms-animation: fade-in 1s forwards; /* Internet Explorer */
+  -o-animation: fade-in 1s forwards; /* Opera < 12.1 */
+  animation: fade-in 1s forwards;
+  &:hover {
+    box-shadow: 10px 10px 30px rgba(34, 23, 0, 0.15);
+    .user-infos {
+      @include transform(scaleX(1));
+      h3,
+      h4 {
+        @include transform(scaleX(1));
+        -webkit-animation: fade-in 1s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fade-in 1s forwards 0.1s; /* Firefox < 16 */
+        -ms-animation: fade-in 1s forwards 0.1s; /* Internet Explorer */
+        -o-animation: fade-in 1s forwards 0.1s; /* Opera < 12.1 */
+        animation: fade-in 1s forwards 0.1s;
+      }
+    }
+  }
+  @include transition(all, 0.2s, ease-in-out);
+  .badge-container {
+    position: absolute;
+    display: block;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    top: 15px;
+    background-image: url("../../assets/svg/badge-confirmed.svg");
+  }
+  .user-infos {
+    position: absolute;
+    bottom: 20px;
+    left: -20px;
+    width: 100%;
+    padding: 23px;
+    background: $primary-color;
+    transform-origin: left;
+    @include transform(scaleX(0));
+    @include transition(all, 0.2s, ease-in-out);
+    h3 {
+      font-family: "Babas", sans-serif;
+      text-transform: uppercase;
+      color: white;
+      font-size: 30px;
+      line-height: 30px;
+      margin: 0;
+      @include transform(scaleX(0) translateY(-10px));
+      padding: 0;
+      opacity: 0;
+    }
+    h4 {
+      @include transform(scaleX(0));
+      opacity: 0;
+      font-family: "Avenir", sans-serif;
+      font-size: 14px;
+      line-height: 14px;
+      text-transform: capitalize;
+    }
+  }
+  .picture-container {
+    position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    img {
+      object-fit: cover;
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+@include keyframes(fade-in) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

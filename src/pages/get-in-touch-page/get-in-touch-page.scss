@@ -1,0 +1,163 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+@include keyframes(scaleFromLeft) {
+  0% {
+    @include transform(scaleX(0));
+  }
+  100% {
+    @include transform(scaleX(1));
+  }
+}
+.get-in-touch-page {
+  .row-container {
+    @include flexbox();
+    width: 100%;
+    flex: 1;
+    @include flex-direction(column);
+    @media (min-width: 992px) {
+      @include flex-direction(row);
+    }
+    @include justify-content(space-between);
+    @include align-items(flex-start);
+    height: 100%;
+    min-height: calc(100vh - 300px);
+    position: relative;
+    .left {
+      position: relative;
+      height: 100%;
+      flex: 2;
+      width: 100%;
+      @include flexbox();
+      @include flex-direction(column);
+      @include align-items(flex-start);
+      @include justify-content(space-between);
+      .top {
+        h1.black-big {
+          color: $black-text;
+          font-family: "Babas", sans-serif;
+          font-size: 96px;
+          line-height: 86px;
+          margin: 0;
+          padding: 0;
+        }
+        h2.black-big {
+          color: $black-text;
+          font-family: "Babas", sans-serif;
+          font-size: 64px;
+          line-height: 60px;
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .bottom {
+        margin-top: 20px;
+
+        width: 100%;
+        @media (min-width: 992px) {
+          width: unset;
+          margin-top: 120px;
+        }
+        p.dark {
+          color: $black-text;
+          font-size: 20px;
+          font-family: "Avenir", sans-serif;
+          line-height: 30px;
+          margin: 0;
+          padding: 0;
+        }
+        svg {
+          margin-top: 16px;
+          width: 100%;
+          margin-bottom: -5px;
+        }
+      }
+    }
+    .right {
+      flex: 3;
+      width: 100%;
+      .get-in-touch-form {
+        background: $primary-color;
+        @include transform(scaleX(0));
+        -webkit-animation: scaleFromLeft 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: scaleFromLeft 0.4s forwards; /* Firefox < 16 */
+        -ms-animation: scaleFromLeft 0.4s forwards; /* Internet Explorer */
+        -o-animation: scaleFromLeft 0.4s forwards; /* Opera < 12.1 */
+        animation: scaleFromLeft 0.4s forwards;
+        @include transition(all, 0.3s, cubic-bezier(0.77, 0, 0.175, 1));
+        transform-origin: right;
+        padding: 7.2727272727272725% 11.594202898550725%;
+        .submit-btn {
+          width: 100%;
+          opacity: 0;
+          -webkit-animation: fade-in 0.4s forwards 0.7s; /* Safari, Chrome and Opera > 12.1 */
+          -moz-animation: fade-in 0.4s forwards 0.7s; /* Firefox < 16 */
+          -ms-animation: fade-in 0.4s forwards 0.7s; /* Internet Explorer */
+          -o-animation: fade-in 0.4s forwards 0.7s; /* Opera < 12.1 */
+          animation: fade-in 0.4s forwards 0.7s;
+          background: $black-text;
+          color: $primary-color;
+          font-family: "Babas", sans-serif;
+          font-size: 30px;
+          text-transform: uppercase;
+          padding: 18px 0;
+          border-radius: 3px;
+          border: none;
+          margin-top: 11.272727272727273%;
+          cursor: pointer;
+          @include transition(all, 0.3s, ease-in-out);
+          &:hover {
+            background: white;
+            color: $black-text;
+          }
+          &:focus,
+          &:focus-within {
+            outline: none;
+          }
+        }
+        .ant-form-explain {
+          color: $black-text;
+          font-family: "Babas", sans-serif;
+          font-size: 14px;
+        }
+        @for $i from 1 through 3 {
+          .ant-form-item {
+            &:nth-child(#{$i}) {
+              @include transition(all, 0.2s, ease-in-out);
+              opacity: 0;
+              -webkit-animation: fade-in
+                0.4s
+                forwards; /* Safari, Chrome and Opera > 12.1 */
+              -moz-animation: fade-in 0.4s forwards; /* Firefox < 16 */
+              -ms-animation: fade-in 0.4s forwards; /* Internet Explorer */
+              -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
+              animation: fade-in 0.4s forwards;
+              animation-delay: $i * (1s / 6);
+            }
+          }
+        }
+        input {
+          background: $primary-color;
+          border-top: 0;
+          border-left: 0;
+          border-right: 0;
+          border-bottom: 1px solid $black-text;
+          border-radius: 0;
+          font-size: 36px;
+          padding: 28px 0;
+          text-transform: uppercase;
+          font-family: "Babas", sans-serif;
+          &::placeholder {
+            color: white;
+            font-family: "Babas", sans-serif;
+          }
+          &:focus,
+          &:focus-within {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+}

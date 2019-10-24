@@ -1,0 +1,130 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.home-page {
+  @include flexbox();
+  @include flex-direction(column);
+  @include align-content(center);
+  @include align-items(center);
+  width: 100%;
+  min-height: calc(100vh - 300px);
+  box-sizing: border-box;
+  background: $light-silver;
+  .row-container {
+    @include flexbox();
+    position: relative;
+    width: 100%;
+    flex: 1;
+    @include flex-direction(column);
+    @media (min-width: 992px) {
+      @include flex-direction(row);
+    }
+    @include justify-content(space-between);
+    @include align-items(center);
+    height: 100%;
+    .left {
+      flex: 1;
+      @include flexbox();
+      @include flex-direction(column);
+      @include align-items(flex-start);
+      @include justify-content(flex-start);
+      margin-top: 30px;
+      @media (min-width: 992px) {
+        margin-top: 0px;
+      }
+      position: relative;
+      h1.big {
+        color: $primary-color;
+        font-size: 80px;
+        line-height: 60px;
+        @media (min-width: 992px) {
+          font-size: 140px;
+          line-height: 110px;
+        }
+        margin: 0;
+        font-family: "Babas", sans-serif;
+      }
+
+      h4.light {
+        color: $black-text;
+        font-family: "BabasLight", sans-serif;
+        font-weight: lighter;
+        font-size: 30px;
+        line-height: 29px;
+        padding: 0;
+        padding-left: 5px;
+        margin: 0;
+      }
+
+      h3.dark {
+        color: $black-text;
+        font-family: "Babas", sans-serif;
+        font-weight: lighter;
+        font-size: 60px;
+        line-height: 60px;
+        padding: 0;
+        margin: 0;
+      }
+
+      p.sub-title-p {
+        color: $dark-silver;
+        font-size: 14px;
+        margin: 20px 0;
+        padding: 0;
+        max-width: 516px;
+      }
+
+      .buttons-container {
+        @include flexbox();
+        @include align-self(flex-end);
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+
+        margin-top: 40px;
+        @media (min-width: 992px) {
+          margin-top: 60px;
+
+          @include flex-direction(row);
+        }
+        .button-rounded-link {
+          @media (min-width: 992px) {
+            margin-top: 0;
+          }
+
+          &:nth-child(2) {
+            margin-top: 20px;
+            @media (min-width: 992px) {
+              margin-top: 0;
+            }
+          }
+        }
+        flex: 1;
+        width: 100%;
+        max-width: 520px;
+        @include justify-content(space-between);
+      }
+    }
+    .right {
+      flex: 2;
+      margin-top: 20px;
+      width: 100%;
+      justify-self: center;
+      @include align-items(center);
+      display: none;
+      @media (min-width: 992px) {
+        margin-top: 0;
+
+        @include flexbox();
+        justify-self: flex-end;
+        @include align-items(flex-start);
+      }
+      @include justify-content(flex-end);
+      padding-right: 20px;
+      svg {
+        width: 100%;
+        height: 100%;
+        max-width: 450px;
+      }
+    }
+  }
+}

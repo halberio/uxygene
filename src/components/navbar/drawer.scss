@@ -1,0 +1,68 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.menu-icon {
+  cursor: pointer;
+  z-index: 9999999;
+  padding-left: 40px;
+  @include flexbox();
+  @include flex-direction(column);
+  @media (min-width: 992px) {
+    display: none;
+  }
+  span {
+    width: 6px;
+    height: 6px;
+    &:nth-child(2),
+    &:nth-child(3) {
+      margin-top: 4px;
+    }
+    background: $black-text;
+    display: block;
+    border-radius: 100%;
+  }
+}
+.drawer {
+  background: #232323;
+  @include flexbox();
+  @media (min-width: 992px) {
+    display: none;
+  }
+  padding: 10.9282576866764276%;
+  @include flex-direction(column);
+  @include justify-content(flex-start);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 999999;
+  .brand {
+    flex: 3;
+    @include flexbox();
+    @include justify-content(flex-start);
+    width: 100%;
+  }
+  .menu-items {
+    flex: 7;
+    @include flexbox();
+    @include flex-direction(column);
+    .nav-link {
+      color: $primary-color;
+      font-family: "Avenir", sans-serif;
+      text-align: left;
+      font-size: 40px;
+      padding: 0 1%;
+      margin: 0 1.8301610541727673%;
+      position: relative;
+      text-transform: capitalize;
+      z-index: 1;
+
+      &:hover {
+        color: white;
+      }
+      &.active {
+        color: white;
+      }
+    }
+  }
+}

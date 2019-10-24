@@ -1,0 +1,42 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.event-card {
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      @include transition(all, 0.2s, ease-in-out);
+      opacity: 0;
+      -webkit-animation: fade-in
+        0.4s
+        forwards; /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: fade-in 0.4s forwards; /* Firefox < 16 */
+      -ms-animation: fade-in 0.4s forwards; /* Internet Explorer */
+      -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
+      animation: fade-in 0.4s forwards;
+      animation-delay: $i * (1s / 10);
+    }
+  }
+  flex: 1;
+  @include flexbox();
+  width: 100%;
+  @include align-items(center);
+  @include justify-content(space-between);
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 20px;
+  @include transition(all, 0.2s, ease-in-out);
+  &:hover {
+    background: white;
+  }
+  .text {
+    h3 {
+      color: $black-text;
+      font-family: "Avenir", sans-serif;
+      font-size: 18px;
+    }
+  }
+  .free-or-paid {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #fc0;
+  }
+}

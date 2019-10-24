@@ -1,0 +1,152 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.navbar {
+  background: transparent;
+  width: 100%;
+  max-height: 140px;
+  @include flexbox();
+  @include justify-content(space-between);
+  @include align-items(center);
+  padding: 10.9282576866764276%;
+  @media (min-width: 992px) {
+    padding: 2.9282576866764276% 10.248901903367496%;
+  }
+  &.on-scroll-navbar {
+    @include transition(all, 0.2s, ease-in-out);
+    opacity: 0;
+    -webkit-animation: fade-in 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in 0.4s forwards; /* Firefox < 16 */
+    -ms-animation: fade-in 0.4s forwards; /* Internet Explorer */
+    -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
+    animation: fade-in 0.4s forwards;
+    background: #f8f7f7;
+    padding: 10px 10.248901903367496%;
+
+    box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
+    -webkit-box-shadow: 20px 20px 20px rgba(142, 104, 0, 0.1);
+    @media (min-width: 992px) {
+      padding: 10px 10.248901903367496%;
+    }
+    .brand {
+      svg {
+        max-width: 60px;
+      }
+    }
+    .text-specific-pages {
+      h3.gold-text {
+        font-size: 20px;
+        @media (min-width: 992px) {
+          font-size: 20px;
+          line-height: 20px;
+        }
+      }
+      h4.bold-black {
+        font-size: 14px;
+        line-height: 14px;
+        @media (min-width: 992px) {
+          font-size: 20px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+  .text-specific-pages {
+    opacity: 0;
+    -webkit-animation: fade-in 0.3s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in 0.3s forwards 0.1s; /* Firefox < 16 */
+    -ms-animation: fade-in 0.3s forwards 0.1s; /* Internet Explorer */
+    -o-animation: fade-in 0.3s forwards 0.1s; /* Opera < 12.1 */
+    animation: fade-in 0.3s forwards 0.1s;
+    flex: 1;
+    padding-left: 3.6603221083455346%;
+    h3.gold-text {
+      color: $primary-color;
+      font-family: "Babas", sans-serif;
+      font-size: 20px;
+      @media (min-width: 992px) {
+        font-size: 30px;
+        line-height: 30px;
+      }
+      @media (min-width: 1200px) {
+        font-size: 60px;
+        line-height: 40px;
+      }
+      line-height: 20px;
+      margin: 0;
+      padding: 0;
+      align-self: flex-start;
+    }
+    h4.bold-black {
+      color: $black-text;
+      font-family: "Babas", sans-serif;
+      font-size: 14px;
+      line-height: 14px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+        line-height: 20px;
+      }
+      @media (min-width: 1200px) {
+        font-size: 40px;
+        line-height: 40px;
+      }
+      margin: 0;
+      padding: 0;
+      align-self: flex-start;
+    }
+  }
+  .navigation {
+    .bg-round {
+      content: "";
+      background: #f8f7f7;
+      top: -20px;
+      right: -16px;
+    }
+
+    @include justify-content(flex-end);
+    @include align-items(flex-start);
+    @include align-content(flex-start);
+    display: none;
+    @media (min-width: 992px) {
+      @include flexbox();
+    }
+    flex: 2;
+    max-width: 460px;
+    position: relative;
+    .nav-link {
+      word-break: keep-all;
+      color: $black-text;
+      font-family: "Avenir", sans-serif;
+      text-align: center;
+      font-size: 16px;
+      padding: 0 1%;
+      margin: 0 1.8301610541727673%;
+      position: relative;
+      text-transform: uppercase;
+      z-index: 1;
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 0;
+        top: 30%;
+        z-index: -1;
+        height: 8px;
+        left: -5%;
+        background: $primary-color;
+        @include transition(all, 0.3s, ease-in-out);
+      }
+      &:hover {
+        &:before {
+          width: 110%;
+        }
+      }
+      &.active {
+        word-break: keep-all !important;
+        &:before {
+          width: 110%;
+        }
+      }
+    }
+  }
+}
