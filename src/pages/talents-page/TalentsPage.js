@@ -4,7 +4,6 @@ import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 import FilterCard from "../../components/filter-card/FilterCard";
 import SearchCard from "../../components/search-card/SearchCard";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
-
 import user1 from "../../assets/img/users/user1.jpg";
 import user2 from "../../assets/img/users/user2@2x.jpg";
 import user3 from "../../assets/img/users/user3@2x.jpg";
@@ -24,18 +23,21 @@ const TalentsPage = () => {
       <div className={"columns-container"}>
         <JoinUsCard />
         <UserTalentCard
+            id={"1"}
           picture={user1}
           confirmed={false}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
+            id={"1"}
           picture={user2}
           confirmed={true}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
+            id={"1"}
           picture={user3}
           confirmed={true}
           name={"User Name"}
@@ -43,12 +45,14 @@ const TalentsPage = () => {
         />
         <FilterCard />
         <UserTalentCard
+            id={"1"}
           picture={hamdiPic}
           confirmed={true}
           name={"Hamdi Jomaa"}
           position={"CEO Halber.io"}
         />
         <UserTalentCard
+            id={"1"}
           picture={user4}
           confirmed={false}
           name={"User Name"}
@@ -57,6 +61,7 @@ const TalentsPage = () => {
 
         <UserTalentCard
           picture={user5}
+          id={"1"}
           confirmed={true}
           name={"User Name"}
           position={"UI/UX Designer"}
@@ -64,24 +69,28 @@ const TalentsPage = () => {
         <UserTalentCard
           picture={mongiPic}
           confirmed={true}
+          id={"1"}
           name={"Mongi Ayouni"}
           position={"CEO Moon.tn"}
         />
         <UserTalentCard
           picture={weldmoon}
           confirmed={true}
+          id={"1"}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
           picture={user6}
           confirmed={false}
+          id={"1"}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
           picture={user7}
           confirmed={false}
+          id={"1"}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
@@ -89,6 +98,7 @@ const TalentsPage = () => {
         <SearchCard />
         <UserTalentCard
           picture={user8}
+          id={"1"}
           confirmed={false}
           name={"User Name"}
           position={"UI/UX Designer"}
@@ -99,10 +109,12 @@ const TalentsPage = () => {
           confirmed={false}
           name={"User Name"}
           position={"UI/UX Designer"}
+          id={"1"}
         />
         <UserTalentCard
           picture={user10}
           confirmed={false}
+          id={"1"}
           name={"User Name"}
           position={"UI/UX Designer"}
         />

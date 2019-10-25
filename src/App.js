@@ -13,6 +13,7 @@ import GetInTouchPage from "./pages/get-in-touch-page/GetInTouchPage";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import EventsPage from "./pages/events-page/EventsPage";
 import { TimelineLite } from "gsap";
+import ProfileTalentPage from "./pages/profile-talent-page/ProfileTalentPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const fadeOutOnLeave = new TimelineLite();
@@ -120,6 +121,7 @@ const App = props => {
             >
               <Switch location={location}>
                 <Route exact path={"/"} component={HomePage} />
+                <Route exact path={"/talent-user/:id"} component={ProfileTalentPage} />
                 <Route
                   exact
                   path={"/get-in-touch"}
