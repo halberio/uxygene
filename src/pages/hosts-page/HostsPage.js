@@ -19,13 +19,14 @@ const HostsPage = () => {
             </div>
             <div className="hosts-container">
                 <HostJoinCard/>
-                <HostCard/>
-                <HostCard/>
-                <HostCard/>
-                <HostCard/>
-                <HostCard/>
-                <HostCard/>
-                <HostCard/>
+                <HostCard id={1}/>
+                <HostCard id={1}/>
+                <HostCard id={1}/>
+                <HostCard id={1}/>
+                <HostCard id={1}/>
+                <HostCard id={1}/>
+                <HostJoinCard/>
+                <HostCard id={1}/>
             </div>
         </div>
     );

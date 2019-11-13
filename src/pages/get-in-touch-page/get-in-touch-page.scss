@@ -44,7 +44,7 @@
         h2.black-big {
           color: $black-text;
           font-family: "Babas", sans-serif;
-          font-size: 64px;
+          font-size: 56px;
           line-height: 60px;
           margin: 0;
           padding: 0;
@@ -52,9 +52,9 @@
       }
       .bottom {
         margin-top: 20px;
-
         width: 100%;
         @media (min-width: 992px) {
+          display: inline;
           width: unset;
           margin-top: 120px;
         }
@@ -158,6 +158,7 @@
           }
         }
       }
+
     }
   }
 }

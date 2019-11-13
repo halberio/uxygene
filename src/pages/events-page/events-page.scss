@@ -25,13 +25,17 @@
       @include justify-content(space-between);
     }
     .right {
-      margin-left: 30px;
+      margin-left: 0px;
       flex: 1;
       position: relative;
       width: 100%;
       @include flexbox();
       @include flex-direction(column);
-      @include align-items(flex-end);
+      @include align-items(flex-start);
+      @media (min-width: 992px) {
+        margin-left: 30px;
+        @include align-items(flex-end);
+      }
     }
   }
 }

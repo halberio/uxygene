@@ -15,6 +15,7 @@ import EventsPage from "./pages/events-page/EventsPage";
 import { TimelineLite } from "gsap";
 import ProfileTalentPage from "./pages/profile-talent-page/ProfileTalentPage";
 import HostsPage from "./pages/hosts-page/HostsPage";
+import ProfileHostPage from "./pages/profile-host-page/ProfileHostPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const fadeOutOnLeave = new TimelineLite();
@@ -123,6 +124,7 @@ const App = props => {
               <Switch location={location}>
                 <Route exact path={"/"} component={HomePage} />
                 <Route exact path={"/talent-user/:id"} component={ProfileTalentPage} />
+                <Route exact path={"/hosts-profile/:id"} component={ProfileHostPage} />
                 <Route
                   exact
                   path={"/get-in-touch"}

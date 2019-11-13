@@ -1,0 +1,220 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.profile-host-page {
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  @media (min-width: 992px) {
+    @include justify-content(space-between);
+    @include flex-direction(row);
+  }
+  .left{
+    @include flex(1);
+    max-width: 550px;
+    @include flexbox();
+    @include flex-direction(column);
+    .top{
+      @include flexbox();
+      @include flex(1);
+      @include justify-content(space-between);
+      @include align-items(center);
+      .title{
+        h1{
+          font-family: "Babas", sans-serif;
+          font-size: 50px;
+          line-height: 40px;
+          margin: 0;
+          padding: 0;
+          text-transform: uppercase;
+          color: $primary-color;
+        }
+        h2{
+          font-family: "Avenir", sans-serif;
+          font-size: 20px;
+          color: #232323;
+          text-transform: capitalize;
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .confirmed-box{
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(space-between);
+        font-family: "Babas", sans-serif;
+        font-size: 20px;
+        line-height: 20px;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        svg{
+          margin-top: -12px;
+          margin-left: 10px;
+        }
+      }
+    }
+    p.description{
+      margin-top: 20px;
+      color: #5A574C;
+      line-height: 24px;
+      font-size: 14px;
+      font-family: "Avenir", sans-serif;
+    }
+    .bottom{
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(space-between);
+      svg{
+        width: 28px;
+        path{
+          fill: $primary-color;
+        }
+      }
+      h3{
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+        font-family: "Avenir", sans-serif;
+        color: #232323;
+        text-transform: capitalize;
+        font-weight: bold;
+      }
+      .vote-button{
+        &:focus{
+          outline: none;
+        }
+        outline: none;
+        @include border-radius(4px);
+        border:none;
+        background: $primary-color;
+        box-shadow: 8px 8px 10px rgba(255, 204, 0, 0.2);
+        font-family: "Babas", sans-serif;
+        padding: 6px 12px;
+        font-size: 20px;
+        color: #232323;
+        @include transition(all, 0.2s, ease-in-out);
+        span{
+          color: white;
+        }
+        cursor: pointer;
+        &:hover{
+          background: #232323;
+          box-shadow: 8px 8px 10px rgba(35, 35, 35, 0.2);
+          color:white;
+          span{
+           color: $primary-color;
+          }
+        }
+      }
+    }
+    .form-host{
+      @include flexbox();
+      @include flex-direction(column);
+      margin-top: 20px;
+      textarea{
+        margin-bottom: 0 !important;
+        border-radius: 0;
+        font-family: "Babas", sans-serif;
+        color: #232323;
+        background: #F0F0F0;
+        border: none;
+        font-size: 20px;
+        &:focus{
+          box-shadow: none;
+          outline: none;
+        }
+      }
+      .ant-form-item{
+        margin-bottom: 0 !important;
+        border-radius: 0;
+      }
+      .submit-btn-host{
+        width:100%;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        color: $primary-color;
+        font-family: "Babas", sans-serif;
+        font-size: 30px;
+        background: #232323;
+        @include border-radius(4px);
+        @include transition(all, 0.3s,ease-in-out);
+        padding: 15px 10px;
+        cursor: pointer;
+        &:focus{
+          outline: none;
+        }
+        &:hover{
+          background: $primary-color;
+          color:#232323;
+        }
+      }
+    }
+  }
+  .right{
+    max-width: 550px;
+    height: auto;
+    width: 100%;
+    position: relative;
+    @include flex(1);
+    margin-top: 20px;
+    @media (min-width: 992px) {
+      margin-top: unset;
+      height: calc(100vh - 260px);
+      margin-left: 30px;
+      max-width: 620px;
+    }
+    img{
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .navigation-items{
+      @include flexbox();
+      @include justify-content(space-between);
+      width: 100%;
+      padding: 20px;
+      @media (min-width: 992px) {
+        padding: 10% 20% ;
+      }
+      position: absolute;
+      bottom: 0;
+      svg{
+        @include transition(all, 0.2s, ease-in-out);
+        cursor: pointer;
+        path{
+          fill: white;
+        }
+        &:hover{
+          path{
+            fill: $primary-color;
+          }
+        }
+      }
+      .dots{
+        @include flexbox() ;
+        .dot{
+          display: block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid $primary-color;
+          @include border-radius(100%);
+          margin-right: 4px;
+          cursor: pointer;
+          @include transition(all, 0.2s, ease-in-out);
+          &:last-child{
+            margin-right: unset;
+          }
+          &.filled{
+            background: $primary-color;
+          }
+          &:hover{
+            background: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
