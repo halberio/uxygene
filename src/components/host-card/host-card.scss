@@ -154,7 +154,6 @@
     .images-container{
       .img-bg{
         filter:blur(5px);
-        @include transform(scale(1.2));
       }
       .profile-image{
         bottom: 41%;
