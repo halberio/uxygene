@@ -1,0 +1,180 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.host-card{
+  cursor: pointer;
+  @include transition(all, 0.2s, ease-in-out);
+  display: inline-block;
+  background: #FFFFFF;
+  position: relative;
+  height: auto;
+  width: 100%;
+  @include border-radius(10px);
+  overflow: hidden;
+  margin-bottom: 30px;
+  .images-container{
+    @include border-radius(10px 0);
+    overflow: hidden;
+    position: relative;
+    height: 250px;
+    width: 100%;
+    .img-bg{
+      @include transition(all, 0.2s, ease-in-out);
+      @include border-radius(10px 0);
+      overflow: hidden;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .profile-image{
+      @include transition(all, 0.2s, ease-in-out);
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      @include border-radius(5px);
+      overflow: hidden;
+      img{
+        @include border-radius(5px);
+        overflow: hidden;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .text-container{
+    @include flexbox();
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    padding: 20px;
+    @media (min-width: 992px) {
+      padding: 20px;
+    }
+    .description-h5{
+      color:#232323;
+      font-size: 13px;
+      font-family: "Avenir", sans-serif;
+      margin-top: 10px;
+    }
+    .top{
+      @include flex(1);
+      width: 100%;
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      h3{
+        font-size: 38px;
+        line-height: 38px;
+        margin: 0;
+        padding: 0;
+        font-family: "Babas", sans-serif;
+        color: $primary-color;
+        text-transform: uppercase;
+      }
+      svg{
+        width:60px;
+        padding: 8px;
+        height: 40px;
+        border-radius: 3px;
+      }
+    }
+    .bottom{
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      svg{
+        height: 15px;
+        width: 15px;
+      }
+      p{
+        margin: 0;
+        padding: 0;
+        font-family: "Avenir", sans-serif;
+        color: #5A574C;
+      }
+    }
+
+  }
+  .infos-block{
+    pointer-events: none;
+    @include transition(all, 0.2s, ease-in-out);
+    @include flexbox();
+    padding: 20px;
+    @media (min-width: 992px) {
+      padding: 20px;
+    }
+    background: #232323;
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    position: absolute;
+    bottom: -100%;
+    z-index: 999999;
+    font-family: "Avenir", sans-serif;
+    @include justify-content(space-between);
+    .left,.right{
+      @include flex(1);
+      @include transition(all, 0.2s, 0.2s);
+      @include transform(translateX(20px));
+      opacity: 0;
+    }
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li{
+        padding: 0;
+        margin: 0;
+      }
+    }
+    width: 100%;
+    color:white;
+    h5{
+      color:white;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    h4{
+      font-size: 16px;
+      font-weight: bold;
+      color:white;
+    }
+  }
+  &:hover{
+      height: auto;
+    .infos-block{
+      bottom: 0;
+      .left,.right{
+        opacity: 1;
+        @include transform(translateX(0px));
+      }
+    }
+    .images-container{
+      .img-bg{
+        filter:blur(5px);
+        @include transform(scale(1.2));
+      }
+      .profile-image{
+        bottom: 41%;
+      }
+    }
+    background: #232323;
+    .bottom{
+      p{
+        color:white;
+      }
+    }
+    .text-container{
+      .top{
+        svg{
+          background: white;
+          path{
+            fill: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -90,12 +90,6 @@ const Navbar = props => {
           </div>
         ) : null}
         <div className="navigation">
-          <div
-            className="bg-round"
-            style={{
-              background: backgroundColor
-            }}
-          ></div>
           <NavLink
             exact
             className={"nav-link"}
@@ -112,6 +106,14 @@ const Navbar = props => {
           >
             {" "}
             UX TALENTS
+          </NavLink>
+          <NavLink
+              className={"nav-link"}
+              activeClassName={"active"}
+              to={"/hosts"}
+          >
+            {" "}
+            UX HOSTS
           </NavLink>
           <NavLink
             className={"nav-link"}
@@ -203,6 +205,19 @@ const Navbar = props => {
                     >
                       {" "}
                       UX Talents
+                    </NavLink>
+                    <NavLink
+                        className={"nav-link"}
+                        activeClassName={"active"}
+                        to={"/hosts"}
+                        style={{
+                          WebkitTransform: `translate3d(${-y}px, 0, 0)`,
+                          transform: `translate3d(${-y}px, 0, 0)`,
+                          opacity: o
+                        }}
+                    >
+                      {" "}
+                      UX Hosts
                     </NavLink>
                     <NavLink
                       className={"nav-link"}

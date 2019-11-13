@@ -1,0 +1,45 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.host-join-card{
+  border-radius: 10px;
+  background: #fc0;
+  box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
+  margin-bottom: 30px;
+  padding: 20px;
+  @include flexbox();
+  @include justify-content(space-around);
+  @include align-items(center);
+  .left{
+    @include flex(3);
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+  }
+  .right{
+    @include flex(7);
+    h2{
+      color:#232323;
+      margin: 0;
+      padding: 0;
+      font-family: "Babas", sans-serif;
+      font-size: 30px;
+      line-height: 30px;
+      @media (min-width: 992px) {
+        font-size: 60px;
+        line-height: 60px;
+      }
+    }
+    h3{
+      font-family: "Babas", sans-serif;
+      font-size: 30px;
+      line-height: 30px;
+      color:white;
+      margin: 0;
+      padding: 0;
+      @media (min-width: 992px) {
+        font-size: 60px;
+        line-height: 60px;
+      }
+    }
+  }
+}

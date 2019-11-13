@@ -52,25 +52,29 @@
     }
   }
   .text-specific-pages {
+    @include flex(1);
     opacity: 0;
     -webkit-animation: fade-in 0.3s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fade-in 0.3s forwards 0.1s; /* Firefox < 16 */
     -ms-animation: fade-in 0.3s forwards 0.1s; /* Internet Explorer */
     -o-animation: fade-in 0.3s forwards 0.1s; /* Opera < 12.1 */
     animation: fade-in 0.3s forwards 0.1s;
-    flex: 1;
     padding-left: 3.6603221083455346%;
     h3.gold-text {
       color: $primary-color;
       font-family: "Babas", sans-serif;
       font-size: 20px;
+      @media (min-width: 880px) {
+        font-size: 20px !important;
+        line-height: 20px !important;
+      }
       @media (min-width: 992px) {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 30px !important;
+        line-height: 30px !important;
       }
       @media (min-width: 1200px) {
-        font-size: 60px;
-        line-height: 40px;
+        font-size: 60px !important;
+        line-height: 40px !important;
       }
       line-height: 20px;
       margin: 0;
@@ -96,13 +100,8 @@
     }
   }
   .navigation {
-    .bg-round {
-      content: "";
-      background: #f8f7f7;
-      top: -20px;
-      right: -16px;
-    }
-
+    width: 100%;
+    @include flex(1);
     @include justify-content(flex-end);
     @include align-items(flex-start);
     @include align-content(flex-start);
@@ -110,15 +109,16 @@
     @media (min-width: 992px) {
       @include flexbox();
     }
-    flex: 2;
-    max-width: 460px;
+    max-width: 560px;
     position: relative;
     .nav-link {
-      word-break: keep-all;
       color: $black-text;
       font-family: "Avenir", sans-serif;
       text-align: center;
-      font-size: 16px;
+      font-size: 14px !important;
+      @media (min-width: 992px) {
+        font-size: 16px !important;
+      }
       padding: 0 1%;
       margin: 0 1.8301610541727673%;
       position: relative;

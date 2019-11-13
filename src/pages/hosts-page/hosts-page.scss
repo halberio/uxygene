@@ -1,0 +1,85 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.hosts-page{
+  @include flexbox();
+  @include flex-direction(column);
+  .navigation-filters-container{
+    @include flexbox();
+    @include flex-direction(column);
+    @media (min-width: 992px) {
+      @include flex-direction(row);
+    }
+    .coworking-filter{
+      box-sizing: border-box;
+      @include flex(2);
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      @include border-radius(10px);
+      padding: 20px;
+      background: $white;
+      @media (min-width: 992px) {
+        padding:24px ;
+      }
+      h3{
+        margin: 0;
+        padding: 0;
+        font-size: 25px;
+        font-family: "Babas", sans-serif;
+        @media (min-width: 992px) {
+          font-size: 38px;
+          line-height: 38px;
+        }
+      }
+      svg{
+        height: 50px;
+        width: 50px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .search-box{
+      @include flex(1);
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      @include border-radius(10px);
+      padding: 20px;
+      background: $white;
+      margin-top: 30px;
+      @media (min-width: 992px) {
+        padding:24px ;
+        margin-top: unset;
+        margin-left: 30px;
+      }
+      h3 {
+        margin: 0;
+        padding: 0;
+        font-size: 25px;
+        font-family: "Babas", sans-serif;
+        color: #5A574C;
+        @media (min-width: 600px) {
+          font-size: 20px;
+          line-height:22px ;
+        }
+        @media (min-width: 1200px) {
+          font-size: 22px;
+          line-height:22px ;
+        }
+        @media (min-width: 1366px) {
+          font-size: 30px;
+          line-height:30px ;
+        }
+      }
+    }
+  }
+  .hosts-container{
+    column-count: 1;
+    column-gap: 30px;
+    margin-top: 30px;
+    @media (min-width: 992px) {
+      column-count: 2;
+    }
+  }
+}

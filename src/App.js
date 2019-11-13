@@ -14,6 +14,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import EventsPage from "./pages/events-page/EventsPage";
 import { TimelineLite } from "gsap";
 import ProfileTalentPage from "./pages/profile-talent-page/ProfileTalentPage";
+import HostsPage from "./pages/hosts-page/HostsPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const fadeOutOnLeave = new TimelineLite();
@@ -129,6 +130,7 @@ const App = props => {
                 />
 
                 <Route path="/talents" component={TalentsPage} />
+                <Route path="/hosts" component={HostsPage} />
                 <Route path="/events" component={EventsPage} />
                 <GuestRoute
                   authenticated={props.isLoggedIn}

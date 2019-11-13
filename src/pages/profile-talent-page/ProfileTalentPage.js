@@ -77,7 +77,7 @@ const ProfileTalentPage = props => {
             />
           </svg>
         </Link>
-        <img src={mongiPic} />
+        <img src={mongiPic} alt={"img profile"} />
       </div>
     </div>
   );

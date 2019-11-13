@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./user-talent-card.scss";
 import {Link} from "react-router-dom";
 const UserTalentCard = props => {
@@ -14,7 +14,6 @@ const UserTalentCard = props => {
           <h4>{props.position}</h4>
         </div>
       </div>
-
     </Link>
   );
 };
