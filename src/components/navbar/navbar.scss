@@ -108,6 +108,7 @@
     @include align-items(flex-start);
     @include align-content(flex-start);
     display: none;
+    max-width: 500px;
     @media (min-width: 992px) {
       @include flexbox();
     }
