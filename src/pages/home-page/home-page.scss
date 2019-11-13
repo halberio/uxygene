@@ -10,6 +10,9 @@
   min-height: calc(100vh - 300px);
   box-sizing: border-box;
   background: $light-silver;
+  display: block;
+  margin: auto;
+  max-width: 1200px;
   .row-container {
     @include flexbox();
     position: relative;

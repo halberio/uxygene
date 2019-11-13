@@ -2,8 +2,9 @@
 @import "../../stylesheets/mixins";
 
 .hosts-page{
-  @include flexbox();
-  @include flex-direction(column);
+  display: block;
+  margin: auto;
+  max-width: 1200px;
   .navigation-filters-container{
     @include flexbox();
     @include flex-direction(column);

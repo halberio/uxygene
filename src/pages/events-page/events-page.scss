@@ -2,6 +2,9 @@
 @import "../../stylesheets/mixins";
 
 .events-page {
+  display: block;
+  margin: auto;
+  max-width: 1200px;
   .row-container {
     @include flexbox();
     width: 100%;
