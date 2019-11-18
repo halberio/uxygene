@@ -26,50 +26,51 @@ const SearchForm = props => {
         <SearchIcon />
       </div>
       <h1 onClick={changeSearchContainerVisibility}>Type anywhere To search</h1>
-      <Motion
-        style={{
-          x: spring(searchContainerHidden ? 100 : 0),
-          y: spring(searchContainerHidden ? 0 : 1)
-        }}
-      >
-        {({ x, y }) => (
-          <div
-            className="search-container"
+        <Motion
             style={{
-              display: !searchContainerHidden ? "flex" : "flex",
-              WebkitTransform: `translate3d(${x}%, 0, 0)`,
-              transform: `translate3d(${x}%, 0, 0) scale(${y})`,
-              opacity: y
+                x: spring(searchContainerHidden ? 100 : 0),
+                y: spring(searchContainerHidden ? 0 : 1)
             }}
-          >
-            <div
-              className="logo-container"
-              onClick={changeSearchContainerVisibility}
-            >
-              <LogoWhite />
-            </div>
-            <Form layout="inline" onSubmit={handleSubmit}>
-              <Form.Item>
-                {getFieldDecorator("search", {
-                  rules: [
-                    { required: true, message: "Please input your keyword!" }
-                  ]
-                })(<Input placeholder="Search..." />)}
-              </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("type", {
-                  rules: [{ message: "Please select your keyword!" }]
-                })(
-                  <div className={"container-switch"}>
-                    <h3>UX Taltent</h3>
-                    <Switch defaultChecked /> <h3>UX Events</h3>
-                  </div>
-                )}
-              </Form.Item>
-            </Form>
-          </div>
-        )}
-      </Motion>
+
+        >
+            {({ x, y }) => (
+                <div
+                    className="search-container"
+                    style={{
+                        display: !searchContainerHidden ? "flex" : "flex",
+                        WebkitTransform: `translate3d(${x}%, 0, 0)`,
+                        transform: `translate3d(${x}%, 0, 0) scale(${y})`,
+                        opacity: y
+                    }}
+                >
+                    <div
+                        className="logo-container"
+                        onClick={changeSearchContainerVisibility}
+                    >
+                        <LogoWhite />
+                    </div>
+                    <Form layout="inline" onSubmit={handleSubmit}>
+                        <Form.Item>
+                            {getFieldDecorator("search", {
+                                rules: [
+                                    { required: true, message: "Please input your keyword!" }
+                                ]
+                            })(<Input placeholder="Search..." />)}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator("type", {
+                                rules: [{ message: "Please select your keyword!" }]
+                            })(
+                                <div className={"container-switch"}>
+                                    <h3>UX Taltent</h3>
+                                    <Switch defaultChecked /> <h3>UX Events</h3>
+                                </div>
+                            )}
+                        </Form.Item>
+                    </Form>
+                </div>
+            )}
+        </Motion>
     </div>
   );
 };

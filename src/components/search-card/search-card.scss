@@ -1,26 +1,30 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 .search-card {
-  width: 100%;
   padding: 0 20px;
+  grid-column: 1 / 3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
   @include flexbox();
-  grid-row-end: span 3;
-  @media (min-width: 768px) {
-    @include flexbox();
-    max-height: 250px;
-    svg {
-      max-width: unset;
-
-    }
-    max-width: unset;
-    @include justify-content(center);
-    width: 100%;
-    height: 1fr;
-    @include flex-direction(column);
-  }
   @include flex-direction(row);
   @include align-items(center);
-  @include justify-content(space-between);
+  @include justify-content(space-around);
+  @media (min-width: 1300px) {
+    grid-column: 1 / 4;
+  }
+  @media (min-width: 992px) {
+    width: 100%;
+    grid-column: 4 / 4;
+    grid-row: 1 / 3;
+
+
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex-direction(column);
+  }
+
   svg {
     max-width: 30px;
     cursor: pointer;
@@ -31,16 +35,13 @@
       }
     }
   }
-
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
-
   h1 {
+
     color: $dark-silver;
     font-family: "Babas", sans-serif;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 19px;
+    padding: 0;
     text-align: center;
     margin: 0;
     max-width: 180px;

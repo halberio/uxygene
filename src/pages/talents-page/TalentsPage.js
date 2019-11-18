@@ -21,9 +21,7 @@ const TalentsPage = () => {
   return (
     <div className={"talents-page"}>
       <div className={"columns-container"}>
-
         <FilterCard />
-
         <SearchCard />
         <UserTalentCard
             id={"1"}
@@ -43,7 +41,7 @@ const TalentsPage = () => {
             id={"1"}
           picture={user3}
           confirmed={true}
-          name={"User Name"}
+          name={"User Name 3"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard

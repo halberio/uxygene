@@ -1,23 +1,28 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 .filter-card {
-  width: 100%;
-  height: 70px;
+  position: relative;
   padding: 0 20px;
   @include flexbox();
+  grid-row:span 1;
+  width: 100%;
+  justify-self: stretch;
+  grid-column: 1 / 3;
   @media (min-width: 768px) {
-    grid-column-end: 4;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-row-end: 1;
+    @include justify-content(space-between);
+    @include flex-direction(row);
     svg {
       max-width: unset;
     }
-    @include justify-content(space-between);
-    width: 100%;
-    @include flex-direction(row);
-    height: 100px;
+    grid-column: 1 / 4;
   }
+  @media (min-width: 992px) {
+    grid-column: 1 / 4;
+  }
+  @media (min-width: 1300px) {
+    grid-column: 1 / 4;
+  }
+
   @include align-items(center);
   @include flex-direction(row);
   @include justify-content(space-between);
@@ -29,11 +34,17 @@
 
   box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
   h1 {
+    @include flex(1);
     color: $dark-silver;
     font-family: "Babas", sans-serif;
     text-transform: uppercase;
-    font-size: 30px;
-    margin: 0;
+    font-size: 24px;
     padding: 0;
+    text-align: center;
+    margin: 0;
+    max-width: 180px;
+    @media (min-width: 992px) {
+      font-size: 30px;
+    }
   }
 }
