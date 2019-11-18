@@ -2,14 +2,21 @@
 @import "../../stylesheets/mixins";
 .search-card {
   width: 100%;
-  height: 70px;
   padding: 0 20px;
   @include flexbox();
-  column-span: all;
+  grid-row-end: span 3;
   @media (min-width: 768px) {
-    display: inline-flex;
+    @include flexbox();
+    max-height: 250px;
+    svg {
+      max-width: unset;
 
-    column-span: unset;
+    }
+    max-width: unset;
+    @include justify-content(center);
+    width: 100%;
+    height: 1fr;
+    @include flex-direction(column);
   }
   @include flex-direction(row);
   @include align-items(center);
@@ -24,16 +31,7 @@
       }
     }
   }
-  @media (min-width: 992px) {
-    svg {
-      max-width: unset;
-    }
-    max-width: unset;
-    @include justify-content(center);
-    width: 260px;
-    @include flex-direction(column);
-    height: 240px;
-  }
+
   border-radius: 10px;
   background: #fff;
   box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);

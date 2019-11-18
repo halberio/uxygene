@@ -15,7 +15,6 @@ const Navbar = props => {
   const [textSpecificPageText, setTextSpecificPageText] = useState(
     "a mine of creative talents"
   );
-  const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const [onScrollClassName, setOnScrollClassName] = useState("");
   useEffect(() => {
     if (
@@ -33,21 +32,12 @@ const Navbar = props => {
       setTextSpecificPageDisblyed(false);
     }
 
-    if (window.location.pathname === "/") {
-      setBackgroundColor("#F0F0F0");
-    } else {
-      setBackgroundColor("#F8F7F7");
-    }
 
     props.history.listen(location => {
       setTimeout(() => {
         setDrawerOpened(false);
       }, 250);
-      if (location.pathname === "/") {
-        setBackgroundColor("#F0F0F0");
-      } else {
-        setBackgroundColor("#F8F7F7");
-      }
+
       if (
         location.pathname.includes("talents") ||
         window.location.pathname.includes("events")

@@ -6,7 +6,6 @@
   @include flex-direction(row);
   @include align-items(center);
   @include justify-content(space-between);
-  column-span: all !important;
   width: 100%;
   height: 70px;
   padding: 10px 20px;
@@ -17,16 +16,13 @@
     display: inline-flex;
     width: 260px !important;
     max-width: 260px;
-    column-span: unset;
   }
   @media (min-width: 992px) {
-    margin-top: 40%;
     margin-bottom: 0;
     svg {
       max-width: unset;
     }
 
-    column-span: unset !important;
     width: 260px;
     max-width: 260px;
     height: 360px;
@@ -51,12 +47,10 @@
     color: $black-text;
     font-family: "Babas", sans-serif;
     margin: 0;
-    margin-top: 0px;
     padding: 0;
     text-transform: uppercase;
     @media (min-width: 992px) {
       font-size: 100px;
-      margin-top: 20px;
       line-height: 100px;
     }
   }

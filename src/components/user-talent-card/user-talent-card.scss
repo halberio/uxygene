@@ -4,9 +4,9 @@
 .user-talent-card {
   width: 100%;
   min-width: 146px;
-  height: 202px;
   column-fill: balance;
   display: inline-block;
+  grid-row-start:  1;
   @media (min-width: 992px) {
     width: 100%;
     min-width: 260px;
@@ -14,10 +14,10 @@
     max-width: unset;
     max-height: 360px;
     min-height: 360px;
+
   }
   border-radius: 10px;
   position: relative;
-  margin-top: 20%;
   cursor: pointer;
   opacity: 0;
   -webkit-animation: fade-in 1s forwards; /* Safari, Chrome and Opera > 12.1 */

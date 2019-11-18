@@ -5,11 +5,18 @@
   height: 70px;
   padding: 0 20px;
   @include flexbox();
-  column-span: all;
   @media (min-width: 768px) {
-    display: inline-flex;
-
-    column-span: unset;
+    grid-column-end: 4;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    svg {
+      max-width: unset;
+    }
+    @include justify-content(space-between);
+    width: 100%;
+    @include flex-direction(row);
+    height: 100px;
   }
   @include align-items(center);
   @include flex-direction(row);
@@ -17,20 +24,9 @@
   svg {
     max-width: 30px;
   }
-  margin-bottom: 20px;
-  @media (min-width: 992px) {
-    margin-bottom: 0px;
-    max-width: unset;
-    svg {
-      max-width: unset;
-    }
-    @include justify-content(center);
-    width: 260px;
-    @include flex-direction(column);
-    height: 240px;
-  }
   border-radius: 10px;
   background: #fff;
+
   box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
   h1 {
     color: $dark-silver;

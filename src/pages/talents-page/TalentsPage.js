@@ -21,7 +21,10 @@ const TalentsPage = () => {
   return (
     <div className={"talents-page"}>
       <div className={"columns-container"}>
-        <JoinUsCard />
+
+        <FilterCard />
+
+        <SearchCard />
         <UserTalentCard
             id={"1"}
           picture={user1}
@@ -43,7 +46,6 @@ const TalentsPage = () => {
           name={"User Name"}
           position={"UI/UX Designer"}
         />
-        <FilterCard />
         <UserTalentCard
             id={"1"}
           picture={hamdiPic}
@@ -95,7 +97,6 @@ const TalentsPage = () => {
           position={"UI/UX Designer"}
         />
 
-        <SearchCard />
         <UserTalentCard
           picture={user8}
           id={"1"}
