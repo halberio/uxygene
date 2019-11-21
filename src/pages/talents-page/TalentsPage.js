@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./talents-page.scss";
-import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 import FilterCard from "../../components/filter-card/FilterCard";
 import SearchCard from "../../components/search-card/SearchCard";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
@@ -17,42 +16,120 @@ import user10 from "../../assets/img/users/user10@2x.jpg";
 import hamdiPic from "../../assets/img/users/hamdi@2x.jpg";
 import weldmoon from "../../assets/img/users/weldmoon@2x.jpg";
 import mongiPic from "../../assets/img/users/mongi@2x.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../actions/users-actions/actions";
+import LoadingIcon from "../../components/loading-icon/LoadingIcon";
+import AdjustIcon from "../../components/svg/AdjustIcon";
+import "../../components/filter-card/filter-card.scss";
 const TalentsPage = () => {
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.usersReducer.users);
+  const [isFilterActive, setIsFilterActive] = useState(false);
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  const handleFilterStatus = ()=>{
+    setIsFilterActive(!isFilterActive)
+  }
   return (
     <div className={"talents-page"}>
-      <div className={"columns-container"}>
-        <FilterCard />
+      <div className={"columns-container"} >
+        <div  className={`filter-card ${isFilterActive ? "active": null}` }>
+          <h1 onClick={handleFilterStatus}> {isFilterActive ? 'Filter view by' :"Display filter"}</h1>
+         <span onClick={handleFilterStatus}><AdjustIcon /></span>
+          <div className="list-filter">
+            <ul>
+              <li>
+                <input
+                  type="checkbox"
+                  id={"uxdesignercheckbox"}
+                  name="uxdesigner"
+                  value="uxdesigner"
+                />
+                <label htmlFor={"uxdesignercheckbox"}>Ux designer</label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id={"uidesignercheckbox"}
+                  name="uidesigner"
+                  value="uidesigner"
+                />
+                <label htmlFor={"uidesignercheckbox"}>Ui designer</label>
+              </li>
+              <li>
+                {" "}
+                <input
+                  type="checkbox"
+                  id={"uxwritercheckbox"}
+                  name="uwriter"
+                  value="uwriter"
+                />
+                <label htmlFor={"uxwritercheckbox"}>UX writer</label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id={"illustratorcheckbox"}
+                  name="illustrator"
+                  value="illustrator"
+                />
+                <label htmlFor={"illustratorcheckbox"}>illustrator</label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id={"motiondesignercheckbox"}
+                  name="motiondesigner"
+                  value="motiondesigner"
+                />
+                <label htmlFor={"motiondesignercheckbox"}>
+                  Motion designer
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
         <SearchCard />
-        <UserTalentCard
-            id={"1"}
-          picture={user1}
-          confirmed={false}
-          name={"User Name"}
-          position={"UI/UX Designer"}
-        />
-        <UserTalentCard
-            id={"1"}
+        {users && users.length > 0 ? (
+          users.map(item => (
+            <UserTalentCard
+              id={"1"}
+              picture={user1}
+              confirmed={false}
+              name={"User Name"}
+              position={"UI/UX Designer"}
+            />
+          ))
+        ) : (
+          <LoadingIcon />
+        )}
+
+        {/*
+         <UserTalentCard
+          id={"1"}
           picture={user2}
           confirmed={true}
           name={"User Name"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
-            id={"1"}
+          id={"1"}
           picture={user3}
           confirmed={true}
           name={"User Name 3"}
           position={"UI/UX Designer"}
         />
         <UserTalentCard
-            id={"1"}
+          id={"1"}
           picture={hamdiPic}
           confirmed={true}
           name={"Hamdi Jomaa"}
           position={"CEO Halber.io"}
         />
         <UserTalentCard
-            id={"1"}
+          id={"1"}
           picture={user4}
           confirmed={false}
           name={"User Name"}
@@ -117,6 +194,7 @@ const TalentsPage = () => {
           name={"User Name"}
           position={"UI/UX Designer"}
         />
+         */}
       </div>
     </div>
   );

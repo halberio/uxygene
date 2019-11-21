@@ -1,6 +1,80 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 .filter-card {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  .list-filter{
+    cursor: pointer;
+    position: absolute;
+    @include border-radius( 10px);
+    @include flexbox();
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    @include transform(scaleY(0));
+    @include transition(all, 0.2s, ease-in-out);
+    transform-origin: top;
+    width: 100%;
+    background: #fff;
+    top: 80px;
+    left: 0;
+    z-index: 1;
+    padding-left: 30px;
+    ul{
+      position: relative;
+      padding: 0;
+      list-style: none;
+      font-family: "BabasLight", sans-serif;
+      font-weight: 600;
+      li{
+        cursor: pointer;
+        position: relative;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 38px;
+        text-align: left;
+        color: #919191;
+        input[type='checkbox']{
+          cursor: pointer;
+          display: none;
+          &:checked + label{
+            cursor: pointer;
+            color: $black-text;
+            &:before{
+              width: 30px;
+            }
+          }
+        }
+        label{
+          position: relative;
+          @include transition(all, 0.2s,ease-in-out);
+          margin-left: 10px;
+          &:before{
+            @include transition(all, 0.2s,ease-in-out);
+            transform-origin: right center;
+            -webkit-transform-origin: right center;
+            content: "";
+            display: block;
+            position: absolute;
+            left: -40px;
+            top: 40%;
+            height: 2px;
+            width: 0px;
+            background: $primary-color;
+          }
+        }
+      }
+    }
+  }
+  &.active{
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    .list-filter{
+      @include transform(scaleY(1));
+    }
+  }
   position: relative;
   padding: 0 20px;
   @include flexbox();
@@ -27,21 +101,24 @@
   @include flex-direction(row);
   @include justify-content(space-between);
   svg {
+    cursor: pointer;
     max-width: 30px;
   }
-  border-radius: 10px;
+  @include border-radius( 10px);
   background: #fff;
 
   box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
   h1 {
+    cursor: pointer;
     @include flex(1);
     color: $dark-silver;
-    font-family: "Babas", sans-serif;
+    font-family: "BabasLight", sans-serif;
     text-transform: uppercase;
     font-size: 24px;
     padding: 0;
     text-align: center;
     margin: 0;
+    margin-left: -3px;
     max-width: 180px;
     @media (min-width: 992px) {
       font-size: 30px;

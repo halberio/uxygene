@@ -43,7 +43,10 @@ body {
 .page-container {
   position: relative;
   width: 100%;
-  padding: 0 10.248901903367496%;
+  padding: 0 10px;
+  @media (min-width: 992px) {
+    padding: 0 10.248901903367496%;
+  }
 }
 
 .fadetransition {
