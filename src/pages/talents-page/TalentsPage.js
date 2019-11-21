@@ -129,7 +129,7 @@ const TalentsPage = () => {
           users.map(item => (
             <UserTalentCard
                 key={item.id}
-              id={"1"}
+              id={item.id}
               image={item.image ? process.env.REACT_APP_STORAGE_URL+item.image : null}
               confirmed={item.is_confirmed}
               name={item.name}

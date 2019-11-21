@@ -10,7 +10,7 @@
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
-  padding: 10.9282576866764276%;
+  padding: 4.9282576866764276% 10px;
   @media (min-width: 992px) {
     padding: 2.9282576866764276% 1%;
   }
@@ -20,6 +20,18 @@
     @include align-items(center);
     width: 100%;
     max-width: calc(1200px - 1%);
+    .brand {
+      svg {
+        max-width: 100px;
+      }
+      @media (min-width: 992px) {
+        svg {
+          max-width: 120px;
+
+        }
+      }
+
+    }
   }
   &.on-scroll-navbar {
     @include transition(all, 0.2s, ease-in-out);
@@ -30,7 +42,7 @@
     -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
     animation: fade-in 0.4s forwards;
     background: #f8f7f7;
-    padding: 10px 10.248901903367496%;
+    padding: 10px 10px;
     max-width: 100%;
     box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
     -webkit-box-shadow: 20px 20px 20px rgba(142, 104, 0, 0.1);
@@ -38,11 +50,7 @@
       padding: 10px 10.248901903367496% 1%;
 
     }
-    .brand {
-      svg {
-        max-width: 60px;
-      }
-    }
+
     .text-specific-pages {
       h3.gold-text {
         font-size: 20px;

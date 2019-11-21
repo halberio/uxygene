@@ -1,6 +1,15 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 .search-container {
+  .max-with-container{
+    max-width: calc(1200px - 1%);
+    width: 100%;
+    height: 100%;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(flex-start);
+    @include flex-direction(column);
+  }
   display: none;
   @include flex-direction(column);
   @include align-items(center);
@@ -9,11 +18,19 @@
     @include flexbox();
     @include align-items(flex-start);
     @include justify-content(flex-start);
-    position: absolute;
+    align-self: flex-start;
+    justify-self: flex-start;
     left: 10.248901903367496%;
-    top: 5.9282576866764276%;
-    width: 144px;
+    top: 10.9282576866764276%;
+    width: 110px;
     height: 76px;
+    margin-top: 20px;
+    @media (min-width: 992px) {
+      top: 5.9282576866764276%;
+      width: 144px;
+      height: 76px;
+    }
+
     svg {
       width: 100% !important;
       height: 100% !important;
@@ -45,6 +62,7 @@
   .ant-form {
     @include flexbox();
     @include align-items(center);
+    @include flex(1);
     width: 100%;
     @include justify-content(space-between);
     @include flex-wrap(wrap);
@@ -53,7 +71,11 @@
     }
   }
   input {
-    font-size: 100px;
+    font-size: 30px;
+    @media (min-width: 992px) {
+      font-size: 100px;
+  }
+
     max-width: 800px;
     height: unset;
     font-family: "Babas", sans-serif;
@@ -76,27 +98,39 @@
     }
   }
   .container-switch {
+    @include flex(1);
     @include flexbox();
     @include align-items(center);
-    @include justify-content(space-between);
+    @include justify-content(center);
     margin-top: 2%;
+    width: 100%;
     @media (min-width: 992px) {
       margin-top: 0;
+      @include justify-content(space-between);
     }
     .ant-switch {
-      height: 50px;
+      height: 30px;
       margin-right: 20px;
       margin-left: 20px;
-      width: 94px;
+      width: 30px;
+      @media (min-width: 992px) {
+        width: 94px;
+        height: 50px;
+      }
       background-color: white;
       &:after {
         background: $primary-color;
         box-shadow: none;
-        height: 42px;
-        top: 2px;
+        height: 22px;
+        top: 3px;
         margin-left: 0;
-        width: 42px;
+        width: 22px;
         border-radius: 100%;
+        @media (min-width: 992px) {
+          width: 42px;
+          top: 2px;
+          height: 42px;
+        }
       }
     }
   }

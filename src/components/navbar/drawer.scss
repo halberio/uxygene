@@ -4,6 +4,7 @@
   cursor: pointer;
   z-index: 9999999;
   padding-left: 40px;
+  padding-right: 10px;
   @include flexbox();
   @include flex-direction(column);
   @media (min-width: 992px) {
@@ -50,7 +51,7 @@
       color: $primary-color;
       font-family: "Avenir", sans-serif;
       text-align: left;
-      font-size: 40px;
+      font-size: 34px;
       padding: 0 1%;
       margin: 0 1.8301610541727673%;
       position: relative;

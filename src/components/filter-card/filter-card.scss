@@ -3,7 +3,10 @@
 .filter-card {
   border: none !important;
   outline: none !important;
-
+  max-height: 60px;
+  @media (min-width: 992px) {
+    max-height: 100px;
+  }
   .list-filter{
     cursor: pointer;
     position: absolute;
@@ -80,6 +83,7 @@
   padding: 0 20px;
   @include flexbox();
   grid-row:span 1;
+
   width: 100%;
   justify-self: stretch;
   grid-column: 1 / 3;

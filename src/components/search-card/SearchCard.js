@@ -38,36 +38,38 @@ const SearchForm = props => {
                     className="search-container"
                     style={{
                         display: !searchContainerHidden ? "flex" : "flex",
-                        WebkitTransform: `translate3d(${x}%, 0, 0)`,
-                        transform: `translate3d(${x}%, 0, 0) scale(${y})`,
-                        opacity: y
+                        opacity: y,
+                        pointerEvents:!searchContainerHidden ?'all':'none'
                     }}
                 >
-                    <div
-                        className="logo-container"
-                        onClick={changeSearchContainerVisibility}
-                    >
-                        <LogoWhite />
+                    <div className="max-with-container">
+                        <div
+                            className="logo-container"
+                            onClick={changeSearchContainerVisibility}
+                        >
+                            <LogoWhite />
+                        </div>
+                        <Form layout="inline" onSubmit={handleSubmit}>
+                            <Form.Item>
+                                {getFieldDecorator("search", {
+                                    rules: [
+                                        { required: true, message: "Please input your keyword!" }
+                                    ]
+                                })(<Input placeholder="Search..." />)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator("type", {
+                                    rules: [{ message: "Please select your keyword!" }]
+                                })(
+                                    <div className={"container-switch"}>
+                                        <h3>UX Taltent</h3>
+                                        <Switch defaultChecked /> <h3>UX Events</h3>
+                                    </div>
+                                )}
+                            </Form.Item>
+                        </Form>
                     </div>
-                    <Form layout="inline" onSubmit={handleSubmit}>
-                        <Form.Item>
-                            {getFieldDecorator("search", {
-                                rules: [
-                                    { required: true, message: "Please input your keyword!" }
-                                ]
-                            })(<Input placeholder="Search..." />)}
-                        </Form.Item>
-                        <Form.Item>
-                            {getFieldDecorator("type", {
-                                rules: [{ message: "Please select your keyword!" }]
-                            })(
-                                <div className={"container-switch"}>
-                                    <h3>UX Taltent</h3>
-                                    <Switch defaultChecked /> <h3>UX Events</h3>
-                                </div>
-                            )}
-                        </Form.Item>
-                    </Form>
+
                 </div>
             )}
         </Motion>

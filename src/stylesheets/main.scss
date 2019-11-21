@@ -56,25 +56,21 @@ body {
 .fadetransition-appear,
 .fadetransition-enter {
   opacity: 0;
-  @include transform(scale(0.99));
 }
 
 .fadetransition-appear-active,
 .fadetransition-enter.fadetransition-enter-active {
   opacity: 1;
   transition: all 300ms linear 200ms;
-  @include transform(scale(1));
 }
 
 .fadetransition-exit {
   opacity: 0;
-  @include transform(scale(0.99));
 }
 
 .fadetransition-exit.fadetransition-exit-active {
   opacity: 0;
   transition: all 300ms linear;
-  @include transform(scale(0.99));
 }
 //scroll bar
 
