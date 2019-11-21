@@ -6,7 +6,7 @@ import {
 
 const intialState = {
     users: null,
-    isLoading:false
+    isLoadingUsers:false
 };
 
 const usersReducer = (state = intialState, action) => {
@@ -14,18 +14,18 @@ const usersReducer = (state = intialState, action) => {
         case FETCH_USERS_REQUEST:
             return {
                 ...state,
-                isLoading: true
+                isLoadingUsers: true
             };
         case FETCH_USERS_FAILURE:
             return {
                 ...state,
-                isLoading: false
+                isLoadingUsers: false
             };
         case FETCH_USERS_SUCCESS:
             return {
                 ...state,
                 users: action.payload.users,
-                isLoading: false
+                isLoadingUsers: false
             };
         default:
             return state;

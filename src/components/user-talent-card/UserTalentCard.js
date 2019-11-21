@@ -6,7 +6,7 @@ const UserTalentCard = props => {
     <Link to={"/talent-user/"+props.id}  className={"user-talent-card"}>
 
         <div className="picture-container">
-          <img src={props.picture} alt={props.name + props.position} />
+            {props.image?  <img src={props.image} alt={props.name + props.position} /> :null}
         </div>
         {props.confirmed ? <div className="badge-container" /> : null}
         <div className="user-infos">
