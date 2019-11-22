@@ -1,6 +1,9 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
+*{
 
+  box-sizing: border-box;
+}
 .home-page {
   @include flexbox();
   @include flex-direction(column);
@@ -12,8 +15,15 @@
   background: $light-silver;
   display: block;
   margin: auto;
-  max-width: 1200px;
+   max-width: calc(1200px - 1%);
   .row-container {
+    padding: 4.9282576866764276% 10px;
+    @media (min-width: 992px) {
+      padding: 2.9282576866764276% 1%;
+    }
+    @media (min-width: 1200px) {
+      padding: 2.9282576866764276% 10px;
+    }
     @include flexbox();
     position: relative;
     width: 100%;
@@ -26,11 +36,11 @@
     @include align-items(center);
     height: 100%;
     .left {
-      flex: 1;
+      @include flex(1);
       @include flexbox();
       @include flex-direction(column);
       @include align-items(flex-start);
-      @include justify-content(flex-start);
+      @include justify-content(center);
       margin-top: 30px;
       @media (min-width: 992px) {
         margin-top: 0px;
@@ -74,7 +84,6 @@
         font-size: 14px;
         margin: 20px 0;
         padding: 0;
-        max-width: 516px;
       }
 
       .buttons-container {
@@ -103,12 +112,11 @@
         }
         flex: 1;
         width: 100%;
-        max-width: 520px;
         @include justify-content(space-between);
       }
     }
     .right {
-      flex: 2;
+      @include flex(1);
       margin-top: 20px;
       width: 100%;
       justify-self: center;
@@ -122,11 +130,21 @@
         @include align-items(flex-start);
       }
       @include justify-content(flex-end);
-      padding-right: 20px;
       svg {
         width: 100%;
         height: 100%;
         max-width: 450px;
+        path{
+          @include transition(all, 0.6s,ease-in-out);
+        }
+        &:hover{
+          #Path_11{
+            fill:$primary-color;
+          }
+          #Path_12, #Path_13{
+            fill:$white;
+          }
+        }
       }
     }
   }

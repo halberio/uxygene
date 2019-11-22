@@ -6,6 +6,21 @@
   margin: auto;
   position: relative;
   max-width: 1200px;
+  .loading-flex-fixed{
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    width: 100%;
+    grid-column: 1 / 4;
+    left: 0;
+    top: 0;
+    .loading-icon{
+      max-width: 50px;
+      @media (min-width: 992px) {
+        max-width: 60px;
+      }
+    }
+  }
   .cards-container {
     @include flexbox();
     @include justify-content(space-between);

@@ -2,7 +2,6 @@
 @import "../../stylesheets/mixins";
 
 .user-talent-profile-page {
-
   width: 100%;
   @include flexbox();
   @include justify-content(center);
@@ -42,6 +41,8 @@
       }
       justify-self: flex-end;
       align-self: flex-end;
+      outline: none;
+      border: none;
       bottom: 0;
       margin-top: 60px;
       position: relative;

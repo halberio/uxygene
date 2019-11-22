@@ -5,7 +5,7 @@
   @include flexbox();
   flex: 1;
   @include align-items(center);
-  @include justify-content(space-arround);
+  @include justify-content(space-between);
   padding: 16px 18px;
   max-height: 60px;
   &:first-child {

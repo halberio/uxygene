@@ -10,7 +10,11 @@
   }
 }
 .get-in-touch-page {
+  @include flexbox();
+  width: 100%;
+  @include justify-content(center);
   .row-container {
+    max-width: calc(1200px - 1%);
     @include flexbox();
     width: 100%;
     flex: 1;

@@ -14,7 +14,7 @@ const HostsPage = () => {
             setIsFilterItemsActive(false);
             setTimeout(()=>{
                 setIsFilterActive(false)
-            },140)
+            },120)
         }else{
             setIsFilterActive(true);
             setTimeout(()=>{

@@ -3,7 +3,9 @@ import "./user-talent-card.scss";
 import {Link} from "react-router-dom";
 const UserTalentCard = props => {
   return (
-    <Link to={"/talent-user/"+props.id}  className={"user-talent-card"}>
+    <Link to={"/talent-user/"+props.id}  className={"user-talent-card"} style={{
+        animationDelay:`${props.id * 0.15}s`
+    }}>
 
         <div className="picture-container">
             {props.image?  <img src={props.image} alt={props.name + props.position} /> :null}

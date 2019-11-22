@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import "./talents-page.scss";
 import SearchCard from "../../components/search-card/SearchCard";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
-import user1 from "../../assets/img/users/user1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../actions/users-actions/actions";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
@@ -17,7 +16,9 @@ const TalentsPage = () => {
   const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
   useEffect(() => {
     dispatch(getUsers());
+
   }, []);
+
 
   const handleFilterStatus = ()=>{
     if(isFilterItemsActive){
@@ -137,7 +138,9 @@ const TalentsPage = () => {
             />
           ))
         ) : (
+        <div className="loading-flex-fixed">
           <LoadingIcon />
+        </div>
         )}
         {!isLoadingUsers && users &&  users.length < 1 ? <p>No Talents records</p> : null }
 

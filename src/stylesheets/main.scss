@@ -32,21 +32,27 @@ body {
   background: $light-silver;
   overflow: auto;
 }
+::-moz-selection { /* Code for Firefox */
+  color: $black-text;
+  background: $primary-color;
+}
 
+::selection {
+  color: $black-text;
+  background: $primary-color;
+}
 .app {
   position: relative;
   width: 100%;
   background: $light-silver;
   min-height: 100vh;
+  padding: 0 10px;
 }
 
 .page-container {
   position: relative;
   width: 100%;
-  padding: 0 10px;
-  @media (min-width: 992px) {
-    padding: 0 10.248901903367496%;
-  }
+
 }
 
 .fadetransition {

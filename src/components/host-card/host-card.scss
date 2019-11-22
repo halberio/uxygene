@@ -73,17 +73,24 @@
         color: $primary-color;
         text-transform: uppercase;
       }
-      svg{
-        width:60px;
-        padding: 8px;
-        height: 40px;
-        border-radius: 3px;
+      .arrow-button{
+        background: $white;
+        border: none;
+        z-index: 2;
+        svg{
+          width:60px;
+          padding: 8px;
+          height: 40px;
+          border-radius: 3px;
+        }
       }
+
     }
     .bottom{
       @include flexbox();
       @include justify-content(space-between);
       @include align-items(center);
+
       svg{
         height: 15px;
         width: 15px;
@@ -144,6 +151,7 @@
   }
   &:hover{
       height: auto;
+
     .infos-block{
       bottom: 0;
       .left,.right{
@@ -153,7 +161,7 @@
     }
     .images-container{
       .img-bg{
-        filter:blur(5px);
+        //filter:blur(5px);
       }
       .profile-image{
         bottom: 41%;
@@ -167,12 +175,15 @@
     }
     .text-container{
       .top{
-        svg{
-          background: white;
-          path{
-            fill: $primary-color;
+        .arrow-button{
+          border: 0;
+          svg{
+            path{
+              fill: $primary-color;
+            }
           }
         }
+
       }
     }
   }

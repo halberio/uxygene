@@ -20,7 +20,7 @@ const HomePage = () => {
           </p>
           <div className="buttons-container">
             <ButtonRoundedLink linkTo={"/talents"} btnText={"Find UX Talent"} />
-            <ButtonRoundedLink linkTo={"/events"} btnText={"Find UX Event"} />
+            <ButtonRoundedLink linkTo={"/hosts"} btnText={"Find UX Hosts"} />
           </div>
         </div>
         <div className="right">

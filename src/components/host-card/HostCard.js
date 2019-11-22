@@ -19,7 +19,9 @@ const HostCard = (props) => {
         <div className="text-container">
           <div className="top">
             <h3>Cogite</h3>
-            <ArrowRight />
+            <button className={"arrow-button"}>
+              <ArrowRight />
+            </button>
           </div>
           <div className="bottom">
             <LocationIcon />
