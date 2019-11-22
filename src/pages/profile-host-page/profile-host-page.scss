@@ -9,13 +9,15 @@
     @include flexbox();
     @include justify-content(space-between);
    @include align-items(center);
-    @include flex-direction(column);
+    @include flex-direction(column-reverse);
     @media (min-width: 768px) {
       @include flex-direction(row);
       @include align-items(stretch);
+      padding-bottom: unset;
     }
     max-width: calc(1200px - 10px);
     width: 100%;
+    padding-bottom: 60px;
   }
 
   .left{
@@ -168,9 +170,11 @@
     position: relative;
     @include flex(1);
     margin-top: 20px;
+    margin-bottom: 10px;
 
     @media (min-width: 768px) {
       margin-left: 10px;
+      margin-bottom: unset;
     }
     @media (min-width: 992px) {
       margin-top: unset;
@@ -226,6 +230,24 @@
           }
         }
       }
+    }
+    &:after{
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: $light-silver;
+      -webkit-animation: slideinEffectImg .6s forwards; /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: slideinEffectImg .6s forwards; /* Firefox < 16 */
+      -ms-animation: slideinEffectImg .6s forwards; /* Internet Explorer */
+      -o-animation: slideinEffectImg .6s forwards; /* Opera < 12.1 */
+      animation: slideinEffectImg .6s forwards;
+      animation-delay: 0.3s;
+      -webkit-animation-delay: 0.3s;
+      transform-origin: right;
     }
   }
 }

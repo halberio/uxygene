@@ -2,11 +2,16 @@
 @import "../../stylesheets/mixins";
 .join-us-card {
   opacity: 0;
+
   -webkit-animation: fade-in 1s forwards; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fade-in 1s forwards; /* Firefox < 16 */
   -ms-animation: fade-in 1s forwards; /* Internet Explorer */
   -o-animation: fade-in 1s forwards; /* Opera < 12.1 */
   animation: fade-in 1s forwards;
+  .text-link-join{
+    @include align-items(center);
+    margin: 0;padding: 0;
+  }
   &:hover{
     background: $white;
     box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
@@ -23,6 +28,7 @@
   display: inline-flex;
   @include flex-direction(row);
   @include align-items(center);
+  background: red;
   @include justify-content(space-between);
   @include transition(all, 0.2s,ease-in-out);
   width: 100%;
@@ -33,10 +39,10 @@
   }
   @media (min-width: 768px) {
     display: inline-flex;
-    width: 260px !important;
     @include flex-direction(column);
     grid-column: 1 ;
     grid-row: span 3;
+    margin-right: 0;
   }
 
   grid-row: span 1;
@@ -45,11 +51,12 @@
   @media (min-width: 1300px) {
     grid-row:span 3;
 
-    max-height: 400px;
   }
   @media (min-width: 992px) {
     margin-bottom: 0;
     grid-row: span 3;
+    box-sizing: border-box;
+    border: none;
     svg {
       max-width: unset;
     }

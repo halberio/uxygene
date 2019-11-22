@@ -14,7 +14,9 @@
     @include justify-content(space-between);
     @include align-items(flex-start);
     max-width: calc(1200px - 1%);
+    padding-bottom: 12%;
     @media (min-width: 992px) {
+      padding-bottom: unset;
       @include flex-direction(row);
     }
     opacity: 0;
@@ -245,7 +247,6 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: blue;
       height: 100%;
       img {
         display: block;
@@ -253,6 +254,24 @@
         height: 100%;
         object-fit: cover;
         object-position:  50%  20%;
+      }
+      &:after{
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: $light-silver;
+        -webkit-animation: slideinEffectImg .6s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: slideinEffectImg .6s forwards; /* Firefox < 16 */
+        -ms-animation: slideinEffectImg .6s forwards; /* Internet Explorer */
+        -o-animation: slideinEffectImg .6s forwards; /* Opera < 12.1 */
+        animation: slideinEffectImg .6s forwards;
+        animation-delay: 0.3s;
+        -webkit-animation-delay: 0.3s;
+        transform-origin: right;
       }
     }
 
@@ -273,7 +292,7 @@
       right: 20px;
       left: unset;
       @media (min-width: 992px) {
-        top: calc(50% - 80px);
+        top: calc(50% - 50px);
         left: -40px;
         right: unset;
       }
@@ -311,4 +330,36 @@
 @-o-keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+
+// slide img animation
+
+@keyframes slideinEffectImg {
+  from { @include transform(scaleX(1)); }
+  to   { @include transform(scaleX(0)); }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes slideinEffectImg {
+  from { @include transform(scaleX(1)); }
+  to   { @include transform(scaleX(0)); }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes slideinEffectImg {
+  from { @include transform(scaleX(1)); }
+  to   { @include transform(scaleX(0)); }
+}
+
+/* Internet Explorer */
+@-ms-keyframes slideinEffectImg {
+  from { @include transform(scaleX(1)); }
+  to   { @include transform(scaleX(0)); }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes slideinEffectImg {
+  from { @include transform(scaleX(1)); }
+  to   { @include transform(scaleX(0)); }
 }

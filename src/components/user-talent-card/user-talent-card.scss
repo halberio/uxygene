@@ -56,12 +56,15 @@
       font-size: 30px;
       line-height: 30px;
       margin: 0;
-      @include transform(scaleX(0) translateY(-10px));
+      @include transform(translateY(-10px));
+      transform-origin: left;
+      -webkit-transform-origin: left;
       padding: 0;
       opacity: 0;
     }
     h4 {
-      @include transform(scaleX(0));
+      transform-origin: right;
+      -webkit-transform-origin: right;
       opacity: 0;
       font-family: "Avenir", sans-serif;
       font-size: 14px;
@@ -92,7 +95,7 @@
       @include transform(scaleX(1));
       h3,
       h4 {
-        @include transform(scaleX(1));
+        @include transform(translateX(0));
         -webkit-animation: fade-in 1s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
         -moz-animation: fade-in 1s forwards 0.1s; /* Firefox < 16 */
         -ms-animation: fade-in 1s forwards 0.1s; /* Internet Explorer */

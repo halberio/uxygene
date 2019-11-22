@@ -9,7 +9,6 @@ import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import ArrowRightBlack from "../../components/svg/ArrowRightBlack";
 const ProfileHostForm = props => {
     const { getFieldDecorator } = props.form;
-    const handleSubmit = () => {};
   return (
     <div className={"profile-host-page"}>
         <div className="row-container">
@@ -45,7 +44,7 @@ const ProfileHostForm = props => {
                         {getFieldDecorator("name", {
                             rules: [{ required: true, message: "Please input your suggestion!" }]
                         })(
-                            <TextArea rows={7}  autoSize={{ minRows: 4, maxRows: 6 }} placeholder={""} />
+                            <TextArea rows={7} placeholder={""} />
                         )}
                     </Form.Item>
                     <button className={"submit-btn-host"}>suggest a UX event</button>

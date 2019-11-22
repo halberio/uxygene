@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './hosts-page.scss';
 import AdjustIcon from "../../components/svg/AdjustIcon";
-import SearchIcon from "../../components/svg/SearchIcon";
 import HostCard from "../../components/host-card/HostCard";
 import HostJoinCard from "../../components/host-join-card/HostJoinCard";
 import "../../components/filter-card/filter-card.scss";

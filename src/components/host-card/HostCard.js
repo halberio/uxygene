@@ -14,7 +14,7 @@ const HostCard = (props) => {
         <div className="images-container">
           <img src={cogitePic} className={"img-bg"} alt="img bg" />
           <div className="profile-image">
-            <img src={procogit} alt={"image profile"} />
+            <img src={procogit} alt={"view profile"} />
           </div>
         </div>
         <div className="text-container">

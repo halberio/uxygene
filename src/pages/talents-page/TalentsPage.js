@@ -18,7 +18,7 @@ const TalentsPage = () => {
   useEffect(() => {
     dispatch(getUsers());
 
-  }, []);
+  }, [dispatch]);
 
 
   const handleFilterStatus = ()=>{
@@ -141,7 +141,7 @@ const TalentsPage = () => {
           ))
         ) : (
         <div className="loading-flex-fixed">
-          <LoadingIcon />
+          <LoadingIcon scale={.5}/>
         </div>
         )}
         {!isLoadingUsers && users &&  users.length < 1 ? <p>No Talents records</p> : null }

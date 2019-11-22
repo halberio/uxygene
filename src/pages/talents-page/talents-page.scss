@@ -5,13 +5,21 @@
   display: block;
   margin: auto;
   position: relative;
-  max-width: 1200px;
+  max-width: calc(1200px - 1%);
+  padding: 4.9282576866764276% 10px;
+  @media (min-width: 992px) {
+    padding: 2% 1%;
+  }
+  @media (min-width: 1200px) {
+    padding: 2% 10px;
+  }
   .loading-flex-fixed{
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
     width: 100%;
-    grid-column: 1 / 4;
+    grid-column: 2 / 4;
+    grid-row:span 2;
     left: 0;
     top: 0;
     .loading-icon{
@@ -50,22 +58,3 @@
   }
 }
 
-/*
-
- .columns-container {
-    column-count: 2;
-    -webkit-column-width: 100%;
-    -moz-column-width: 100%;
-    column-width: 100%;
-    @media (min-width: 768px) {
-      column-count: 3;
-    }
-    @media (min-width: 992px) {
-      column-count: 3;
-    }
-    @media (min-width: 1300px) {
-      column-count: 4;
-    }
-    column-gap: 60px;
-  }
-*/

@@ -21,7 +21,7 @@ const ProfileTalentPage = props => {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [props.match.params.id]);
   return (
     <div className={"user-talent-profile-page"}>
       {isLoadingData ? (

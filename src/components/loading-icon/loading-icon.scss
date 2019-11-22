@@ -2,17 +2,109 @@
 @import "../../stylesheets/mixins";
 
 .loading-icon{
-  overflow: hidden;
   position: relative;
-  width: 100px;
-  height:100px;
-  border-radius: 100%;
-  svg{
-    border-radius: 100%;
-    position: absolute;
+  @include flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+  width: 160px !important;
+  height:160px !important;
+  max-width: 200px !important;
+  max-height:160px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: white;
+  overflow: hidden;
+  background: radial-gradient(#fff 0%, #fffbc7 100%);
+  background: -webkit-radial-gradient(#fff 0%, #fffbc7 100%);
+
+  @include border-radius(100%);
+  .border-round{
+    top: 0;
+    left: 0;
     overflow: hidden;
+    border-radius: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    svg{
+      width: 100%;
+      max-width: 200px;
+      max-height:200px;
+      padding: 0;
+    }
+  }
+  .wave-back{
+    z-index: 0;    overflow: hidden;
+    position: absolute;
+    @include flexbox();
+    width:450px;
+    left: -60px;
+    bottom: 0px;
+    -webkit-animation: translate-right-icon 3s linear; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: translate-right-icon 3s linear; /* Firefox < 16 */
+    -ms-animation: translate-right-icon 3s linear; /* Internet Explorer */
+    -o-animation: translate-right-icon 3s linear ; /* Opera < 12.1 */
+    animation: translate-right-icon 3s linear ;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    svg{
+      width: 100%;
+      height: 100%;
+
+    }
+  }
+  .wave-front{
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    @include flexbox();
+    right: 0;
+    width:420px;
+    bottom: 7px;
+    -webkit-animation: translate-left-icon 3s linear; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: translate-left-icon 3s linear; /* Firefox < 16 */
+    -ms-animation: translate-left-icon 3s linear; /* Internet Explorer */
+    -o-animation: translate-left-icon 3s linear ; /* Opera < 12.1 */
+    animation: translate-left-icon 3s linear ;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    svg{
+      width: 100%;
+      height: 100%;
+
+    }
+  }
+
+  .logo-layer{
+    position: absolute;
+    @include flexbox();
+    @include align-items(center);
     width: 100%;
     height: 100%;
+    img{
+      position: relative;
+      display: block;
+      margin: auto;
+      width: 80px;
+    }
+  }
+}
 
+@include keyframes(translate-left-icon) {
+  0% {
+    @include transform(translateX(0));
+  }
+  100% {
+    @include transform(translateX(50%));
+  }
+}
+
+@include keyframes(translate-right-icon) {
+  0% {
+    @include transform(translateX(0));
+  }
+  100% {
+    @include transform(translateX(-50%));
   }
 }

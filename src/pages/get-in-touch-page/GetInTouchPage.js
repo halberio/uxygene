@@ -4,6 +4,7 @@ import { Input, Form } from "antd";
 import BannerGroupFb from "../../components/svg/BannerGroupFb";
 const GetInTouchForm = props => {
   const { getFieldDecorator } = props.form;
+  props.form.autoComplete='off';
   const handleSubmit = () => {};
   return (
     <div className={"get-in-touch-page"}>
@@ -22,23 +23,23 @@ const GetInTouchForm = props => {
           </div>
         </div>
         <div className="right">
-          <Form onSubmit={handleSubmit} className="get-in-touch-form">
+          <Form onSubmit={handleSubmit}  className="get-in-touch-form">
             <Form.Item>
               {getFieldDecorator("name", {
                 rules: [{ required: true, message: "Please input your name!" }]
-              })(<Input placeholder="Your Full Name" />)}
+              })(<Input  placeholder="Your Full Name" />)}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator("email", {
                 rules: [{ required: true, message: "Please input your email!" }]
-              })(<Input placeholder="Your Email" />)}
+              })(<Input  placeholder="Your Email" />)}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator("message", {
                 rules: [
                   { required: true, message: "Please input your Message!" }
                 ]
-              })(<Input type="text" placeholder="Message" />)}
+              })(<Input    type="text" placeholder="Message" />)}
             </Form.Item>
             <Form.Item>
               <button className={"submit-btn"}>Send Now</button>

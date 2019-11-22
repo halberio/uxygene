@@ -19,7 +19,9 @@
     width: 100%;
     flex: 1;
     @include flex-direction(column);
+    padding-bottom: 60px;
     @media (min-width: 992px) {
+      padding-bottom: unset;
       @include flex-direction(row);
     }
     @include justify-content(space-between);

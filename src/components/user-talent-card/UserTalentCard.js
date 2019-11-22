@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const UserTalentCard = props => {
   return (
     <Link to={"/talent-user/"+props.id}  className={"user-talent-card"} style={{
-        animationDelay:`${props.id * 0.15}s`
+        animationDelay:`${props.id * 0.14}s`
     }}>
 
         <div className="picture-container">
