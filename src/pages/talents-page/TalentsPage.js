@@ -8,6 +8,7 @@ import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import AdjustIcon from "../../components/svg/AdjustIcon";
 import "../../components/filter-card/filter-card.scss";
 import {Motion, spring} from 'react-motion';
+import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 const TalentsPage = () => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.usersReducer.users);
@@ -126,6 +127,7 @@ const TalentsPage = () => {
           </Motion>
         </div>
         <SearchCard />
+        <JoinUsCard/>
         {users && users.length > 0 ? (
           users.map(item => (
             <UserTalentCard

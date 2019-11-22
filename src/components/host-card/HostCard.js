@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 
 const HostCard = (props) => {
   return (
-    <Link to={"/hosts-profile/" + props.id}>
-      <div className={"host-card"}>
+      <Link  to={"/hosts-profile/" + props.id} className={"host-card"} style={{
+        animationDelay:`${props.id * 0.15}s`
+      }}>
         <div className="images-container">
           <img src={cogitePic} className={"img-bg"} alt="img bg" />
           <div className="profile-image">
@@ -27,10 +28,6 @@ const HostCard = (props) => {
             <LocationIcon />
             <p>1, Place Tahar Haddad, Les Berges du lac, Tunis 1053</p>
           </div>
-          <h5 className={"description-h5"}>
-            We are a young actor who wants to be an intermediary between young
-            talents and the job market.
-          </h5>
         </div>
         <div className="infos-block">
           <div className="left">
@@ -60,8 +57,7 @@ const HostCard = (props) => {
             </ul>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
   );
 };
 

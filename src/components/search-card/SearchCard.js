@@ -22,9 +22,9 @@ const SearchForm = props => {
   };
   return (
     <div className={"search-card"}>
-      <div onClick={changeSearchContainerVisibility}>
+      <span onClick={changeSearchContainerVisibility}>
         <SearchIcon />
-      </div>
+      </span>
       <h1 onClick={changeSearchContainerVisibility}>Type anywhere To search</h1>
         <Motion
             style={{

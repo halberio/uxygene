@@ -3,13 +3,21 @@
 
 .profile-host-page {
   @include flexbox();
-  @include flex-direction(column);
   @include justify-content(center);
-  @include align-items(center);
-  @media (min-width: 992px) {
+  width: 100%;
+  .row-container{
+    @include flexbox();
     @include justify-content(space-between);
-    @include flex-direction(row);
+   @include align-items(center);
+    @include flex-direction(column);
+    @media (min-width: 768px) {
+      @include flex-direction(row);
+      @include align-items(stretch);
+    }
+    max-width: calc(1200px - 10px);
+    width: 100%;
   }
+
   .left{
     @include flex(1);
     max-width: 550px;
@@ -160,9 +168,12 @@
     position: relative;
     @include flex(1);
     margin-top: 20px;
+
+    @media (min-width: 768px) {
+      margin-left: 10px;
+    }
     @media (min-width: 992px) {
       margin-top: unset;
-      height: calc(100vh - 260px);
       margin-left: 30px;
       max-width: 620px;
     }

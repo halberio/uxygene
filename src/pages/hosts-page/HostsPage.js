@@ -6,6 +6,7 @@ import HostCard from "../../components/host-card/HostCard";
 import HostJoinCard from "../../components/host-join-card/HostJoinCard";
 import "../../components/filter-card/filter-card.scss";
 import {Motion, spring} from "react-motion";
+import SearchCard from "../../components/search-card/SearchCard";
 const HostsPage = () => {
     const [isFilterActive, setIsFilterActive] = useState(false);
     const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
@@ -102,21 +103,18 @@ const HostsPage = () => {
                         }
                     </Motion>
                 </div>
-                <div className="search-box">
-                    <SearchIcon/>
-                    <h3>Type anywhere To search</h3>
-                </div>
+                <SearchCard />
             </div>
             <div className="hosts-container">
                 <HostJoinCard/>
                 <HostCard id={1}/>
-                <HostCard id={1}/>
-                <HostCard id={1}/>
-                <HostCard id={1}/>
-                <HostCard id={1}/>
-                <HostCard id={1}/>
+                <HostCard id={2}/>
+                <HostCard id={3}/>
+                <HostCard id={4}/>
+                <HostCard id={5}/>
+                <HostCard id={6}/>
                 <HostJoinCard/>
-                <HostCard id={1}/>
+                <HostCard id={7}/>
             </div>
         </div>
     );
