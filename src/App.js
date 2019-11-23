@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import HomePage from "./pages/home-page/HomePage";
@@ -22,6 +22,7 @@ import Footer from "./components/footer/Footer";
 import NotFoundPage from "./pages/404-page/NotFoundPage";
 import TermsAndConditionsPage from "./pages/terms-and-conditions-page/TermsAndConditionsPage";
 const App = props => {
+  const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const [animationHiden, setanimationHiden] = useState(false);
   const fadeOutOnLeave = new TimelineLite();
   window.addEventListener(
@@ -39,9 +40,26 @@ const App = props => {
     false
   );
 
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      setBackgroundColor("#F0F0F0");
+    } else {
+      setBackgroundColor("#F8F7F7");
+    }
+    props.history.listen(location => {
+      if (location.pathname === "/") {
+        setBackgroundColor("#F0F0F0");
+      } else {
+        setBackgroundColor("#F8F7F7");
+      }
+    });
+  }, [props.history]);
   return (
     <div
       className={"app"}
+      style={{
+        background: backgroundColor
+      }}
     >
       {animationHiden===false ? <div id={"loading-animation-container"} className="loading-animation-container">
         <div className="round-container">
