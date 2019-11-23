@@ -131,6 +131,7 @@
       @include align-items(center);
       .dot {
         margin-right: 6px;
+
         &:last-child {
           margin-right: 0;
         }
