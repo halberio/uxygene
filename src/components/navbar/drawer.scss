@@ -32,7 +32,8 @@
   @media (min-width: 992px) {
     display: none;
   }
-  padding: 10.9282576866764276%;
+
+  padding: 4.9282576866764276% 20px;
   @include flex-direction(column);
   @include justify-content(flex-start);
   position: fixed;
@@ -42,22 +43,28 @@
   width: 100%;
   z-index: 999999;
   .brand {
-    flex: 3;
+    @include flex(3);
     @include flexbox();
     @include justify-content(flex-start);
     width: 100%;
+    svg{
+      width: 100%;
+    }
   }
   .menu-items {
-    flex: 7;
+    @include flex(5);
     @include flexbox();
     @include flex-direction(column);
+    @include justify-content(flex-start);
+    justify-self: flex-end;
+    box-sizing: border-box;
     .nav-link {
       color: $primary-color;
       font-family: "Avenir", sans-serif;
       text-align: left;
       font-size: 34px;
       padding: 0 1%;
-      margin: 0 1.8301610541727673%;
+      margin: 1% 1.8301610541727673%;
       position: relative;
       text-transform: capitalize;
       z-index: 1;

@@ -17,7 +17,7 @@
     max-width: calc(1200px - 1%);
     @include flexbox();
     width: 100%;
-    flex: 1;
+    @include flex(1);
     @include flex-direction(column);
     padding-bottom: 60px;
     @media (min-width: 992px) {
@@ -32,7 +32,7 @@
     .left {
       position: relative;
       height: 100%;
-      flex: 2;
+      @include flex(2);
       width: 100%;
       @include flexbox();
       @include flex-direction(column);
@@ -80,7 +80,7 @@
       }
     }
     .right {
-      flex: 3;
+      @include flex(3);
       width: 100%;
       .get-in-touch-form {
         background: $primary-color;
@@ -112,6 +112,7 @@
           margin-top: 11.272727272727273%;
           cursor: pointer;
           @include transition(all, 0.3s, ease-in-out);
+
           &:hover {
             background: white;
             color: $black-text;
@@ -119,6 +120,10 @@
           &:focus,
           &:focus-within {
             outline: none;
+          }
+          &:active{
+            background: $black-text;
+            color: white;
           }
         }
         .ant-form-explain {

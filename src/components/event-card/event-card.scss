@@ -16,7 +16,7 @@
       animation-delay: $i * (1s / 10);
     }
   }
-  flex: 1;
+  @include flex(1);
   @include flexbox();
   width: 100%;
   @include align-items(center);

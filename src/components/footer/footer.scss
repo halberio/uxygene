@@ -1,0 +1,62 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+.footer{
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  @include align-self(flex-end);
+  box-sizing: border-box;
+  justify-self: flex-end;
+  position: sticky;
+  top: 100%;
+  width: 100%;
+  padding: 2.9282576866764276% 10px;
+  @media (min-width: 992px) {
+    padding: 0.9282576866764276% 10px;
+  }
+  .max-width-row{
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
+    width: 100%;
+    max-width: calc(1200px - 1%);
+    .right{
+      margin-left: auto;
+      @media (min-width: 992px) {
+        margin-left: unset;
+      }
+    }
+  }
+  a{
+    position: relative;
+    color: $black-text;
+    padding: 3px 5px;
+    font-family: "Babas", sans-serif;
+    @include transition(all, 0.2s,ease-in-out);
+    font-size: 16px;
+    &:active{
+      color: $white;
+    }
+    &:hover{
+      &:before{
+        width: 100%;
+      }
+      color: $black-text;
+    }
+    &:before{
+      @include transition(all, 0.3s, ease-in-out);
+      display: block;
+      width: 0;
+      height: 50%;
+      background: $primary-color;
+      content: "";
+      position: absolute;
+      bottom: 20%;
+      z-index: -1;
+      left: 0;
+      transform-origin: left;
+      -webkit-transform-origin: left;
+    }
+  }
+}

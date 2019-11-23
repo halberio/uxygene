@@ -4,8 +4,9 @@ import { Input, Form } from "antd";
 import BannerGroupFb from "../../components/svg/BannerGroupFb";
 const GetInTouchForm = props => {
   const { getFieldDecorator } = props.form;
-  props.form.autoComplete='off';
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  };
   return (
     <div className={"get-in-touch-page"}>
       <div className="row-container">
@@ -42,7 +43,7 @@ const GetInTouchForm = props => {
               })(<Input    type="text" placeholder="Message" />)}
             </Form.Item>
             <Form.Item>
-              <button className={"submit-btn"}>Send Now</button>
+              <button type={"submit"} className={"submit-btn"}>Send Now</button>
             </Form.Item>
           </Form>
 

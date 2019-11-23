@@ -21,6 +21,7 @@
     @include align-items(center);
     width: 100%;
     max-width: calc(1200px - 1%);
+
     .brand {
       svg {
         max-width: 100px;
@@ -35,6 +36,9 @@
     }
   }
   &.on-scroll-navbar {
+    .menu-icon{
+      margin-right: 20px;
+    }
     @include transition(all, 0.2s, ease-in-out);
     opacity: 0;
     -webkit-animation: fade-in 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -126,11 +130,16 @@
     @include align-content(flex-start);
     display: none;
     max-width: 450px;
+    min-width: 450px;
     @media (min-width: 992px) {
       @include flexbox();
     }
     position: relative;
     .nav-link {
+      @include transition(all,0.2s,ease-in-out);
+      &:active{
+        color: white;
+      }
       color: $black-text;
       font-family: "Avenir", sans-serif;
       text-align: center;

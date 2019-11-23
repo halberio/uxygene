@@ -17,6 +17,10 @@ import ProfileTalentPage from "./pages/profile-talent-page/ProfileTalentPage";
 import HostsPage from "./pages/hosts-page/HostsPage";
 import ProfileHostPage from "./pages/profile-host-page/ProfileHostPage";
 import LoadingIcon from "./components/loading-icon/LoadingIcon";
+import PrivacyPolicyPage from "./pages/privacy-policy-page/PrivacyPolicyPage";
+import Footer from "./components/footer/Footer";
+import NotFoundPage from "./pages/404-page/NotFoundPage";
+import TermsAndConditionsPage from "./pages/terms-and-conditions-page/TermsAndConditionsPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   const [animationHiden, setanimationHiden] = useState(false);
@@ -78,6 +82,8 @@ const App = props => {
               <Switch location={location}>
                 <Route exact path={"/"} component={HomePage} />
                 <Route exact path={"/talent-user/:id"} component={ProfileTalentPage} />
+                <Route exact path={"/privacy-policy"} component={PrivacyPolicyPage} />
+                <Route exact path={"/terms-and-conditions"} component={TermsAndConditionsPage} />
                 <Route exact path={"/hosts-profile/:id"} component={ProfileHostPage} />
                 <Route
                   exact
@@ -103,11 +109,13 @@ const App = props => {
                   path="/signin"
                   component={SigninPage}
                 />
+                <Route component={NotFoundPage}/>
               </Switch>
             </CSSTransition>
           </TransitionGroup>
         )}
       />
+      <Footer/>
     </div>
   );
 };

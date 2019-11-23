@@ -1,0 +1,65 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.not-found-page{
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  box-sizing: border-box;
+  position: relative;
+  top: 100%;
+  width: 100%;
+  padding: 2.9282576866764276% 10px;
+  @media (min-width: 992px) {
+    padding: 0.9282576866764276% 10px;
+  }
+  .max-width-row{
+    @include flexbox();
+    @include justify-content(center);
+    height: 100%;
+    @include flex(1);
+    min-height: calc(100vh - 300px);
+    @include flex-direction(column);
+    @include align-items(center);
+    width: 100%;
+    max-width: calc(1200px - 1%);
+    h1{
+      color: #ffcc00;
+      font-family: "Babas", sans-serif;
+      font-size: 160px;
+      line-height: 120px;
+      margin: 0;
+      padding: 0;
+    }
+    h2{
+      font-family: "Babas", sans-serif;
+      font-size: 80px;
+      line-height: 80px;
+      margin: 0;
+      padding: 0;
+    }
+    .back-btn-not-found-page{
+      padding: 10px 20px;
+      border-radius: 3px;
+      background: #fc0;
+      font-family: "Babas", sans-serif;
+      color: $black-text;
+      font-size: 20px;
+      border: none;
+      box-shadow: 8px 8px 10px rgba(255, 204, 0, 0.2);
+      @include transition(all, 0.2s,ease-in-out);
+      cursor: pointer;
+      &:active{
+        @include transform(scale(.97));
+        outline: none;
+      }
+      &:focus{
+        outline: none;
+      }
+      &:hover{
+        background: $white;
+      }
+    }
+  }
+}

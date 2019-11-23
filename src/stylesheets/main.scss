@@ -45,7 +45,12 @@ body {
   position: relative;
   width: 100%;
   background: $light-silver;
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(flex-start);
+  @include align-items(stretch);
   min-height: 100vh;
+  height: auto;
   padding: 0 10px;
 }
 

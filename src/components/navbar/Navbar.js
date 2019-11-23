@@ -33,6 +33,10 @@ const Navbar = props => {
     }
 
     props.history.listen(location => {
+      window.scrollTo({
+        top: 0,
+        left: 0
+      });
       setTimeout(() => {
         setDrawerOpened(false);
       }, 250);

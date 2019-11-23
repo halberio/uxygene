@@ -42,7 +42,7 @@
           width: 24px;
           height: 30px;
           margin-right: 10px;
-          flex: 1;
+          @include flex(1);
           svg {
             width: 100%;
             height: 100%;
@@ -52,7 +52,7 @@
           @include flexbox();
           @include align-items(center);
           @include justify-content(flex-start);
-          flex: 12;
+          @include flex(12);
           width: 100%;
           font-family: "Avenir", sans-serif;
           font-size: 18px;
@@ -64,7 +64,7 @@
           width: 100%;
           @include align-items(center);
           @include justify-content(flex-start);
-          flex: 12;
+          @include flex(12);
           font-family: "Avenir", sans-serif;
           font-size: 12px;
           font-weight: 400;
@@ -74,7 +74,7 @@
           width: 100%;
           @include align-items(center);
           @include justify-content(flex-start);
-          flex: 12;
+          @include flex(12);
           font-family: "Avenir", sans-serif;
           font-size: 14px;
           margin-top: 10px;
@@ -101,9 +101,14 @@
   }
   .footer {
     @include flexbox();
+    width: 100%;
     @include justify-content(space-between);
+    @include flex-direction(row);
+    @include flex(1);
     padding-top: 30px;
     svg {
+      @include flex(1);
+      width: 100%;
       cursor: pointer;
       @include transition(all, 0.2s, ease-in-out);
       path {
@@ -117,17 +122,22 @@
     }
 
     .dots {
+
+      @include flex(1);
       @include flexbox();
+      width: auto;
+      max-width: 70px;
       @include justify-content(space-between);
       @include align-items(center);
       .dot {
-        flex: 1;
         margin-right: 6px;
         &:last-child {
           margin-right: 0;
         }
         width: 21px;
         height: 21px;
+        max-width: 21px;
+        max-height: 21px;
         background: transparent;
         border: 1px solid $primary-color;
         border-radius: 100%;

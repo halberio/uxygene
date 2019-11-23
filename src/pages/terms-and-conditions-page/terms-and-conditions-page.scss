@@ -1,0 +1,56 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.terms-and-conditons-page {
+  @include flexbox();
+  @include flex-direction(column);
+  @include align-items(center);
+  .max-width-container{
+    max-width: calc(1200px - 1%);
+    padding: 0 10px;
+    @media (min-width: 992px) {
+      padding: 0 10px;
+    }
+  }
+  font-family: "Avenir", sans-serif;
+  a{
+    color: $primary-color;
+    &:hover{
+      color: $black-text;
+    }
+  }
+  p{
+    font-size: 15px;
+    text-align: justify;
+    color: $black-text;
+  }
+  ul{
+    font-size: 16px;
+  }
+  h1{
+    font-family: "Babas", sans-serif;
+    font-size: 45px;
+    color: $primary-color;
+  }
+  h2{
+    font-family: "Babas", sans-serif;
+    font-size: 35px;
+
+    color: $dark-silver;
+  }
+  h3{
+    font-family: "Babas", sans-serif;
+    font-size: 30px;
+    color: $dark-silver;
+  }
+  h4{
+    font-family: "Babas", sans-serif;
+    font-size: 30px;
+    color: $dark-silver;
+  }
+  h5{
+    font-family: "Babas", sans-serif;
+    font-size: 25px;
+    color: $dark-silver;
+  }
+}
