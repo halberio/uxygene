@@ -28,13 +28,13 @@
   }
   .left {
     padding-bottom: 20px;
-    height: 100%;
     @include flexbox();
     @include flex-direction(column);
     @include align-items(stretch);
     @include flex(1);
     @media (min-width: 992px) {
       max-width: calc(50% - 30px);
+      height: 100%;
     }
     position: relative;
     .dark-btn{
@@ -58,7 +58,6 @@
         font-size: 30px;
       }
       color:$primary-color;
-
       background: transparent;
       border-radius: 5px;
       cursor: pointer;
@@ -84,7 +83,6 @@
       @include align-items(flex-start);
       @include justify-content(space-between);
       @include flex-direction(row);
-      margin-top: -40px;
       background: #F8F7F7;
       z-index: 2;
       max-width: 90%;
@@ -249,11 +247,10 @@
     @include justify-content(center);
     @include align-items(center);
     @include flex(1);
-    max-height: 300px;
     height: 100%;
     max-width: 100%;
     width: 100%;
-    min-height: 200px;
+    min-height: 300px;
     @media (min-width: 992px) {
       max-width: calc(50% - 30px);
       width: 100%;
@@ -296,6 +293,7 @@
     }
 
     .close-btn-round{
+      cursor: pointer;
       &:active{
         outline: none;
         @include transform(scale(.95));

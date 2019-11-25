@@ -1,2 +1,7 @@
 @import "mixins";
 @import "variables";
+
+
+.ant-input:focus, .ant-input:hover{
+  border-color: $black-text;
+}

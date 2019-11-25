@@ -1,0 +1,172 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.container-span-form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  .container-of-form {
+    @include flexbox();
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex-direction(column);
+    transform-origin: right;
+    -webkit-transform-origin: right;
+    background: $primary-color;
+  }
+}
+
+.invite-talent-form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: $primary-color;
+  @include flexbox();
+  @include justify-content(space-between);
+  @include align-items(flex-start);
+  @include flex-direction(column);
+  padding: 20px;
+  @media (min-width: 768px) {
+    padding: 50px;
+  }
+  z-index: 2;
+  right: 0;
+  .ant-form {
+    width: 100%;
+
+    @include flex(2);
+  }
+  .form-header {
+    @include flex(1);
+  }
+  h3 {
+    font-family: "BabasLight", sans-serif;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    opacity: 0;
+    -webkit-animation: fade-in-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in-opacity 1s forwards; /* Firefox < 16 */
+    -ms-animation: fade-in-opacity 1s forwards; /* Internet Explorer */
+    -o-animation: fade-in-opacity 1s forwards; /* Opera < 12.1 */
+    animation: fade-in-opacity 1s forwards;
+    @media (min-width: 992px) {
+      font-size: 30px;
+      margin-top: unset;
+      line-height: 30px;
+    }
+  }
+  h2 {
+    font-family: "Babas", sans-serif;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: left;
+    align-self: flex-start;
+    justify-self: flex-start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    -webkit-animation: fade-in-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in-opacity 1s forwards; /* Firefox < 16 */
+    -ms-animation: fade-in-opacity 1s forwards; /* Internet Explorer */
+    -o-animation: fade-in-opacity 1s forwards; /* Opera < 12.1 */
+    animation: fade-in-opacity 1s forwards;
+    @media (min-width: 992px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+  input {
+    opacity: 0;
+    -webkit-animation: fade-in-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in-opacity 1s forwards; /* Firefox < 16 */
+    -ms-animation: fade-in-opacity 1s forwards; /* Internet Explorer */
+    -o-animation: fade-in-opacity 1s forwards; /* Opera < 12.1 */
+    animation: fade-in-opacity 1s forwards;
+    background: $primary-color;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid $black-text;
+    border-radius: 0;
+    font-size: 20px;
+    padding: 18px 0;
+
+    @media (min-width: 992px) {
+      font-size: 36px;
+      padding: 28px 0;
+    }
+    text-transform: uppercase;
+    font-family: "Babas", sans-serif;
+    &::placeholder {
+      color: white;
+      font-family: "Babas", sans-serif;
+    }
+    &:focus,
+    &:focus-within {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .sbt-btn {
+    margin-top: 10%;
+    width: 100%;
+    height: 45px;
+    max-width: 180px;
+    color: white;
+    @include border-radius(5px);
+    font-family: "Babas", sans-serif;
+    font-size: 20px;
+    @media (min-width: 992px) {
+      font-size: 30px;
+      height: 65px;
+    }
+    color: $primary-color;
+    border: none;
+    background: #232323;
+    opacity: 0;
+    -webkit-animation: fade-in-opacity-slide-left 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-in-opacity-slide-left 1s forwards; /* Firefox < 16 */
+    -ms-animation: fade-in-opacity-slide-left 1s forwards; /* Internet Explorer */
+    -o-animation: fade-in-opacity-slide-left 1s forwards; /* Opera < 12.1 */
+    animation: fade-in-opacity-slide-left 1s forwards;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+
+@include keyframes(fade-in-opacity) {
+  0% {
+    opacity: 0;
+    @include transform(translateY(-20px));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+
+@include keyframes(fade-in-opacity-slide-left) {
+  0% {
+    opacity: 0;
+    @include transform(translateX(-20px));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
