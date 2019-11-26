@@ -34,10 +34,21 @@ const TalentsPage = () => {
       },190)
     }
   }
+
+  const closeFilterWherever = () =>{
+    if(isFilterItemsActive){
+      setTimeout(()=>{
+        setIsFilterItemsActive(false);
+        setTimeout(()=>{
+          setIsFilterActive(false)
+        },180)
+      },500)
+    }
+  }
   return (
-    <div className={"talents-page"}>
+    <div className={"talents-page"} >
       <div className={"columns-container"} >
-        <div  className={`filter-card ${isFilterActive ? "active": null}` }>
+        <div   className={`filter-card ${isFilterActive ? "active": null}` }>
           <h1 onClick={handleFilterStatus}> {isFilterActive ? 'Filter view by' :"Display filter"}</h1>
          <span onClick={handleFilterStatus}><AdjustIcon /></span>
 
@@ -52,6 +63,7 @@ const TalentsPage = () => {
           }}>
             {({scale, opacity,translate,translate2,translate3,translate4,translate5}) =>
                 <div className="list-filter"
+                     onMouseLeave={closeFilterWherever}
                      style={{
                        WebkitTransform: `scaleY(${scale}`,
                        transform: `scaleY(${scale}`,

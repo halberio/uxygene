@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './hosts-page.scss';
 import AdjustIcon from "../../components/svg/AdjustIcon";
 import HostCard from "../../components/host-card/HostCard";
@@ -6,9 +6,22 @@ import HostJoinCard from "../../components/host-join-card/HostJoinCard";
 import "../../components/filter-card/filter-card.scss";
 import {Motion, spring} from "react-motion";
 import SearchCard from "../../components/search-card/SearchCard";
+import {useDispatch, useSelector} from "react-redux";
+import LoadingIcon from "../../components/loading-icon/LoadingIcon";
+import {getHosts} from "../../actions/hosts-actions/actions";
 const HostsPage = () => {
+    const dispatch = useDispatch();
+
     const [isFilterActive, setIsFilterActive] = useState(false);
     const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
+    const hosts = useSelector(state => state.hostsReducer.hosts);
+    const isLoadingHosts = useSelector(state => state.hostsReducer.isLoadingHosts);
+
+    useEffect(() => {
+        dispatch(getHosts());
+
+    }, [dispatch]);
+
     const handleFilterStatus = ()=>{
         if(isFilterItemsActive){
             setIsFilterItemsActive(false);
@@ -22,6 +35,19 @@ const HostsPage = () => {
             },190)
         }
     }
+
+
+    const closeFilterWherever = () =>{
+        if(isFilterItemsActive){
+            setTimeout(()=>{
+                setIsFilterItemsActive(false);
+                setTimeout(()=>{
+                    setIsFilterActive(false)
+                },180)
+            },500)
+        }
+    }
+
     return (
         <div className={"hosts-page"}>
             <div className="navigation-filters-container">
@@ -39,8 +65,10 @@ const HostsPage = () => {
                         translate5 :spring(isFilterItemsActive ? 0 :-45),
 
                     }}>
-                        {({scale, opacity,translate,translate2,translate3,translate4,translate5}) =>
+                        {({scale, opacity,translate,translate2,translate3,translate4}) =>
                             <div className="list-filter"
+
+                                 onMouseLeave={closeFilterWherever}
                                  style={{
                                      WebkitTransform: `scaleY(${scale}`,
                                      transform: `scaleY(${scale}`,
@@ -106,14 +134,26 @@ const HostsPage = () => {
             </div>
             <div className="hosts-container">
                 <HostJoinCard/>
-                <HostCard id={1}/>
-                <HostCard id={2}/>
-                <HostCard id={3}/>
-                <HostCard id={4}/>
-                <HostCard id={5}/>
-                <HostCard id={6}/>
-                <HostJoinCard/>
-                <HostCard id={7}/>
+                {hosts && hosts.length > 0 ? (
+                    hosts.map(item => (
+                        <HostCard
+                            key={item.id}
+                            id={item.id}
+                            image={item.image ? process.env.REACT_APP_STORAGE_URL+item.image : null}
+                            cover={item.image ? process.env.REACT_APP_STORAGE_URL+item.cover : null}
+                            confirmed={item.is_confirmed}
+                            name={item.name}
+                            title={item.title}
+                            about={item.about}
+                            address={item.address}
+                        />
+                    ))
+                ) : (
+                    <div className="loading-flex-fixed">
+                        <LoadingIcon scale={.5}/>
+                    </div>
+                )}
+                {!isLoadingHosts && hosts &&  hosts.length < 1 ? <p>No Hosts records</p> : null }
             </div>
         </div>
     );

@@ -82,7 +82,10 @@
     @include flex-direction(column);
     @include align-items(center);
     @include justify-content(center);
-    height: 70px;
+    margin: auto;
+    &::selection{
+      background: transparent;
+    }
   }
   h1 {
     font-size: 40px;

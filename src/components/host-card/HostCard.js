@@ -12,21 +12,21 @@ const HostCard = (props) => {
         animationDelay:`${props.id * 0.15}s`
       }}>
         <div className="images-container">
-          <img src={cogitePic} className={"img-bg"} alt="img bg" />
+          {props.cover?  <img  className={"img-bg"} src={props.cover} alt={props.name + props.title +"cover"} /> :null}
           <div className="profile-image">
-            <img src={procogit} alt={"view profile"} />
+            {props.image?  <img src={props.image} alt={props.name + props.title} /> :null}
           </div>
         </div>
         <div className="text-container">
           <div className="top">
-            <h3>Cogite</h3>
+            <h3>{props.name ? props.name : null}</h3>
             <button className={"arrow-button"}>
               <ArrowRight />
             </button>
           </div>
           <div className="bottom">
             <LocationIcon />
-            <p>1, Place Tahar Haddad, Les Berges du lac, Tunis 1053</p>
+            <p>{props.address ? props.address : null}</p>
           </div>
         </div>
         <div className="infos-block">

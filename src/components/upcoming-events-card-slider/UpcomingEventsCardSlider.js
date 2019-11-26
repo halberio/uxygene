@@ -1,29 +1,28 @@
 import React from "react";
 import "./upcoming-events-card-slider.scss";
-import afficheImg from "../../assets/img/affiche.jpg";
 import HatIcon from "../svg/HatIcon";
 import LocationIcon from "../svg/LocationIcon";
 import SmallAndroidIcon from "../svg/smallAndroidIcon";
 import ArrowLeftBlack from "../svg/ArrowLeftBlack";
 import ArrowRightBlack from "../svg/ArrowRightBlack";
-const UpcomingEventsCardSlider = () => {
+const UpcomingEventsCardSlider = (props) => {
   return (
     <div className={"upcoming-events-card-slider"}>
       <h3>upcoming Ux event</h3>
-      <img src={afficheImg} alt="" />
+      <img src={props.cover ? props.cover:null} alt={props.name ? props.name:null} />
       <div className="content">
         <div className="text">
           <div className={"item"}>
             <span className="icon">
               <HatIcon />
             </span>
-            <h4>You X Design</h4>
+            <h4>{props.name ? props.name:null}</h4>
           </div>
           <div className={"item"}>
             <span className="icon">
               <LocationIcon />
             </span>
-            <h5>Hive12 Coworking Space . October 12, 2019</h5>
+            <h5>{props.address ? props.address:null} | {props.date ? props.date:null}</h5>
           </div>
           <div className={"item"}>
             <span className="icon">

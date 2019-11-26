@@ -27,11 +27,11 @@
     animation: fadein 1s forwards;
   }
   .left {
-    padding-bottom: 20px;
     @include flexbox();
     @include flex-direction(column);
     @include align-items(stretch);
     @include flex(1);
+    padding-bottom: 20px;
     @media (min-width: 992px) {
       max-width: calc(50% - 30px);
       height: 100%;

@@ -1,42 +1,57 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./profile-host-page.scss";
 import ConfirmedBadge from "../../components/svg/ConfirmedBadge";
 import SpaceShip from "../../components/svg/SpaceShip";
 import {Form} from "antd";
 import TextArea from "antd/es/input/TextArea";
-import imgCogite from "../../assets/img/cogit.jpg"
 import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import ArrowRightBlack from "../../components/svg/ArrowRightBlack";
+import axios from "axios";
+import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 const ProfileHostForm = props => {
+    const [hostData, setHostData] = useState({});
+    const [isLoadingData, setIsloadingData] = useState(true);
+    const [formOpened, setFormOpened] = useState(false);
     const { getFieldDecorator } = props.form;
+    useEffect(() => {
+        setIsloadingData(true);
+        axios
+            .get(process.env.REACT_APP_API_URL + "/hosts/" + props.match.params.id)
+            .then(function(response) {
+                setHostData(response.data);
+                setIsloadingData(false);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }, [props.match.params.id]);
   return (
     <div className={"profile-host-page"}>
-        <div className="row-container">
+        {isLoadingData ? <LoadingIcon scale={.4}/> :   <div className="row-container">
             <div className="left">
                 <div className="top">
                     <div className="title">
-                        <h1>Hive 12</h1>
-                        <h2>Coworking Space</h2>
+                        <h1>{hostData && hostData.name ? hostData.name : null}</h1>
+                        <h2>{hostData && hostData.title ? hostData.title : null}</h2>
                     </div>
                     <div className="confirmed-box">
-                        <h3>Confirmed</h3>
-                        <ConfirmedBadge />
+                        <span>
+                      {hostData && hostData.is_confirmed ? "confirmed" : null}
+                    </span>
+
+                        {hostData && hostData.is_confirmed ? (
+                            <ConfirmedBadge />
+                        ) : null}
                     </div>
                 </div>
                 <p className="description">
-                    We are a young actor who wants to be an intermediary between young
-                    talents and the job market. Our structure is based on two key
-                    principles: pooling and collaboration. The idea is simple to bring
-                    together so many young talents to supervise and support them and to
-                    grow solid startups at the point of spa technology. Our vocation is to
-                    encourage meetings, exchanges and collaboration, to create a synergy
-                    conducive to the emergence of projects.
+                    {hostData && hostData.about ? hostData.about : null}
                 </p>
                 <div className="bottom">
                     <SpaceShip />
                     <h3>Public vote on hosting quality </h3>
                     <button className={"vote-button"}>
-                        UPVote <span>124</span>
+                        UPVote <span> {hostData && hostData.votes ? hostData.votes : null}</span>
                     </button>
                 </div>
                 <Form className="form-host">
@@ -51,7 +66,14 @@ const ProfileHostForm = props => {
                 </Form>
             </div>
             <div className="right">
-                <img src={imgCogite} alt={"corgit"}/>
+                <img  src={
+                    hostData.cover
+                        ? process.env.REACT_APP_STORAGE_URL + hostData.cover
+                        : null
+                }
+                      alt={
+                          hostData && hostData.name ? hostData.name + "img" : null
+                      }/>
                 <div className="navigation-items">
                     <ArrowLeftBlack/>
                     <div className="dots">
@@ -62,7 +84,7 @@ const ProfileHostForm = props => {
                     <ArrowRightBlack/>
                 </div>
             </div>
-        </div>
+        </div>}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import "./host-join-card.scss"
 import SpaceShip from "../svg/SpaceShip";
+import {Link} from "react-router-dom";
 const HostJoinCard = () => {
     return (
-        <div className={"host-join-card"}>
+        <Link to={"get-in-touch"} className={"host-join-card"}>
             <div className="left">
                 <SpaceShip/>
             </div>
@@ -11,7 +12,8 @@ const HostJoinCard = () => {
                 <h2>Coworking space?</h2>
                 <h3>Join us now !</h3>
             </div>
-        </div>
+
+        </Link>
     );
 };
 

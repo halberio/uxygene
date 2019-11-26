@@ -47,7 +47,7 @@ const ProfileTalentPage = props => {
   return (
     <div className={"user-talent-profile-page"}>
       {isLoadingData ? (
-        <LoadingIcon />
+        <LoadingIcon scale={.4} />
       ) : (
         <Motion style={{ grayScaleValue: spring(isLoadingData ? 90 : 0) }}>
           {({ grayScaleValue }) => (
@@ -67,10 +67,10 @@ const ProfileTalentPage = props => {
                   </div>
                   <div className="confirmed-container">
                     <span>
-                      {userData && userData.i_confirmed ? "confirmed" : null}
+                      {userData && userData.is_confirmed ? "confirmed" : null}
                     </span>
 
-                    {userData && userData.i_confirmed ? (
+                    {userData && userData.is_confirmed ? (
                       <ConfirmedBadge />
                     ) : null}
                   </div>

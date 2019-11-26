@@ -12,6 +12,7 @@
     @include flex-direction(column);
     @media (min-width: 992px) {
       @include flex-direction(row);
+      min-height: calc(100vh - 120px);
     }
     @include justify-content(space-between);
     @include align-items(flex-start);
