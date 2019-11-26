@@ -27,12 +27,12 @@ const HostsPage = () => {
             setIsFilterItemsActive(false);
             setTimeout(()=>{
                 setIsFilterActive(false)
-            },120)
+            },80)
         }else{
             setIsFilterActive(true);
             setTimeout(()=>{
                 setIsFilterItemsActive(true)
-            },190)
+            },130)
         }
     }
 
@@ -43,10 +43,11 @@ const HostsPage = () => {
                 setIsFilterItemsActive(false);
                 setTimeout(()=>{
                     setIsFilterActive(false)
-                },180)
-            },500)
+                },80)
+            },130)
         }
     }
+
 
     return (
         <div className={"hosts-page"}>
@@ -56,13 +57,13 @@ const HostsPage = () => {
                     <span onClick={handleFilterStatus}><AdjustIcon /></span>
 
                     <Motion style={{
-                        scale: spring(isFilterActive ? 1 : 0) ,
-                        opacity :spring(isFilterItemsActive ? 1 :0),
-                        translate :spring(isFilterItemsActive ? 0 :-15),
-                        translate2 :spring(isFilterItemsActive ? 0 :-20),
-                        translate3 :spring(isFilterItemsActive ? 0 :-25),
-                        translate4 :spring(isFilterItemsActive ? 0 :-30),
-                        translate5 :spring(isFilterItemsActive ? 0 :-45),
+                        scale: spring(isFilterActive ? 1 : 0,{stiffness:60, damping:10}) ,
+                        opacity :spring(isFilterItemsActive ? 1 :0,{stiffness:60, damping:10}),
+                        translate :spring(isFilterItemsActive ? 0 :-15,{stiffness:60, damping:10}),
+                        translate2 :spring(isFilterItemsActive ? 0 :-20,{stiffness:60, damping:10}),
+                        translate3 :spring(isFilterItemsActive ? 0 :-25,{stiffness:60, damping:10}),
+                        translate4 :spring(isFilterItemsActive ? 0 :-30,{stiffness:60, damping:10}),
+                        translate5 :spring(isFilterItemsActive ? 0 :-45,{stiffness:60, damping:10}),
 
                     }}>
                         {({scale, opacity,translate,translate2,translate3,translate4}) =>

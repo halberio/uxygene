@@ -4,7 +4,7 @@
   @include flexbox();
   @include flex-direction(column);
   width: 100%;
-  background: white;
+  background: $white;
   padding: 30px;
   h3 {
     text-transform: uppercase;

@@ -41,8 +41,8 @@ const SearchForm = props => {
       <h1 onClick={changeSearchContainerVisibility}>Type anywhere To search</h1>
       <Motion
         style={{
-          x: spring(searchContainerHidden ? 100 : 0),
-          y: spring(searchContainerHidden ? 0 : 1)
+          x: spring(searchContainerHidden ? 100 : 0,{stiffness:300, damping:40}),
+          y: spring(searchContainerHidden ? 0 : 1,{stiffness:300, damping:40})
         }}
       >
         {({ x, y }) => (
@@ -51,6 +51,8 @@ const SearchForm = props => {
             style={{
               display: !searchContainerHidden ? "flex" : "flex",
               opacity: y,
+                WebkitTransform: `translateY(${x}%`,
+                transform: `translateY(${x}%`,
               pointerEvents: !searchContainerHidden ? "all" : "none"
             }}
           >

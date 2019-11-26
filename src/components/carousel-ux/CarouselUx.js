@@ -1,6 +1,5 @@
-import React, {useEffect, useRef} from "react";
+import React, { useRef} from "react";
 import "./carouse-ux.scss";
-import "react-glide/lib/reactGlide.css";
 import { Carousel } from "antd";
 import ArrowLeftBlack from "../svg/ArrowLeftBlack";
 import ArrowRightBlack from "../svg/ArrowRightBlack";

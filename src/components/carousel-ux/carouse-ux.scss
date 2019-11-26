@@ -63,16 +63,24 @@
     bottom: 54px;
     @media (min-width: 768px) {
       height: 20px;
-      bottom: 86px;
+      bottom: 96px;
     }
     button{
-      height: 100%;
-      padding: 0;
+      &:active{
+        @include transform(scale(.9));
+      }
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      height: 80px;
+      background: transparent;
+      padding: 20px;
       max-width: 160px;
       margin: 0;
       position: relative;
       @include flex(1);
-      background: transparent;
+      border: none;
+      cursor: pointer;
       outline: none;
       @include transition(all,0.2s,ease-in-out);
       svg{

@@ -1,4 +1,10 @@
-$primary-color: #ffcc00;
+
+:root {
+ --primary-color: #ffcc00;
+ --white-color: #fff;
+}
+
+$primary-color: var(--primary-color);
 
 $light-silver: #f0f0f0;
 
@@ -6,4 +12,6 @@ $black-text: #232323;
 
 $dark-silver: #5a574c;
 
-$white:#fff;
+$white:var(--white-color);;
+
+

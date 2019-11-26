@@ -3,7 +3,9 @@
 .filter-card {
   border: none !important;
   outline: none !important;
-
+  &:hover{
+    box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
+  }
   max-height: 60px;
   @media (min-width: 992px) {
     max-height: 100px;
@@ -21,7 +23,7 @@
     transform-origin: top ;
     -webkit-transform-origin: top center;
     width: 100%;
-    background: #fff;
+    background: $white;
     top: 48px;
     left: 0;
     z-index: 1;
@@ -135,7 +137,7 @@
     max-width: 30px;
   }
   @include border-radius( 10px);
-  background: #fff;
+  background: $white;
 
 
   h1 {

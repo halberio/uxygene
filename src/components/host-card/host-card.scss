@@ -34,6 +34,7 @@
     .img-bg{
       @include transition(all, 0.2s, ease-in-out);
       @include border-radius(10px 0);
+      background: $black-text;
       overflow: hidden;
       object-fit: cover;
       object-position: top;

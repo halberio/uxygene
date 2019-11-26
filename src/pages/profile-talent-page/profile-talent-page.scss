@@ -261,6 +261,7 @@
     width: 100%;
     min-height: 300px;
     @media (min-width: 992px) {
+      min-height: 60vh;
       max-width: calc(50% - 30px);
       width: 100%;
       max-height: 100%;

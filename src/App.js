@@ -54,6 +54,7 @@ const App = props => {
       }
     });
   }, [props.history]);
+
   return (
     <div
       className={"app"}
@@ -71,6 +72,7 @@ const App = props => {
         isLoggedIn={props.isLoggedIn}
         logout={props.logout}
       />
+
       <Route
         render={({ location }) => (
           <TransitionGroup className={"page-container"}>
