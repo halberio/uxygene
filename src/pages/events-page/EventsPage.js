@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import {getEvents} from "../../actions/events-actions/actions";
 import axios from "axios";
-import HostCard from "../../components/host-card/HostCard";
 
 const EventsPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +25,7 @@ const EventsPage = () => {
           console.log(error);
         });
 
-  }, []);
+  }, [dispatch]);
   return (
     <div className={"events-page"}>
       <div className="row-container">

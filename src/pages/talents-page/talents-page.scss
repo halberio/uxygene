@@ -37,7 +37,7 @@
   .columns-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    justify-content: stretch;
+    @include justify-content(stretch);
     grid-auto-rows: 60px;
     grid-gap: 12px;
     @media (min-width: 768px) {

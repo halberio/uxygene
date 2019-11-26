@@ -5,6 +5,8 @@
   @include flexbox();
   @include justify-content(center);
   width: 100%;
+  min-height:100vh;
+  box-sizing: border-box;
   .row-container{
     @include flexbox();
     @include justify-content(space-between);
@@ -13,7 +15,9 @@
     @media (min-width: 768px) {
       @include flex-direction(row);
       @include align-items(stretch);
+
       padding-bottom: unset;
+
     }
     max-width: calc(1200px - 10px);
     width: 100%;
@@ -27,9 +31,8 @@
     @include flex-direction(column);
     .top{
       @include flexbox();
-      @include flex(1);
       @include justify-content(space-between);
-      @include align-items(center);
+      @include align-items(flex-start);
       .title{
         h1{
           font-family: "Babas", sans-serif;
@@ -72,16 +75,24 @@
       font-family: "Avenir", sans-serif;
     }
     .bottom{
+      position: relative;
       @include flexbox();
       @include align-items(center);
       @include justify-content(space-between);
+      @include flex-wrap(nowrap);
+      width: 100%;
+      height: auto;
       svg{
+        @include flex(1);
         width: 28px;
+        max-width: 30px;
+        margin-right: 10px;
         path{
           fill: $primary-color;
         }
       }
       h3{
+        @include flex(1);
         margin: 0;
         padding: 0;
         font-size: 18px;
@@ -91,6 +102,13 @@
         font-weight: bold;
       }
       .vote-button{
+        margin: 0;
+        max-width: 90px;
+        max-height: 40px;
+        top:0;
+        width: 100px;
+        @include flex(1);
+        position: relative;
         &:focus{
           outline: none;
         }
@@ -119,9 +137,11 @@
       }
     }
     .form-host{
+      position: relative;
       @include flexbox();
       @include flex-direction(column);
       margin-top: 20px;
+      width: 100%;
       textarea{
         margin-bottom: 0 !important;
         border-radius: 0;
@@ -140,6 +160,9 @@
         border-radius: 0;
       }
       .submit-btn-host{
+        margin-top: -20px;
+        @include flex(1);
+        position: relative;
         width:100%;
         border: none;
         outline: none;
@@ -148,9 +171,11 @@
         font-family: "Babas", sans-serif;
         font-size: 30px;
         background: #232323;
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
         @include border-radius(4px);
         @include transition(all, 0.3s,ease-in-out);
-        padding: 15px 10px;
         cursor: pointer;
         &:focus{
           outline: none;
@@ -159,76 +184,125 @@
           background: $primary-color;
           color:#232323;
         }
+        span{
+          position: relative;
+          display: block;
+          margin: auto;
+          padding: 10px;
+        }
       }
     }
   }
   .right{
-    max-width: 550px;
-    height: auto;
-    width: 100%;
-    position: relative;
-    @include flex(1);
-    margin-top: 20px;
-    margin-bottom: 10px;
-
-    @media (min-width: 768px) {
-      margin-left: 10px;
-      margin-bottom: unset;
-    }
-    @media (min-width: 992px) {
-      margin-top: unset;
-      margin-left: 30px;
-      max-width: 620px;
-    }
-    img{
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-    .navigation-items{
-      @include flexbox();
-      @include justify-content(space-between);
-      width: 100%;
-      padding: 20px;
-      @media (min-width: 992px) {
-        padding: 10% 20% ;
+    .close-btn-round{
+      cursor: pointer;
+      &:active{
+        outline: none;
+        @include transform(scale(.95));
       }
-      position: absolute;
-      bottom: 0;
-      svg{
-        @include transition(all, 0.2s, ease-in-out);
-        cursor: pointer;
-        path{
-          fill: white;
+      &:before{
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 100%;
+        background: $black-text;
+        transform-origin: center center;
+        -webkit-transform-origin: center center;
+        @include transition(all, 0.2s,ease-in-out);
+      }
+      &:hover{
+        &:before{
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
         }
-        &:hover{
+        svg#ico-svg-back-plus{
+          @include transform(rotate(315deg));
+
+          -webkit-animation: fade-out .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+          -moz-animation: fade-out  .4s forwards 0.1s; /* Firefox < 16 */
+          -ms-animation: fade-out  .4s forwards 0.1s; /* Internet Explorer */
+          -o-animation: fade-out  .4s forwards 0.1s; /* Opera < 12.1 */
+          animation: fade-out  .4s forwards 0.1s;
+          animation-delay: .1s;
+        }
+        .arrow-container-go-back{
+          svg{
+            -webkit-animation: fade_in_and_rotate .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fade_in_and_rotate .4s forwards 0.1s; /* Firefox < 16 */
+            -ms-animation: fade_in_and_rotate .4s forwards 0.1s; /* Internet Explorer */
+            -o-animation: fade_in_and_rotate .4s forwards 0.1s; /* Opera < 12.1 */
+            animation: fade_in_and_rotate .4s forwards 0.1s;
+
+          }
+        }
+      }
+      svg{
+        @include transition(all, .3s,ease-out);
+      }
+      svg#ico-svg-back-plus{
+        opacity: 1;
+      }
+      .arrow-container-go-back{
+        position: absolute;
+        z-index: 1;
+        left: 20px;
+        top: 29px;
+        svg{
+          opacity: 0;
+          width:100%;
+          height: 100%;
           path{
             fill: $primary-color;
           }
         }
       }
-      .dots{
-        @include flexbox() ;
-        .dot{
-          display: block;
-          width: 20px;
-          height: 20px;
-          border: 1px solid $primary-color;
-          @include border-radius(100%);
-          margin-right: 4px;
-          cursor: pointer;
-          @include transition(all, 0.2s, ease-in-out);
-          &:last-child{
-            margin-right: unset;
-          }
-          &.filled{
-            background: $primary-color;
-          }
-          &:hover{
-            background: $primary-color;
-          }
-        }
+      @include flexbox();
+      @include justify-content(center);
+      @include align-items(center);
+      @include transition(all, 0.2s,ease-in-out);
+      position: absolute;
+      z-index: 3;
+      width: 80px;
+      height: 80px;
+      border-radius: 100%;
+      top: -40px;
+      right: 20px;
+      left: unset;
+      @media (min-width: 992px) {
+        top: calc(50% - 50px);
+        left: -40px;
+        right: unset;
       }
+
+      background: #F8F7F7;
+    }
+    max-width: 550px;
+    height: 100%;
+    width: 100%;
+    max-height: 620px;
+    position: relative;
+    top:0;
+    @include flex(1);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    @media (min-width: 768px) {
+      margin-left: 20px;
+      margin-bottom: unset;
+    }
+    @media (min-width: 992px) {
+      margin-top: unset;
+      margin-left:40px;
+      max-width: 620px;
+    }
+    box-sizing: border-box;
+    .carousel-ux{
+      max-height: 630px;
     }
     &:after{
       content: "";

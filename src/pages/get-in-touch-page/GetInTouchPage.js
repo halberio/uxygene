@@ -42,9 +42,7 @@ const GetInTouchForm = props => {
                 ]
               })(<Input    type="text" placeholder="Message" />)}
             </Form.Item>
-            <Form.Item>
-              <button type={"submit"} className={"submit-btn"}>Send Now</button>
-            </Form.Item>
+            <button type={"submit"} className={"submit-btn-get-in-touch"}><span>Send Now</span></button>
           </Form>
 
         </div>

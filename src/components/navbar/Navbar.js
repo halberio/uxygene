@@ -62,7 +62,7 @@ const Navbar = props => {
     setDrawerOpened(!drawerOpened);
   };
   window.addEventListener("scroll", () => {
-    if (window.scrollY >= 15) {
+    if (window.scrollY >= 20) {
       setOnScrollClassName("on-scroll-navbar");
     } else {
       setOnScrollClassName("");

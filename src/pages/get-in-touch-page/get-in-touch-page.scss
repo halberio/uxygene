@@ -93,29 +93,34 @@
         @include transition(all, 0.3s, cubic-bezier(0.77, 0, 0.175, 1));
         transform-origin: right;
         padding: 7.2727272727272725% 11.594202898550725%;
-        .submit-btn {
+        .submit-btn-get-in-touch {
           width: 100%;
+          position: relative;
           opacity: 0;
           -webkit-animation: fade-in 0.4s forwards 0.7s; /* Safari, Chrome and Opera > 12.1 */
           -moz-animation: fade-in 0.4s forwards 0.7s; /* Firefox < 16 */
           -ms-animation: fade-in 0.4s forwards 0.7s; /* Internet Explorer */
           -o-animation: fade-in 0.4s forwards 0.7s; /* Opera < 12.1 */
           animation: fade-in 0.4s forwards 0.7s;
-          background: $black-text;
+          background: $black-text !important;
           color: $primary-color;
           font-family: "Babas", sans-serif;
           font-size: 30px;
           text-transform: uppercase;
-          padding: 18px 0;
           border-radius: 3px;
           border: none;
-          margin-top: 11.272727272727273%;
+          margin-top: 10.272727272727273%;
           cursor: pointer;
           @include transition(all, 0.3s, ease-in-out);
-
+          span{
+            height: 100%;
+          }
           &:hover {
             background: white;
-            color: $black-text;
+            color: $white;
+          }
+          &:active{
+            @include transform(scale(.99));
           }
           &:focus,
           &:focus-within {

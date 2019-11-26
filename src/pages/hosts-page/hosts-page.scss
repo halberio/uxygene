@@ -104,9 +104,10 @@
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    justify-content: stretch;
+    @include justify-content(stretch);
     grid-auto-rows:1fr;
     grid-gap: 10px;
+    padding-bottom: 5%;
 
     @media (min-width: 768px) {
       margin-top: 10px;

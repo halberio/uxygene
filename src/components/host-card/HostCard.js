@@ -1,7 +1,5 @@
 import React from "react";
 import "./host-card.scss";
-import cogitePic from "../../assets/img/cogit.jpg";
-import procogit from "../../assets/img/procogite.jpg";
 import ArrowRight from "../svg/ArrowRight";
 import LocationIcon from "../svg/LocationIcon";
 import { Link } from "react-router-dom";

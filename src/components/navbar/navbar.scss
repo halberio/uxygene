@@ -22,6 +22,7 @@
     width: 100%;
     max-width: calc(1200px - 1%);
 
+    box-sizing: border-box;
     .brand {
       svg {
         max-width: 100px;
@@ -39,6 +40,8 @@
     .menu-icon{
       margin-right: 20px;
     }
+
+    box-sizing: border-box;
     @include transition(all, 0.2s, ease-in-out);
     opacity: 0;
     -webkit-animation: fade-in 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */

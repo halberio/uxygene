@@ -90,9 +90,14 @@
         text-transform: uppercase;
       }
       .arrow-button{
-        background: $white;
+        position: relative;
+        background: transparent;
+        margin-right: 20px;
         border: none;
         z-index: 2;
+        &:focus{
+          outline: none;
+        }
         svg{
           width:60px;
           padding: 8px;

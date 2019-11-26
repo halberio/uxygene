@@ -31,6 +31,7 @@
     @include flex-direction(column);
     @include align-items(stretch);
     @include flex(1);
+    width: 100%;
     padding-bottom: 20px;
     @media (min-width: 992px) {
       max-width: calc(50% - 30px);
@@ -46,7 +47,7 @@
       outline: none;
       border: none;
       bottom: 0;
-      margin-top: 60px;
+      top: 0;
       position: relative;
       max-height: 70px;
       min-height: 60px;
@@ -93,6 +94,8 @@
         margin-left: unset;
         padding:unset;
         max-width: unset;
+
+        width: 100%;
         background: #F8F7F7;
       }
       h1 {
@@ -143,6 +146,7 @@
       position: relative;
       @include flexbox();
       @include flex(1);
+      width: 100%;
       top:0;
       @include flex-direction(column);
       @include align-items(flex-start);
@@ -182,6 +186,11 @@
             outline: none;
             @include transform(scale(.95));
           }
+          position: relative;
+          @include flex(1);
+          max-width: 100px;
+          top: 0;
+          max-height: 40px;
           outline: none;
           background: $primary-color;
           border: none;
