@@ -21,19 +21,19 @@ const CarouselUx = props => {
               <img
                 key={index}
                 src={process.env.REACT_APP_STORAGE_URL + item.image_path}
-                alt=""
+                alt={item.id+index+"taginside"}
               />
             ))
           : null}
       </Carousel>
-      <div className="navigation-items-carousel-ux">
-        <button onClick={goPrev}>
-          <ArrowLeftBlack />
-        </button>
-        <button onClick={goNext}>
-          <ArrowRightBlack />
-        </button>
-      </div>
+        {props && props.pictures && props.pictures.length > 1 ? <div className="navigation-items-carousel-ux">
+            <button onClick={goPrev}>
+                <ArrowLeftBlack />
+            </button>
+            <button onClick={goNext}>
+                <ArrowRightBlack />
+            </button>
+        </div> : null}
     </div>
   );
 };

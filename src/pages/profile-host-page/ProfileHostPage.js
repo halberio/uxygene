@@ -83,7 +83,7 @@ const ProfileHostForm = props => {
             hostData.host_pictures &&
             hostData.host_pictures.length > 0 ? (
               <CarouselUx pictures={hostData.host_pictures} />
-            ) : null}
+            ) : <CarouselUx pictures={[{'image_path':hostData.cover,id:'index'}]} />}
             <div className={"close-btn-round"} onClick={closePageOrGoBack}>
               <div className={"arrow-container-go-back"}>
                 {" "}
