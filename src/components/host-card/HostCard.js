@@ -9,6 +9,7 @@ const HostCard = (props) => {
       <Link  to={"/hosts-profile/" + props.id} className={"host-card"} style={{
         animationDelay:`${props.id * 0.15}s`
       }}>
+        {props.confirmed ? <div className="badge-container" /> : null}
         <div className="images-container">
           {props.cover?  <img  className={"img-bg"} src={props.cover} alt={props.name + props.title +"cover"} /> :null}
           <div className="profile-image">

@@ -7,7 +7,10 @@
 import {
   FETCH_USERS_FAILURE,
   FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS
+  FETCH_USERS_SUCCESS,
+  ADD_USER_VOTE_REQUEST,
+  ADD_USER_VOTE_FAILURE,
+  ADD_USER_VOTE_SUCCESS
 } from "./types";
 
 import UsersServices from "./service";
@@ -28,6 +31,25 @@ export function getUsers() {
     } catch (e) {
       dispatch({
         type: FETCH_USERS_FAILURE
+      });
+    }
+  };
+}
+
+
+export function addUserVote(id) {
+  return async dispatch => {
+    await dispatch({
+      type: ADD_USER_VOTE_REQUEST
+    });
+    try {
+      await UsersServices.addUserVoteRequest(id);
+      await dispatch({
+        type: ADD_USER_VOTE_SUCCESS
+      });
+    } catch (e) {
+      dispatch({
+        type: ADD_USER_VOTE_FAILURE
       });
     }
   };

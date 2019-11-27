@@ -8,11 +8,15 @@ import axios from "axios";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import CarouselUx from "../../components/carousel-ux/CarouselUx";
 import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
+import {useDispatch} from "react-redux";
+import {addHostVote} from "../../actions/hosts-actions/actions";
 const ProfileHostForm = props => {
   const [hostData, setHostData] = useState({});
   const [isLoadingData, setIsloadingData] = useState(true);
   const [formOpened, setFormOpened] = useState(false);
+  const [hostVotes, setHostVotes] = useState(0);
   const { getFieldDecorator } = props.form;
+  const dispatch = useDispatch();
   useEffect(() => {
     setIsloadingData(true);
     axios
@@ -33,6 +37,16 @@ const ProfileHostForm = props => {
       setFormOpened(false);
     }
   };
+  const voteUpHandler = id => {
+    if (hostData) {
+      dispatch(addHostVote(id));
+      setHostVotes(hostVotes+1);
+    }
+  };
+
+  useEffect(()=>{
+    setHostVotes(hostData.votes);
+  },[hostData])
   return (
     <div className={"profile-host-page"}>
       {isLoadingData ? (
@@ -59,11 +73,12 @@ const ProfileHostForm = props => {
             <div className="bottom">
               <SpaceShip />
               <h3>Public vote on hosting quality </h3>
-              <button className={"vote-button"}>
+              <button className={"vote-btn"}
+                      onClick={() => voteUpHandler(hostData.id)}>
                 UPVote{" "}
-                <span>
+                <span className={"number"}>
                   {" "}
-                  {hostData && hostData.votes ? hostData.votes : null}
+                  {hostData && hostData.votes ? hostVotes : null}
                 </span>
               </button>
             </div>

@@ -2,6 +2,16 @@
 @import "../../stylesheets/mixins";
 
 .host-card{
+  .badge-container {
+    position: absolute;
+    display: block;
+    right: 15px;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    top: 15px;
+    background-image: url("../../assets/svg/badge-confirmed.svg");
+  }
   opacity: 0;
   -webkit-animation: fade-in 1s forwards; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fade-in 1s forwards; /* Firefox < 16 */

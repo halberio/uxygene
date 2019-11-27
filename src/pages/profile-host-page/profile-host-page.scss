@@ -101,38 +101,37 @@
         text-transform: capitalize;
         font-weight: bold;
       }
-      .vote-button{
-        margin: 0;
-        max-width: 90px;
-        max-height: 40px;
-        top:0;
-        width: 100px;
-        @include flex(1);
-        position: relative;
-        &:focus{
+      button.vote-btn {
+        &:active{
           outline: none;
+          @include transform(scale(.95));
         }
+        position: relative;
+        @include flex(1);
+        max-width: 100px;
+        top: 0;
+        max-height: 40px;
         outline: none;
-        @include border-radius(4px);
-        border:none;
         background: $primary-color;
-        box-shadow: 8px 8px 10px rgba(255, 204, 0, 0.2);
+        border: none;
+        min-height: 28px;
+        border-radius: 3px;
+        font-size: 18px;
         font-family: "Babas", sans-serif;
-        padding: 6px 12px;
-        font-size: 20px;
-        color: #232323;
-        @include transition(all, 0.2s, ease-in-out);
-        span{
-          color: white;
-        }
+        color: $black-text;
+        box-shadow: 8px 8px 10px rgba(255, 204, 0, 0.2);
         cursor: pointer;
-        &:hover{
-          background: #232323;
-          box-shadow: 8px 8px 10px rgba(35, 35, 35, 0.2);
-          color:white;
-          span{
-           color: $primary-color;
+        @include transition(all, 0.2s, ease-in-out);
+        &:hover {
+          background: white;
+          color: $black-text;
+          span.number {
+            color: $primary-color;
           }
+        }
+        span.number {
+          color: white;
+          @include transition(all, 0.2s, ease-in-out);
         }
       }
     }

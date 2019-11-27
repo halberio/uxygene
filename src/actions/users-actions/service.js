@@ -14,9 +14,18 @@ function fetchUsersRequest() {
   });
 }
 
+function addUserVoteRequest(id) {
+  return axiosInstance({
+    method: "post",
+    url: "/add-vote-user",
+    data: {id:id}
+  });
+}
+
 
 const UsersServices = {
-  fetchUsersRequest
+  fetchUsersRequest,
+  addUserVoteRequest
 };
 
 export default UsersServices;

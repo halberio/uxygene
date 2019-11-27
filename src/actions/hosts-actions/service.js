@@ -14,9 +14,17 @@ function fetchHostsRequest() {
   });
 }
 
+function addHostVoteRequest(id) {
+  return axiosInstance({
+    method: "post",
+    url: "/add-vote-host",
+    data: {id:id}
+  });
+}
 
 const HostsServices = {
-  fetchHostsRequest
+  fetchHostsRequest,
+  addHostVoteRequest
 };
 
 export default HostsServices;

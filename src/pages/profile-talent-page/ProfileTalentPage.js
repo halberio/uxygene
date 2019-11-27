@@ -8,23 +8,28 @@ import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import { Motion, spring } from "react-motion";
 import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import InviteTalentForm from "../../components/invite-talent-form/InviteTalentForm";
+import { useDispatch } from "react-redux";
+import { addUserVote } from "../../actions/users-actions/actions";
 const ProfileTalentPage = props => {
   const [userData, setUserData] = useState({});
   const [isLoadingData, setIsloadingData] = useState(true);
   const [formOpened, setFormOpened] = useState(false);
+  const [userVotes, setUserVotes] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
     setIsloadingData(true);
-    axios
-      .get(process.env.REACT_APP_API_URL + "/users/" + props.match.params.id)
-      .then(function(response) {
-        setUserData(response.data);
-        setIsloadingData(false);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    (async () => {
+      await axios
+        .get(process.env.REACT_APP_API_URL + "/users/" + props.match.params.id)
+        .then(function(response) {
+          setUserData(response.data);
+          setIsloadingData(false);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    })();
   }, [props.match.params.id]);
-
   const closePageOrGoBack = () => {
     if (!formOpened) {
       props.history.push("/talents");
@@ -35,19 +40,29 @@ const ProfileTalentPage = props => {
 
   const openFormIfNotOpened = () => {
     setFormOpened(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior:'smooth'
+        behavior: "smooth"
       });
-    },400)
+    }, 400);
   };
+
+  const voteUpHandler = id => {
+    if (userData) {
+      dispatch(addUserVote(id));
+      setUserVotes(userVotes+1);
+    }
+  };
+  useEffect(()=>{
+    setUserVotes(userData.votes);
+  },[userData])
 
   return (
     <div className={"user-talent-profile-page"}>
       {isLoadingData ? (
-        <LoadingIcon scale={.4} />
+        <LoadingIcon scale={0.4} />
       ) : (
         <Motion style={{ grayScaleValue: spring(isLoadingData ? 90 : 0) }}>
           {({ grayScaleValue }) => (
@@ -81,12 +96,19 @@ const ProfileTalentPage = props => {
                 <div className="footer">
                   <div className="item">
                     <HatIcon /> <h4>Public vote on training skills </h4>{" "}
-                    <button className={"vote-btn"}>
-                      UPVOTE{" "}
-                      <span className="number">
-                        {userData && userData.votes ? userData.votes : null}
-                      </span>
-                    </button>
+                    {userData && userData.id ? (
+                      <button
+                        onClick={() => voteUpHandler(userData.id)}
+                        className={"vote-btn"}
+                      >
+                        UPVOTE{" "}
+                        <span className="number">
+                          {userData && userData.votes && userData.votes
+                            ? userVotes
+                            : null}
+                        </span>
+                      </button>
+                    ) : null}
                   </div>
                   <div className="item">
                     <HatIcon /> <h4>Skills </h4>{" "}
@@ -112,13 +134,17 @@ const ProfileTalentPage = props => {
                   </div>
                 </div>
                 <button
-                    className={"dark-btn"}
-                    onClick={openFormIfNotOpened}
-                    style={{
-                      WebkitTransform: `translate3d(0, ${formOpened ? '50' : '0'}%, 0)`,
-                      transform: `translate3d(0, ${formOpened ? '-50' : '0'}%, 0)`,
-                      opacity: ` ${formOpened ? '0' : '1'}`
-                    }}
+                  className={"dark-btn"}
+                  onClick={openFormIfNotOpened}
+                  style={{
+                    WebkitTransform: `translate3d(0, ${
+                      formOpened ? "50" : "0"
+                    }%, 0)`,
+                    transform: `translate3d(0, ${
+                      formOpened ? "-50" : "0"
+                    }%, 0)`,
+                    opacity: ` ${formOpened ? "0" : "1"}`
+                  }}
                 >
                   INVITE ME To animate An ux session
                 </button>
@@ -126,17 +152,16 @@ const ProfileTalentPage = props => {
               <div className="right">
                 <Motion style={{ x: spring(formOpened ? 0 : 100) }}>
                   {({ x }) => (
-                    <span
-                      className={"container-span-form"}
-                    >
-                      <span className={"container-of-form"}
-                            style={{
-                              WebkitTransform: `translateX(${x}%)`,
-                              transform: `translateX(${x}%)`
-                            }}>
-                          {formOpened ? <InviteTalentForm /> : null}
+                    <span className={"container-span-form"}>
+                      <span
+                        className={"container-of-form"}
+                        style={{
+                          WebkitTransform: `translateX(${x}%)`,
+                          transform: `translateX(${x}%)`
+                        }}
+                      >
+                        {formOpened ? <InviteTalentForm /> : null}
                       </span>
-
                     </span>
                   )}
                 </Motion>
