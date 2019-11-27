@@ -6,11 +6,13 @@ import SmallAndroidIcon from "../svg/smallAndroidIcon";
 import ArrowLeftBlack from "../svg/ArrowLeftBlack";
 import ArrowRightBlack from "../svg/ArrowRightBlack";
 import axios from "axios";
+import NoDataIcon from "../no-data-icon/NoDataIcon";
+import LoadingIcon from "../loading-icon/LoadingIcon";
 const UpcomingEventsCardSlider = () => {
   const [newEvents, setNewsEvents] = useState([]);
   const [item, setItem] = useState({});
   const [currentId, setCurrentId] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const goNext = () => {
     if (currentId < newEvents.length - 1) {
@@ -35,6 +37,7 @@ const UpcomingEventsCardSlider = () => {
     setItem(newEvents[currentId]);
   }, [currentId,newEvents]);
   useEffect(() => {
+      setIsLoading(true);
     axios
       .get(process.env.REACT_APP_API_URL + "/last-event")
       .then(function(response) {
@@ -49,54 +52,51 @@ const UpcomingEventsCardSlider = () => {
   return (
     <div className={"upcoming-events-card-slider"}>
       <h3>upcoming Ux event</h3>
-      {newEvents && newEvents.length > 0 && !isLoading ? (
-        <div className={"container-item-event-last"} key={item.id}>
-          <div className="img-container-slide-custom">
-            <img
-              src={
-                item.cover
-                  ? process.env.REACT_APP_STORAGE_URL + item.cover
-                  : null
-              }
-              alt={item.name ? item.name : null}
-            />
-          </div>
-          <div className="content">
-            <div className="text">
-              <div className={"item"}>
+      {newEvents && newEvents.length > 0   ? (
+          <div className={"container-item-event-last"} >
+              <div className="img-container-slide-custom">
+                  <img
+                      src={item &&
+                          item.cover
+                              ? process.env.REACT_APP_STORAGE_URL + item.cover
+                              : null
+                      }
+                      alt={item && item.name ? item.name : null}
+                  />
+              </div>
+              <div className="content">
+                  <div className="text">
+                      <div className={"item"}>
                 <span className="icon">
                   <HatIcon />
                 </span>
-                <h4>{item.name ? item.name : null}</h4>
-              </div>
-              <div className={"item"}>
+                          <h4>{item && item.name ? item.name : null}</h4>
+                      </div>
+                      <div className={"item"}>
                 <span className="icon">
                   <LocationIcon />
                 </span>
-                <h5>
-                  {item.address ? item.address : null} |{" "}
-                  {item.date ? item.date : null}
-                </h5>
-              </div>
-              <div className={"item"}>
+                          <h5>
+                              {item && item.address ? item.address : null} |{" "}
+                              {item && item.date ? item.date : null}
+                          </h5>
+                      </div>
+                      <div className={"item"}>
                 <span className="icon">
                   <SmallAndroidIcon />
                 </span>
-                <h6>{item.address ? item.address : null} </h6>
+                          <h6>{item && item.address ? item.address : null} </h6>
+                      </div>
+                  </div>
+                  <div className="free-or-paid">{item && item.is_paied ? item.is_paied ? "paied":"free" :"free"}</div>
               </div>
-            </div>
-            <div className="free-or-paid">Free</div>
+              <div className="description">
+                  {item && item.description ? item.description : null}
+              </div>
           </div>
-          <div className="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            lacinia lacus eget urna suscipit, ut convallis massa efficitur.
-            Praesent pellentesque metus vel rhoncus auctor. Nunc quis varius
-            augue. Proin in odio metus.
-          </div>
-        </div>
-      ) : (
-        <h1>Is loading...</h1>
-      )}
+      ) : isLoading  ? (
+          <LoadingIcon scale={0.4}/>
+      ) : <NoDataIcon msg={"No upcoming events"}/>}
 
       <div className="footer">
         {newEvents && newEvents.length > 0 ? (
