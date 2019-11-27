@@ -5,6 +5,7 @@ import UpcomingEventsCardSlider from "../../components/upcoming-events-card-slid
 import {useDispatch, useSelector} from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import {getEvents} from "../../actions/events-actions/actions";
+import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
 
 const EventsPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const EventsPage = () => {
         </div>
         <div className="right">
 
-          {events && events.length > 0 ? (
+          {events && events.length > 0 && !isLoadingEvents ? (
                   events.map(item => (
 
                       <EventCard
@@ -37,12 +38,14 @@ const EventsPage = () => {
                       address={item.address}
                   />
               ))
+          ) :  !isLoadingEvents && !events ? (
+              <NoDataIcon msg={"No UX Events yet!"} />
           ) : (
               <div className="loading-flex-fixed">
-                <LoadingIcon scale={.5}/>
+                <LoadingIcon scale={0.5} />
               </div>
           )}
-          {!isLoadingEvents && events &&  events.length < 1 ? <p>No Events records</p> : null }
+
         </div>
       </div>
     </div>

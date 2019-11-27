@@ -1,0 +1,42 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.no-data-icon {
+  @include flex(1);
+  @include flexbox();
+  @include flex-direction(column);
+  @include align-items(center);
+  opacity: 0;
+  -webkit-animation: fade-in 1s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fade-in 1s forwards 0.1s; /* Firefox < 16 */
+  -ms-animation: fade-in 1s forwards 0.1s; /* Internet Explorer */
+  -o-animation: fade-in 1s forwards 0.1s; /* Opera < 12.1 */
+  animation: fade-in 1s forwards 0.1s;
+  width: 100%;
+  grid-column: span 2;
+  min-height: 50px;
+  position: relative;
+  .svg-holder {
+    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    svg {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  p{
+    font-family: "Avenir", sans-serif;
+    max-width: 128px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -9,6 +9,7 @@ import SearchCard from "../../components/search-card/SearchCard";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import { getHosts } from "../../actions/hosts-actions/actions";
+import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
 const HostsPage = () => {
   const dispatch = useDispatch();
 
@@ -207,14 +208,13 @@ const HostsPage = () => {
               address={item.address}
             />
           ))
+        ) : !isLoadingHosts && !hosts ? (
+          <NoDataIcon msg={"No UX hosts yet!"} />
         ) : (
           <div className="loading-flex-fixed">
             <LoadingIcon scale={0.5} />
           </div>
         )}
-        {!isLoadingHosts && hosts && hosts.length < 1 ? (
-          <p>No Hosts records</p>
-        ) : null}
       </div>
     </div>
   );
