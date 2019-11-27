@@ -46,6 +46,7 @@ const App = props => {
     } else {
       setBackgroundColor("#F8F7F7");
     }
+
     props.history.listen(location => {
       if (location.pathname === "/") {
         setBackgroundColor("#F0F0F0");

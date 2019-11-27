@@ -77,4 +77,26 @@
       }
     }
   }
+  .bottom-links{
+    @include flexbox();
+    @include flex-direction(column);
+    a{
+      position: relative;
+      color: $light-silver;
+      opacity: .7;
+      padding: 3px 5px;
+      font-family: "Babas", sans-serif;
+      font-size: 16px;
+      &:active{
+        color: $white;
+      }
+      &:hover{
+        &:before{
+          width: 100%;
+        }
+        color: $black-text;
+      }
+
+    }
+  }
 }

@@ -79,12 +79,6 @@
   }
   .text-specific-pages {
     @include flex(1);
-    opacity: 0;
-    -webkit-animation: fade-in 0.3s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fade-in 0.3s forwards 0.1s; /* Firefox < 16 */
-    -ms-animation: fade-in 0.3s forwards 0.1s; /* Internet Explorer */
-    -o-animation: fade-in 0.3s forwards 0.1s; /* Opera < 12.1 */
-    animation: fade-in 0.3s forwards 0.1s;
     padding-left: 3.6603221083455346%;
     h3.gold-text {
       color: $primary-color;

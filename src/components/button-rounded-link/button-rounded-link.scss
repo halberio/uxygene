@@ -77,12 +77,20 @@
       font-size: 16px;
     }
   }
+  svg{
+    @include transition(all,0.2s,ease-in-out);
+  }
   &:hover {
     background: $white;
     border-color: $white;
     span {
       color: $black-text;
+      svg{
+
+        @include transform(translateX(10px));
+      }
     }
+
   }
   &:visited,
   &:focus {

@@ -3,10 +3,38 @@
 .upcoming-events-card-slider {
   @include flexbox();
   @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(flex-start);
+  position: relative;
   width: 100%;
   background: $white;
-  padding: 30px;
+  padding: 10px;
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
+.img-container-slide-custom{
+  height: 200px;
+  @media (min-width: 768px) {
+    height: 280px;
+  }
+  position: relative;
+  background: $black-text;
+  padding: 0;
+  margin: 0;
+  img{
+
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
   h3 {
+    width: 100%;
+    text-align: left;
     text-transform: uppercase;
     font-size: 30px;
     line-height: 30px;
@@ -15,8 +43,13 @@
     font-weight: 300;
     margin: 0;
     padding: 0;
+    padding-bottom: 8px;
+    @media (min-width: 768px) {
+      padding-bottom: 14px;
+    }
   }
   img {
+
     margin-top: 20px;
     margin-bottom: 20px;
     object-fit: cover;
@@ -25,6 +58,7 @@
   .content {
     @include flexbox();
     width: 100%;
+    padding-top: 10px;
     @include flex-direction(row);
     @include justify-content(space-between);
     @include align-items(flex-start);
@@ -41,11 +75,15 @@
           @include justify-content(flex-end);
           width: 24px;
           height: 30px;
+          min-height: 30px;
+          min-width: 24px;
           margin-right: 10px;
           @include flex(1);
           svg {
             width: 100%;
             height: 100%;
+            max-width: 24px;
+            max-height: 30px;
           }
         }
         h4 {
@@ -106,34 +144,38 @@
     @include flex-direction(row);
     @include flex(1);
     padding-top: 30px;
-    svg {
-      @include flex(1);
-      width: 100%;
-      cursor: pointer;
-      @include transition(all, 0.2s, ease-in-out);
-      path {
+    button {
+      svg {
+        @include flex(1);
+        width: 100%;
+        cursor: pointer;
         @include transition(all, 0.2s, ease-in-out);
-      }
-      &:hover {
         path {
-          fill: $primary-color;
+          @include transition(all, 0.2s, ease-in-out);
+        }
+        &:hover {
+          path {
+            fill: $primary-color;
+          }
         }
       }
     }
 
     .dots {
-
       @include flex(1);
       @include flexbox();
       width: auto;
       max-width: 70px;
       @include justify-content(space-between);
       @include align-items(center);
-      .dot {
+      button.dot {
         margin-right: 6px;
-
-        &:last-child {
+        &:focus {
           margin-right: 0;
+        }
+        @include transition(all,0.2s,ease-in-out);
+        &:active{
+          @include transform(scale(.9));
         }
         width: 21px;
         height: 21px;
@@ -147,5 +189,52 @@
         }
       }
     }
+    .navigation-items-carousel-ux{
+      @include flexbox();
+      @include justify-content(space-between);
+      @include flex-direction(row);
+      @include align-items(center);
+      width: 100%;
+      .dots-cont{
+        @include flexbox();
+        @include flex(1);
+        @include align-items(center);
+        @include justify-content(center);
+        span.dot{
+          display: block;
+          height: 21px;
+          max-height: 21px;
+          max-width: 21px;
+          width: 21px;
+          border: 1px solid $primary-color;
+          @include border-radius(100%);
+          cursor: pointer;
+          margin-right: 5px;
+          background: transparent;
+          &:last-child{
+            margin-right: unset;
+          }
+          &.filled{
+            background: $primary-color;
+          }
+        }
+      }
+      .nav-svg-arrow-btn{
+        @include flex(1);
+        background: transparent;
+        border: 0;
+        &:focus{
+          outline: none;
+        }
+        &:hover{
+          svg{
+            path{
+              fill: $primary-color;
+            }
+          }
+        }
+      }
+    }
   }
+
 }

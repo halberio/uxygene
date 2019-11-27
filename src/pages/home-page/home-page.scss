@@ -13,8 +13,11 @@
   margin: auto;
    max-width: calc(1200px - 1%);
   .row-container {
+    margin-top: 10px;
     padding: 4.9282576866764276% 10px;
     @media (min-width: 992px) {
+
+      margin-top: 30px;
       padding: 0.9282576866764276% 1%;
     }
     @media (min-width: 1200px) {

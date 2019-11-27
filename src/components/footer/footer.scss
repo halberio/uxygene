@@ -1,6 +1,6 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
-.footer{
+.footer {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(center);
@@ -15,36 +15,44 @@
   @media (min-width: 992px) {
     padding: 0.9282576866764276% 10px;
   }
-  .max-width-row{
-    @include flexbox();
+  .max-width-row {
     @include justify-content(space-between);
     @include align-items(center);
     width: 100%;
     max-width: calc(1200px - 1%);
-    .right{
+    .right {
       margin-left: auto;
+      display: none;
       @media (min-width: 992px) {
         margin-left: unset;
+        @include flexbox();
       }
     }
   }
-  a{
+  a {
     position: relative;
-    color: $black-text;
+    color: $dark-silver;
+    opacity: 0.7;
     padding: 3px 5px;
     font-family: "Babas", sans-serif;
-    @include transition(all, 0.2s,ease-in-out);
+    @include transition(all, 0.2s, ease-in-out);
     font-size: 16px;
-    &:active{
+    &:active {
       color: $white;
     }
-    &:hover{
-      &:before{
+    &.active {
+      color: $black-text;
+      &:before {
+        width: 100%;
+      }
+    }
+    &:hover {
+      &:before {
         width: 100%;
       }
       color: $black-text;
     }
-    &:before{
+    &:before {
       @include transition(all, 0.3s, ease-in-out);
       display: block;
       width: 0;

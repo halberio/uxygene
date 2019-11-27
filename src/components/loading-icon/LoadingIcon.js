@@ -14,6 +14,7 @@ const LoadingIcon = (props) => {
     }}>
         <div className="wave-back">
             <svg
+                id={"logo-wave-back-svg"}
                 viewBox="0 0 391.513 139.042"
             >
                 <defs>
@@ -69,10 +70,11 @@ const LoadingIcon = (props) => {
             </svg>
         </div>
         <div className="logo-layer">
-            <img src={logoIconSmall} alt="Log uxygène"/>
+            <img src={logoIconSmall} id={"logo-loading"} alt="Log uxygène"/>
         </div>
         <div className="wave-front">
             <svg
+                id={"wave-front-svg"}
                 viewBox="0 0 391.513 139.042"
             >
                 <defs>
@@ -124,7 +126,7 @@ const LoadingIcon = (props) => {
             </svg>
         </div>
         <div className="border-round">
-            <svg {...props} viewBox="0 0 212 212">
+            <svg {...props} id={"border-svg-log"} viewBox="0 0 212 212">
                 <defs>
                     <style>
                         {

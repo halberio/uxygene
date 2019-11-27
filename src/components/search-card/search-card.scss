@@ -14,7 +14,7 @@
   @include flexbox();
   @include flex-direction(row);
   @include align-items(center);
-  @include justify-content(space-between);
+  @include justify-content(flex-start);
   @media (min-width: 1300px) {
     grid-column: 1 / 4;
   }
@@ -32,6 +32,8 @@
   svg {
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
     &:hover {
       path {
@@ -40,57 +42,52 @@
       }
     }
   }
-  #displayed-svg-search{
-  @include transition(all,0.2s,ease-in-out);
+  #displayed-svg-search {
+    @include transition(all, 0.2s, ease-in-out);
   }
-  #on-hover-svg-search{
+  #on-hover-svg-search {
     path {
       fill: $primary-color;
     }
   }
-  .search-icon-container-bar{
+  .search-icon-container-bar {
     height: 40px;
     width: 40px;
     position: relative;
     @include flexbox();
     @include justify-content(center);
     @include align-items(center);
-
-    @media (min-width: 992px) {
-
-      margin-bottom: 10px;
-    }
-    #on-hover-svg-search{
+    #on-hover-svg-search {
       position: absolute;
       @include transform(scale(0));
-      @include transition(all,0.1s,ease-in-out);
+      @include transition(all, 0.1s, ease-in-out);
     }
   }
 
-  &:hover{
-    #on-hover-svg-search{
+  &:hover {
+    #on-hover-svg-search {
       @include transform(scale(1));
     }
-    #displayed-svg-search{
+    #displayed-svg-search {
       @include transform(scale(0));
     }
   }
-  h1 {
 
+  h1 {
     color: $dark-silver;
     font-family: "Babas", sans-serif;
     text-transform: uppercase;
-    font-size: 19px;
-    padding: 0;
-    text-align: center;
+    font-size: 26px;
+    padding: 0 10px;
+    text-align: left;
     margin: 0;
     max-width: 180px;
     @media (min-width: 992px) {
       font-size: 30px;
     }
   }
-  @include transition(all,0.2s,ease-in-out);
-  &:hover{
+  @include transition(all, 0.2s, ease-in-out);
+  &:hover {
     box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.1);
   }
 }

@@ -5,28 +5,38 @@
   display: block;
   margin: auto;
   max-width: 1200px;
+  @media (min-width: 768px) {
+    padding-bottom: 70px;
+  }
+  @media (min-width: 1200px) {
+    padding-bottom: 100px;
+  }
   .row-container {
     @include flexbox();
     width: 100%;
     @include flex(1);
     @include flex-direction(column);
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
       @include flex-direction(row);
       min-height: calc(100vh - 120px);
     }
     @include justify-content(space-between);
     @include align-items(flex-start);
     height: 100%;
-    min-height: calc(100vh - 300px);
     position: relative;
     .left {
       position: relative;
-      height: 100%;
+      height: auto;
+      width: 100%;
+      @media (min-width: 992px) {
+        max-width: 630px;
+      }
       @include flex(1);
       @include flexbox();
       @include flex-direction(column);
       @include align-items(flex-start);
       @include justify-content(space-between);
+
     }
     .right {
       margin-left: 0px;

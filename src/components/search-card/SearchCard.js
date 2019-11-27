@@ -38,7 +38,7 @@ const SearchForm = props => {
           />
         </svg>
       </span>
-      <h1 onClick={changeSearchContainerVisibility}>Type anywhere To search</h1>
+      <h1 onClick={changeSearchContainerVisibility}>Type To search</h1>
       <Motion
         style={{
           x: spring(searchContainerHidden ? 100 : 0,{stiffness:300, damping:40}),

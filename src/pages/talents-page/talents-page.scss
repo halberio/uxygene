@@ -7,11 +7,14 @@
   position: relative;
   max-width: calc(1200px - 1%);
   padding: 4.9282576866764276% 10px;
-  @media (min-width: 992px) {
+
+  @media (min-width: 768px) {
     padding: 0 1%;
+    padding-bottom: 70px;
   }
   @media (min-width: 1200px) {
     padding: 0  10px;
+    padding-bottom: 70px;
   }
   .loading-flex-fixed{
     @include flexbox();

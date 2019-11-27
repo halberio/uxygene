@@ -35,16 +35,18 @@ const TalentsPage = () => {
     }
   }
 
-  const closeFilterWherever = () =>{
-    if(isFilterItemsActive){
-      setTimeout(()=>{
-        setIsFilterItemsActive(false);
-        setTimeout(()=>{
-          setIsFilterActive(false)
-        },80)
-      },130)
-    }
-  }
+  const closeFilterWherever = () => {
+    setTimeout(() => {
+      if (isFilterItemsActive) {
+        setTimeout(() => {
+          setIsFilterItemsActive(false);
+          setTimeout(() => {
+            setIsFilterActive(false);
+          }, 80);
+        }, 130);
+      }
+    }, 500);
+  };
   return (
     <div className={"talents-page"} >
       <div className={"columns-container"} >

@@ -53,18 +53,19 @@ body {
   min-height: 100vh;
   height: auto;
   padding: 0 10px;
+
 }
 
 .page-container {
   position: relative;
   width: 100%;
   margin-bottom: auto;
-  padding-bottom: 5%;
 }
 
 .fadetransition {
   top: 0;
   position: absolute;
+
 }
 .fadetransition-appear,
 .fadetransition-enter {
