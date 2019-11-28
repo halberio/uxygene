@@ -8,6 +8,7 @@ import ArrowRightBlack from "../svg/ArrowRightBlack";
 import axios from "axios";
 import NoDataIcon from "../no-data-icon/NoDataIcon";
 import LoadingIcon from "../loading-icon/LoadingIcon";
+import ImgWithPropEffect from "./ImgWithPropEffect";
 const UpcomingEventsCardSlider = () => {
   const [newEvents, setNewsEvents] = useState([]);
   const [item, setItem] = useState({});
@@ -18,26 +19,26 @@ const UpcomingEventsCardSlider = () => {
     if (currentId < newEvents.length - 1) {
       setCurrentId(currentId + 1);
     }
-      if(currentId===newEvents.length-1){
-          setCurrentId(0);
-      }
+    if (currentId === newEvents.length - 1) {
+      setCurrentId(0);
+    }
   };
   const goPrev = () => {
     if (currentId > 0) {
       setCurrentId(currentId - 1);
     }
-    if(currentId===0){
-        setCurrentId(newEvents.length-1);
+    if (currentId === 0) {
+      setCurrentId(newEvents.length - 1);
     }
   };
   const setCurrentById = id => {
-      setCurrentId(id);
+    setCurrentId(id);
   };
   useEffect(() => {
     setItem(newEvents[currentId]);
-  }, [currentId,newEvents]);
+  }, [currentId, newEvents]);
   useEffect(() => {
-      setIsLoading(true);
+    setIsLoading(true);
     axios
       .get(process.env.REACT_APP_API_URL + "/last-event")
       .then(function(response) {
@@ -52,51 +53,59 @@ const UpcomingEventsCardSlider = () => {
   return (
     <div className={"upcoming-events-card-slider"}>
       <h3>upcoming Ux event</h3>
-      {newEvents && newEvents.length > 0   ? (
-          <div className={"container-item-event-last"} >
-              <div className="img-container-slide-custom">
-                  <img
-                      src={item &&
-                          item.cover
-                              ? process.env.REACT_APP_STORAGE_URL + item.cover
-                              : null
-                      }
-                      alt={item && item.name ? item.name : null}
-                  />
-              </div>
-              <div className="content">
-                  <div className="text">
-                      <div className={"item"}>
+      {newEvents && newEvents.length > 0 ? (
+        <div className={"container-item-event-last"}>
+          <div className="img-container-slide-custom">
+            <ImgWithPropEffect
+              alt={item && item.name ? item.name : null}
+              src={
+                item && item.cover
+                  ? process.env.REACT_APP_STORAGE_URL + item.cover
+                  : null
+              }
+            />
+          </div>
+          <div className="content">
+            <div className="text">
+              <div className={"item"}>
                 <span className="icon">
                   <HatIcon />
                 </span>
-                          <h4>{item && item.name ? item.name : null}</h4>
-                      </div>
-                      <div className={"item"}>
+                <h4>{item && item.name ? item.name : null}</h4>
+              </div>
+              <div className={"item"}>
                 <span className="icon">
                   <LocationIcon />
                 </span>
-                          <h5>
-                              {item && item.address ? item.address : null} |{" "}
-                              {item && item.date ? item.date : null}
-                          </h5>
-                      </div>
-                      <div className={"item"}>
+                <h5>
+                  {item && item.address ? item.address : null} |{" "}
+                  {item && item.date ? item.date : null}
+                </h5>
+              </div>
+              <div className={"item"}>
                 <span className="icon">
                   <SmallAndroidIcon />
                 </span>
-                          <h6>{item && item.address ? item.address : null} </h6>
-                      </div>
-                  </div>
-                  <div className="free-or-paid">{item && item.is_paied ? item.is_paied ? "paied":"free" :"free"}</div>
+                <h6>{item && item.address ? item.address : null} </h6>
               </div>
-              <div className="description">
-                  {item && item.description ? item.description : null}
-              </div>
+            </div>
+            <div className="free-or-paid">
+              {item && item.is_paied
+                ? item.is_paied
+                  ? "paied"
+                  : "free"
+                : "free"}
+            </div>
           </div>
-      ) : isLoading  ? (
-          <LoadingIcon scale={0.4}/>
-      ) : <NoDataIcon msg={"No upcoming events"}/>}
+          <div className="description">
+            {item && item.description ? item.description : null}
+          </div>
+        </div>
+      ) : isLoading ? (
+        <LoadingIcon scale={0.4} />
+      ) : (
+        <NoDataIcon msg={"No upcoming events"} />
+      )}
 
       <div className="footer">
         {newEvents && newEvents.length > 0 ? (

@@ -13,7 +13,13 @@
     .slick-slide{
       div{
         height: 100%;
-        max-height: 630px;
+
+        max-height: 400px;
+
+        @media (min-width: 992px) {
+
+          max-height: 630px;
+        }
         img{
           max-height: 630px;
           max-width:none;

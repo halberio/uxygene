@@ -12,7 +12,7 @@
     @include justify-content(space-between);
    @include align-items(center);
     @include flex-direction(column-reverse);
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       @include flex-direction(row);
       @include align-items(stretch);
 
@@ -284,18 +284,19 @@
     max-width: 550px;
     height: 100%;
     width: 100%;
-    max-height: 620px;
     position: relative;
     top:0;
     @include flex(1);
     margin-top: 20px;
     margin-bottom: 10px;
     @media (min-width: 768px) {
-      margin-left: 20px;
-      margin-bottom: unset;
+
+      max-height: 620px;
+      margin-left: 0px;
     }
     @media (min-width: 992px) {
       margin-top: unset;
+      margin-bottom: unset;
       margin-left:40px;
       max-width: 620px;
     }

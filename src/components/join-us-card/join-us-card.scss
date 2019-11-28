@@ -7,28 +7,117 @@
   -ms-animation: fade-in 1s forwards; /* Internet Explorer */
   -o-animation: fade-in 1s forwards; /* Opera < 12.1 */
   animation: fade-in 1s forwards;
-  .text-link-join{
+  overflow: hidden;
+  .text-link-join {
     @include align-items(center);
-    margin: 0;padding: 0;
+    margin: 0;
+    padding: 0;
   }
-  &:hover{
+  .text-form-j2 {
+    opacity: 0;
+    width: 90%;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    @include transition(all, 0.2s, ease-in-out);
+    @include flexbox();
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(flex-end);
+    p{
+      margin: 0;
+      padding: 0;
+      @include flex(1);
+    }
+    form{
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      @media (min-width: 768px) {
+        @include flex-direction(column);
+      }
+      @include flex(1);
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      bottom: -50px;
+      right: unset;
+      @include align-items(stretch);
+      @include justify-content(flex-start);
+      @include flex-direction(column);
+    }
+    height: 0px;
+    @include transform-origin(bottom);
+    input {
+
+      @include flex(1);
+      width: 90%;
+      max-width: 190px;
+      border: 0;
+      background: transparent;
+      font-family: "Babas", sans-serif;
+      color: $black-text;
+      font-size: 20px;
+      border-bottom: 2px solid $light-silver;
+      &:focus {
+        outline: none;
+      }
+      position: relative;
+    }
+    button {
+      position: relative;
+      @include flex(1);
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      margin: 0;
+      margin-top: 10px;
+      width: 100%;
+      padding: 5px 10px;
+      outline: none;
+      @include transition(all, 0.2s, ease-in-out);
+      &:active {
+        @include transform(translateX(10px));
+      }
+      &:focus {
+        outline: none;
+      }
+      svg {
+        path {
+          fill: $primary-color;
+        }
+      }
+    }
+  }
+  &:hover {
+    .text-form-j2 {
+      opacity: 1;
+      height: auto;
+      @include transform(translateY(-40px));
+    }
     background: $white;
     box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
     svg {
-      path{
+      path {
         fill: $primary-color;
       }
     }
-    .text-link-join{
+    .text-link-join {
       color: $black-text;
-    }
-    p{
-      &#text-j1 {
-        opacity: 0 !important;
-        display: none;
+      font-size: 14px;
+      @media (min-width: 768px) {
+        font-size: 24px;
       }
-      &#text-j2{
-        display: block;
+    }
+    p {
+      &#text-j1 {
+        opacity: 0;
+        @include transform(translateY(-10px));
+      }
+    }
+    h1,h2{
+      opacity: 0;
+      @media (min-width: 768px) {
         opacity: 1;
         @include transform(translateY(-20px));
       }
@@ -40,16 +129,26 @@
   @include align-items(center);
   background: red;
   @include justify-content(space-between);
-  @include transition(all, 0.2s,ease-in-out);
+  @include transition(all, 0.2s, ease-in-out);
   width: 100%;
   padding: 10px 20px;
+  @media (min-width: 768px) {
+    padding: 30px 20px;
+  }
   svg {
     max-width: 30px;
+    @include transition(all, 0.2s, ease-in-out);
+    @media (min-width: 768px) {
+      max-width: 50px;
+      min-width: 50px;
+
+      min-height: 60px;
+    }
   }
   @media (min-width: 768px) {
     display: inline-flex;
     @include flex-direction(column);
-    grid-column: 1 ;
+    grid-column: 1;
     grid-row: span 3;
     margin-right: 0;
   }
@@ -58,8 +157,7 @@
   grid-column: 1 / 3;
 
   @media (min-width: 1300px) {
-    grid-row:span 3;
-
+    grid-row: span 3;
   }
   @media (min-width: 992px) {
     margin-bottom: 0;
@@ -83,7 +181,7 @@
     @include align-items(center);
     @include justify-content(center);
     margin: auto;
-    &::selection{
+    &::selection {
       background: transparent;
     }
   }
@@ -93,8 +191,15 @@
     color: $black-text;
     font-family: "Babas", sans-serif;
     margin: 0;
+    width: 100%;
+    display: block;
     padding: 0;
     text-transform: uppercase;
+    @include transition(all, 0.2s, ease-in-out);
+    @media (min-width: 768px) {
+      font-size: 70px;
+      line-height: 80px;
+    }
     @media (min-width: 992px) {
       font-size: 100px;
       line-height: 100px;
@@ -106,16 +211,22 @@
     padding: 0;
     margin: 0;
     color: $black-text;
+    @include transition(all, 0.2s, ease-in-out);
     font-family: "Babas", sans-serif;
     text-transform: uppercase;
     margin-bottom: 0px;
+    @media (min-width: 768px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
     @media (min-width: 992px) {
       margin-bottom: 50px;
       font-size: 24px;
     }
   }
+
   p {
-    @include transition(all, 0.2s,ease-in-out);
+    @include transition(all, 0.2s, ease-in-out);
     color: white;
     font-family: "Babas", sans-serif;
     font-size: 30px;
@@ -125,11 +236,6 @@
       display: block;
       opacity: 1;
     }
-   &#text-j2{
-     display: none;
-     opacity: 0;
-     @include transition(all,0.2s,ease-in-out);
-   }
     &:hover,
     &:visited,
     &:focus {
@@ -141,7 +247,7 @@
 @include keyframes(fade-in) {
   0% {
     opacity: 0;
-    @include transform(scale(.95));
+    @include transform(scale(0.95));
   }
   100% {
     opacity: 1;

@@ -3,34 +3,41 @@
 .upcoming-events-card-slider {
   @include flexbox();
   @include flex-direction(column);
-  @include align-items(center);
+  @include align-items(stretch);
   @include justify-content(flex-start);
   position: relative;
+  @include flex(1);
   width: 100%;
   background: $white;
   padding: 10px;
   @media (min-width: 768px) {
     padding: 30px;
   }
-.img-container-slide-custom{
-  height: 200px;
-  @media (min-width: 768px) {
-    height: 280px;
-  }
-  position: relative;
-  background: $black-text;
-  padding: 0;
-  margin: 0;
-  img{
-
-    padding: 0;
-    margin: 0;
+  .img-container-slide-custom {
+    height: 200px;
+    @media (min-width: 768px) {
+      height: 280px;
+    }
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
+    right: 0;
+    position: relative;
+    background: $black-text;
+    overflow: hidden;
+    padding: 0;
+    @include flex(1);
+    min-width: 100%;
+    margin: 0;
+    img {
+      min-width: 100%;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
   }
-}
 
   h3 {
     width: 100%;
@@ -49,7 +56,6 @@
     }
   }
   img {
-
     margin-top: 20px;
     margin-bottom: 20px;
     object-fit: cover;
@@ -133,7 +139,7 @@
   .description {
     font-family: "Avenir", sans-serif;
     font-size: 12px;
-    min-height: 60px;
+    min-height: 80px;
     color: $black-text;
     line-height: 20px;
     margin-top: 6px;
@@ -174,9 +180,9 @@
         &:focus {
           margin-right: 0;
         }
-        @include transition(all,0.2s,ease-in-out);
-        &:active{
-          @include transform(scale(.9));
+        @include transition(all, 0.2s, ease-in-out);
+        &:active {
+          @include transform(scale(0.9));
         }
         width: 21px;
         height: 21px;
@@ -190,18 +196,18 @@
         }
       }
     }
-    .navigation-items-carousel-ux{
+    .navigation-items-carousel-ux {
       @include flexbox();
       @include justify-content(space-between);
       @include flex-direction(row);
       @include align-items(center);
       width: 100%;
-      .dots-cont{
+      .dots-cont {
         @include flexbox();
         @include flex(1);
         @include align-items(center);
         @include justify-content(center);
-        span.dot{
+        span.dot {
           display: block;
           height: 21px;
           max-height: 21px;
@@ -212,24 +218,24 @@
           cursor: pointer;
           margin-right: 5px;
           background: transparent;
-          &:last-child{
+          &:last-child {
             margin-right: unset;
           }
-          &.filled{
+          &.filled {
             background: $primary-color;
           }
         }
       }
-      .nav-svg-arrow-btn{
+      .nav-svg-arrow-btn {
         @include flex(1);
         background: transparent;
         border: 0;
-        &:focus{
+        &:focus {
           outline: none;
         }
-        &:hover{
-          svg{
-            path{
+        &:hover {
+          svg {
+            path {
               fill: $primary-color;
             }
           }
@@ -237,5 +243,4 @@
       }
     }
   }
-
 }
