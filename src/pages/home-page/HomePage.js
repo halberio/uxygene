@@ -2,10 +2,16 @@ import React from "react";
 import "./home-page.scss";
 import LightBigX from "../../components/svg/LighBigX";
 import ButtonRoundedLink from "../../components/button-rounded-link/ButtonRoundedLink";
-
+import {Helmet} from "react-helmet";
 const HomePage = () => {
   return (
     <div className="home-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>uxygène | Home</title>
+        <link rel="canonical" href="http://uxygène.org" />
+        <meta name="description" content="uxygène | Home : user experience camp"/>
+      </Helmet>
       <div className="row-container">
         <div className="left">
           <h4 className="light">WE ARE THE FIRST</h4>

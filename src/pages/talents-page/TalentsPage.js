@@ -10,6 +10,7 @@ import "../../components/filter-card/filter-card.scss";
 import { Motion, spring } from "react-motion";
 import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
+import {Helmet} from "react-helmet";
 const TalentsPage = () => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.usersReducer.users);
@@ -50,6 +51,12 @@ const TalentsPage = () => {
   };
   return (
     <div className={"talents-page"}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>uxygène | UX Talents</title>
+        <link rel="canonical" href="http://uxygène.org/talents" />
+          <meta name="description" content="uxygène | Talents : user experience camp"/>
+      </Helmet>
       <div className={"columns-container"}>
         <div className={`filter-card ${isFilterActive ? "active" : null}`}>
           <h1 onClick={handleFilterStatus}>
@@ -206,7 +213,7 @@ const TalentsPage = () => {
             />
           ))
         ) : !isLoadingUsers && !users ? (
-          <NoDataIcon msg={"No UX talents yet!"}/>
+          <NoDataIcon msg={"No UX talents yet!"} />
         ) : (
           <div className="loading-flex-fixed">
             <LoadingIcon scale={0.5} />

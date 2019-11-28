@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import {getEvents} from "../../actions/events-actions/actions";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
+import {Helmet} from "react-helmet";
 
 const EventsPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,12 @@ const EventsPage = () => {
   }, [dispatch]);
   return (
     <div className={"events-page"}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>uxygène | UX Events</title>
+        <link rel="canonical" href="http://uxygène.org/events" />
+        <meta name="description" content="uxygène | Events : user experience camp"/>
+      </Helmet>
       <div className="row-container">
         <div className="left">
           <UpcomingEventsCardSlider  />

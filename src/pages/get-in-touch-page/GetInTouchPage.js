@@ -2,6 +2,7 @@ import React from "react";
 import "./get-in-touch-page.scss";
 import { Input, Form } from "antd";
 import BannerGroupFb from "../../components/svg/BannerGroupFb";
+import {Helmet} from "react-helmet";
 const GetInTouchForm = props => {
   const { getFieldDecorator } = props.form;
   const handleSubmit = (e) => {
@@ -9,6 +10,12 @@ const GetInTouchForm = props => {
   };
   return (
     <div className={"get-in-touch-page"}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>uxygène | Contact</title>
+        <link rel="canonical" href="http://uxygène.org/get-in-touch" />
+        <meta name="description" content="uxygène | Contact : user experience camp"/>
+      </Helmet>
       <div className="row-container">
         <div className="left">
           <div className="top">

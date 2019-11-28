@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import { getHosts } from "../../actions/hosts-actions/actions";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
+import { Helmet } from "react-helmet";
 const HostsPage = () => {
   const dispatch = useDispatch();
 
@@ -53,6 +54,12 @@ const HostsPage = () => {
 
   return (
     <div className={"hosts-page"}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>uxygène | UX Hosts</title>
+        <link rel="canonical" href="http://uxygène.org/hosts" />
+          <meta name="description" content="uxygène | Hosts : user experience camp"/>
+      </Helmet>
       <div className="navigation-filters-container">
         <div
           className={`filter-card coworking-filter ${
