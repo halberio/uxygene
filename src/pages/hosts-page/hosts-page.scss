@@ -65,7 +65,13 @@
       @include border-radius(10px);
       padding: 20px;
       max-height:60px;
-
+      .search-icon-container-bar{
+        @include flex(1);
+        padding:0;
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+      }
       box-sizing: border-box;
       background: $white;
       margin-top: 10px;
@@ -73,7 +79,6 @@
         max-width: 35px;
       }
       @media (min-width: 992px) {
-        margin-top: 30px;
         padding:24px ;
         max-height: 100px;
         margin-top: unset;
@@ -85,8 +90,9 @@
         max-width: 40px;
       }
       h1 {
-        @include flex(3);
+        @include flex(1);
         @include flexbox();
+        max-width: unset;
         @include justify-content(flex-start);
         @include align-items(center);
         margin: 0;
@@ -94,7 +100,7 @@
         padding: 0 10px;
         text-align: left !important;
         height: 100%;
-        font-size: 26px;
+        font-size: 20px;
         font-family: "Babas", sans-serif;
         color: #5A574C;
         @media (min-width: 600px) {
@@ -116,6 +122,7 @@
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+
     @include justify-content(stretch);
     grid-auto-rows:1fr;
     grid-gap: 10px;

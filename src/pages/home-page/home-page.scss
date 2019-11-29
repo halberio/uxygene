@@ -65,6 +65,11 @@
       }
       position: relative;
       h1.big {
+
+        &::selection{
+          background: transparent;
+          color:unset;
+        }
         color: $primary-color;
         font-size: 80px;
         line-height: 60px;
@@ -88,6 +93,11 @@
       }
 
       h3.dark {
+
+        &::selection{
+          background: transparent;
+          color:unset;
+        }
         color: $black-text;
         font-family: "Babas", sans-serif;
         font-weight: lighter;
@@ -98,22 +108,34 @@
       }
 
       p.sub-title-p {
+
+        &::selection{
+          background: transparent;
+          color:unset;
+        }
         color: $dark-silver;
         font-size: 14px;
+        text-align: justify;
         margin: 20px 0;
+        max-width: 510px;
         padding: 0;
+        strong{
+          &::selection{
+            background: transparent;
+            color:unset;
+          }
+        }
       }
 
       .buttons-container {
         @include flexbox();
-        @include align-self(flex-end);
+        @include align-self(flex-start);
         @include flex-direction(column);
         @include flex-wrap(wrap);
-
         margin-top: 40px;
         @media (min-width: 992px) {
           margin-top: 60px;
-
+          max-width: 509px;
           @include flex-direction(row);
         }
         .button-rounded-link {

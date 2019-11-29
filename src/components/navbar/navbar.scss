@@ -6,22 +6,24 @@
   width: 100%;
   max-height: 140px;
   margin: auto;
-  max-width: calc(1200px - 1%);
+  max-width: calc(1200px - 20px);
   @include flexbox();
   @include justify-content(center);
   box-sizing: border-box;
   @include align-items(center);
-  padding: 4.9282576866764276% 10px;
-  @media (min-width: 992px) {
-    padding: 2.9282576866764276% 10px;
+  padding: 10px 10px;
+  @media (min-width: 768px) {
+    padding: 10px 10px;
   }
-  .fixed-with-container{
+  @media (min-width: 992px) {
+    padding: 30px 10px;
+  }
+  .fixed-with-container {
     @include flexbox();
     @include justify-content(space-between);
     @include align-items(center);
     width: 100%;
-    max-width: calc(1200px - 1%);
-
+    max-width: calc(1200px - 30px);
     box-sizing: border-box;
     .brand {
       svg {
@@ -30,17 +32,18 @@
       @media (min-width: 992px) {
         svg {
           max-width: 120px;
-
         }
       }
-
     }
   }
   &.on-scroll-navbar {
-    .menu-icon{
-      margin-right: 20px;
+    .menu-icon {
+      margin-right: 0px;
     }
-
+    #ux-word-logo-par {
+      display: none;
+      opacity: 0 !important;
+    }
     box-sizing: border-box;
     @include transition(all, 0.2s, ease-in-out);
     opacity: 0;
@@ -50,14 +53,13 @@
     -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
     animation: fade-in 0.4s forwards;
     background: #f8f7f7;
-    padding: 10px 10px;
-    position: fixed;
+    position: relative;
+    padding: 10px 20px;
     max-width: unset;
-    left: 0;
-    width: calc(100% + 10px);
+    left: -10px;
+    width: calc(100% + 20px);
     box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
     -webkit-box-shadow: 20px 20px 20px rgba(142, 104, 0, 0.1);
-
 
     .text-specific-pages {
       h3.gold-text {
@@ -78,9 +80,14 @@
     }
   }
   .text-specific-pages {
+    pointer-events: none;
     @include flex(1);
     padding-left: 3.6603221083455346%;
     h3.gold-text {
+      &::selection {
+        background: transparent;
+        color: unset;
+      }
       color: $primary-color;
       font-family: "Babas", sans-serif;
       font-size: 20px;
@@ -102,6 +109,10 @@
       align-self: flex-start;
     }
     h4.bold-black {
+      &::selection {
+        background: transparent;
+        color: unset;
+      }
       color: $black-text;
       font-family: "Babas", sans-serif;
       font-size: 14px;
@@ -122,19 +133,22 @@
   .navigation {
     width: 100%;
     @include flex(1);
-    @include justify-content(flex-end);
+    @include justify-content(space-between);
     @include align-items(flex-start);
     @include align-content(flex-start);
     display: none;
-    max-width: 450px;
-    min-width: 450px;
+    min-width: 510px;
     @media (min-width: 992px) {
       @include flexbox();
     }
     position: relative;
     .nav-link {
-      @include transition(all,0.2s,ease-in-out);
-      &:active{
+      &::selection {
+        background: transparent;
+        color: unset;
+      }
+      @include transition(all, 0.2s, ease-in-out);
+      &:active {
         color: white;
       }
       color: $black-text;

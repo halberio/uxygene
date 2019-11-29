@@ -6,10 +6,10 @@
   margin: auto;
   max-width: 1200px;
   @media (min-width: 768px) {
-    padding-bottom: 70px;
+    padding-bottom: 20px;
   }
   @media (min-width: 1200px) {
-    padding-bottom: 100px;
+    padding-bottom: 10px;
   }
   .row-container {
     @include flexbox();

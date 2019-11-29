@@ -10,7 +10,7 @@ const Logo = props => {
       setIsHome(true);
       setTimeout(() => {
         setloaded(true);
-      }, 1960);
+      }, 2100);
     } else setIsHome(false);
     props.history.listen(location => {
       setTimeout(() => {

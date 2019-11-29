@@ -5,12 +5,14 @@
   top: 0;
   left: 0;
   height: 100%;
-
+  max-height: 630px;
   .ant-carousel{
     height: 100%;
     max-height: 630px;
 
     .slick-slide{
+
+      background: $black-text;
       div{
         height: 100%;
 

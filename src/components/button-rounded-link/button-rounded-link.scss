@@ -10,9 +10,12 @@
   @include align-items(center);
   @include justify-content(space-between);
   padding: 16px 18px;
-  &:first-child {
-    margin-right: 4px;
+  @media (min-width: 992px) {
+    &:first-child {
+      margin-right: 30px;
+    }
   }
+
   &:before{
     content: "";
     display: block;

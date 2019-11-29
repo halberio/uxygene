@@ -108,9 +108,12 @@
           width: 100%;
           @include align-items(center);
           @include justify-content(flex-start);
-          @include flex(12);
           font-family: "Avenir", sans-serif;
-          font-size: 12px;
+          font-size: 13px;
+          text-wrap: none;
+          min-height: 40px;
+          margin: 0;
+          padding: 0;
           font-weight: 400;
         }
         h6 {
@@ -121,7 +124,7 @@
           @include flex(12);
           font-family: "Avenir", sans-serif;
           font-size: 14px;
-          margin-top: 10px;
+          margin:12px 0;
           font-weight: 800;
         }
       }
@@ -133,16 +136,17 @@
       text-transform: lowercase;
       border-radius: 10px;
       font-family: "Avenir", sans-serif;
-      font-weight: 800;
+      font-weight: 400;
     }
   }
   .description {
     font-family: "Avenir", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     min-height: 80px;
     color: $black-text;
-    line-height: 20px;
-    margin-top: 6px;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
   }
   .footer {
     @include flexbox();

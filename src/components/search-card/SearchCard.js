@@ -7,6 +7,7 @@ import LogoWhite from "../svg/LogoWhite";
 import { Motion, spring } from "react-motion";
 const SearchForm = props => {
   const [searchContainerHidden, setSearchContainerHidden] = useState(true);
+  const [taktatakText, setTakTakTakText] = useState("Type To search");
   const { getFieldDecorator } = props.form;
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,8 +22,15 @@ const SearchForm = props => {
     setSearchContainerHidden(!searchContainerHidden);
   };
   return (
-    <div className={"search-card"}>
-      <span onClick={changeSearchContainerVisibility} className={"search-icon-container-bar"}>
+    <div
+      className={"search-card"}
+      onMouseEnter={() => setTakTakTakText("tac tac tac tac tac tac")}
+      onMouseLeave={() => setTakTakTakText("Type To search")}
+    >
+      <span
+        onClick={changeSearchContainerVisibility}
+        className={"search-icon-container-bar"}
+      >
         <SearchIcon />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -38,11 +46,17 @@ const SearchForm = props => {
           />
         </svg>
       </span>
-      <h1 onClick={changeSearchContainerVisibility}>Type To search</h1>
+      <h1 onClick={changeSearchContainerVisibility}>{taktatakText}</h1>
       <Motion
         style={{
-          x: spring(searchContainerHidden ? 100 : 0,{stiffness:300, damping:40}),
-          y: spring(searchContainerHidden ? 0 : 1,{stiffness:300, damping:40})
+          x: spring(searchContainerHidden ? 100 : 0, {
+            stiffness: 300,
+            damping: 40
+          }),
+          y: spring(searchContainerHidden ? 0 : 1, {
+            stiffness: 300,
+            damping: 40
+          })
         }}
       >
         {({ x, y }) => (
@@ -51,8 +65,8 @@ const SearchForm = props => {
             style={{
               display: !searchContainerHidden ? "flex" : "flex",
               opacity: y,
-                WebkitTransform: `translateY(${x}%`,
-                transform: `translateY(${x}%`,
+              WebkitTransform: `translateY(${x}%`,
+              transform: `translateY(${x}%`,
               pointerEvents: !searchContainerHidden ? "all" : "none"
             }}
           >

@@ -51,8 +51,13 @@
     }
   }
   .search-icon-container-bar {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: auto;
+    @media (min-width: 992px) {
+      height: 60px;
+      padding-top: 20px;
+      @include flex(1);
+    }
     position: relative;
     @include flexbox();
     @include justify-content(center);
@@ -77,13 +82,15 @@
     color: $dark-silver;
     font-family: "Babas", sans-serif;
     text-transform: uppercase;
-    font-size: 26px;
+    font-size: 20px;
     padding: 0 10px;
-    text-align: left;
+    text-align: center;
     margin: 0;
-    max-width: 180px;
+    max-width: 280px;
     @media (min-width: 992px) {
-      font-size: 30px;
+      max-width: 200px;
+      @include flex(1);
+      font-size: 30px
     }
   }
   @include transition(all, 0.2s, ease-in-out);
