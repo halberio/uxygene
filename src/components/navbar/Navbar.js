@@ -6,8 +6,13 @@ import "./drawer.scss";
 import Logo from "../svg/logo/Logo";
 import { Affix } from "antd";
 import LogoWhite from "../svg/LogoWhite";
-
+import { useDispatch, useSelector } from "react-redux";
+import ArrowRightBlack from "../svg/ArrowRightBlack";
+import { logout } from "../../actions/auth-actions/actions";
 const Navbar = props => {
+  const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
+  const user = useSelector(state => state.authReducer.user);
+  const dispatch = useDispatch();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [textSpecificPageDisblyed, setTextSpecificPageDisblyed] = useState(
     false
@@ -20,11 +25,15 @@ const Navbar = props => {
   useEffect(() => {
     if (
       window.location.pathname.includes("talents") ||
-      window.location.pathname.includes("events")
+      window.location.pathname.includes("events") ||
+      window.location.pathname.includes("hosts")
     ) {
       setTextSpecificPageDisblyed(true);
       if (window.location.pathname.includes("talents")) {
         setTextSpecificPageText("a mine of creative talents");
+      }
+      if (window.location.pathname.includes("hosts")) {
+        setTextSpecificPageText("believes in ux !");
       }
       if (window.location.pathname.includes("events")) {
         setTextSpecificPageText("A mosaic of UX events");
@@ -44,11 +53,15 @@ const Navbar = props => {
 
       if (
         location.pathname.includes("talents") ||
-        window.location.pathname.includes("events")
+        window.location.pathname.includes("events") ||
+        window.location.pathname.includes("hosts")
       ) {
         setTextSpecificPageDisblyed(true);
         if (window.location.pathname.includes("talents")) {
           setTextSpecificPageText("a mine of creative talents");
+        }
+        if (window.location.pathname.includes("hosts")) {
+          setTextSpecificPageText("believes in ux !");
         }
         if (window.location.pathname.includes("events")) {
           setTextSpecificPageText("A mosaic of UX events");
@@ -70,6 +83,7 @@ const Navbar = props => {
     }
   });
   return (
+      <>
     <Affix offsetTop={0}>
       <div className={"navbar " + onScrollClassName}>
         <div className="fixed-with-container">
@@ -140,7 +154,45 @@ const Navbar = props => {
               {" "}
               GET IN TOUCH
             </NavLink>
+            {!isLoggedIn ? (
+              <NavLink
+                className={"nav-link btn-login"}
+                activeClassName={"active"}
+                to={"/let-me-in"}
+              >
+                {" "}
+                Let me in!
+              </NavLink>
+            ) : (
+              <div className="logged-user-infos">
+                <p>{user && user.name ? user.name : null}</p>
+                <div className="img-profile-container">
+                  {user && user.image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={process.env.REACT_APP_STORAGE_URL + user.image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : user && user.social_image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={user.social_image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : null}
+                  <div
+                    className="logout-icon"
+                    onClick={() => dispatch(logout())}
+                  >
+                    <ArrowRightBlack />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
+
           <Motion
             style={{
               x: spring(drawerOpened ? 255 : 0),
@@ -150,7 +202,6 @@ const Navbar = props => {
               rotation: spring(drawerOpened ? 45 : 0),
               zeroWidth: spring(drawerOpened ? 5 : 6),
               opacityValueMiddle: spring(drawerOpened ? 0 : 1)
-
             }}
           >
             {({
@@ -203,107 +254,160 @@ const Navbar = props => {
             )}
           </Motion>
 
-          <Motion style={{ x: spring(drawerOpened ? 1 : 0),
-            i1: spring(drawerOpened ? 0 : 40, {
-              stiffness: 60,
-              damping: 10
-            }),
-            i2: spring(drawerOpened ? 0 : 50, {
-              stiffness: 60,
-              damping: 10
-            }),
-            o: spring(drawerOpened ? 1 : 0), }}>
-            {({ x , i1,i2,o }) => (
+
+        </div>
+      </div>
+    </Affix>
+        <Motion
+            style={{
+              x: spring(drawerOpened ? 1 : 0),
+              i1: spring(drawerOpened ? 0 : 40, {
+                stiffness: 60,
+                damping: 10
+              }),
+              i2: spring(drawerOpened ? 0 : 50, {
+                stiffness: 60,
+                damping: 10
+              }),
+              o: spring(drawerOpened ? 1 : 0)
+            }}
+        >
+          {({ x, i1, i2, o }) => (
               <div
-                className="drawer"
-                style={{
-                  opacity: x,
-                  pointerEvents: drawerOpened ? "all" : "none"
-                }}
+                  className="drawer"
+                  style={{
+                    opacity: x,
+                    pointerEvents: drawerOpened ? "all" : "none"
+                  }}
               >
                 <div className="brand">
                   <NavLink to={"/"}>
                     <LogoWhite />
                   </NavLink>
                 </div>
+
                 <Motion
-                  style={{
-                    x: spring(drawerOpened ? 0 : 200),
-                    y: spring(drawerOpened ? 0 : 400),
-                    w: spring(drawerOpened ? 0 : 600),
-                    z: spring(drawerOpened ? 0 : 800),
-                    o: spring(drawerOpened ? 1 : 0)
-                  }}
+                    style={{
+                      x: spring(drawerOpened ? 0 : 200),
+                      y: spring(drawerOpened ? 0 : 400),
+                      w: spring(drawerOpened ? 0 : 600),
+                      z: spring(drawerOpened ? 0 : 800),
+                      o: spring(drawerOpened ? 1 : 0)
+                    }}
                 >
                   {({ x, y, w, z, o }) => (
-                    <div className="menu-items">
-                      <NavLink
-                        exact
-                        className={"nav-link"}
-                        activeClassName={"active"}
-                        to={"/"}
-                        style={{
-                          WebkitTransform: `translate3d(${-x}px, 0, 0)`,
-                          transform: `translate3d(${-x}px, 0, 0)`,
-                          opacity: o
-                        }}
-                      >
-                        {" "}
-                        Hi!
-                      </NavLink>
-                      <NavLink
-                        className={"nav-link"}
-                        activeClassName={"active"}
-                        to={"/talents"}
-                        style={{
-                          WebkitTransform: `translate3d(${-y}px, 0, 0)`,
-                          transform: `translate3d(${-y}px, 0, 0)`,
-                          opacity: o
-                        }}
-                      >
-                        {" "}
-                        UX Talents
-                      </NavLink>
-                      <NavLink
-                        className={"nav-link"}
-                        activeClassName={"active"}
-                        to={"/hosts"}
-                        style={{
-                          WebkitTransform: `translate3d(${-y}px, 0, 0)`,
-                          transform: `translate3d(${-y}px, 0, 0)`,
-                          opacity: o
-                        }}
-                      >
-                        {" "}
-                        UX Hosts
-                      </NavLink>
-                      <NavLink
-                        className={"nav-link"}
-                        activeClassName={"active"}
-                        to={"/events"}
-                        style={{
-                          WebkitTransform: `translate3d(${-w}px, 0, 0)`,
-                          transform: `translate3d(${-w}px, 0, 0)`,
-                          opacity: o
-                        }}
-                      >
-                        {" "}
-                        UX Events
-                      </NavLink>
-                      <NavLink
-                        className={"nav-link"}
-                        activeClassName={"active"}
-                        to={"/get-in-touch"}
-                        style={{
-                          WebkitTransform: `translate3d(${-z}px, 0, 0)`,
-                          transform: `translate3d(${-z}px, 0, 0)`,
-                          opacity: o
-                        }}
-                      >
-                        {" "}
-                        Get In Touch
-                      </NavLink>
-                    </div>
+                      <div className="menu-items">
+                        {isLoggedIn ? (
+                            <div className="logged-user-infos only-mobile">
+                              <p>{user && user.name ? user.name : null}</p>
+                              <div className="img-profile-container">
+                                {user && user.image ? (
+                                    <img
+                                        width={"50px"}
+                                        height={"5px"}
+                                        src={process.env.REACT_APP_STORAGE_URL + user.image}
+                                        alt={user && user.name ? user.name : null}
+                                    />
+                                ) : user && user.social_image ? (
+                                    <img
+                                        width={"50px"}
+                                        height={"5px"}
+                                        src={user.social_image}
+                                        alt={user && user.name ? user.name : null}
+                                    />
+                                ) : null}
+                                <div className="logout-icon" onClick={()=>{
+                                  dispatch(logout());
+                                  setDrawerOpened(false)
+                                }}>
+                                  <ArrowRightBlack />
+                                </div>
+                              </div>
+                            </div>
+                        ) : null}
+                        <NavLink
+                            exact
+                            className={"nav-link"}
+                            activeClassName={"active"}
+                            to={"/"}
+                            style={{
+                              WebkitTransform: `translate3d(${-x}px, 0, 0)`,
+                              transform: `translate3d(${-x}px, 0, 0)`,
+                              opacity: o
+                            }}
+                        >
+                          {" "}
+                          Hi!
+                        </NavLink>
+                        <NavLink
+                            className={"nav-link"}
+                            activeClassName={"active"}
+                            to={"/talents"}
+                            style={{
+                              WebkitTransform: `translate3d(${-y}px, 0, 0)`,
+                              transform: `translate3d(${-y}px, 0, 0)`,
+                              opacity: o
+                            }}
+                        >
+                          {" "}
+                          UX Talents
+                        </NavLink>
+                        <NavLink
+                            className={"nav-link"}
+                            activeClassName={"active"}
+                            to={"/hosts"}
+                            style={{
+                              WebkitTransform: `translate3d(${-y}px, 0, 0)`,
+                              transform: `translate3d(${-y}px, 0, 0)`,
+                              opacity: o
+                            }}
+                        >
+                          {" "}
+                          UX Hosts
+                        </NavLink>
+                        <NavLink
+                            className={"nav-link"}
+                            activeClassName={"active"}
+                            to={"/events"}
+                            style={{
+                              WebkitTransform: `translate3d(${-w}px, 0, 0)`,
+                              transform: `translate3d(${-w}px, 0, 0)`,
+                              opacity: o
+                            }}
+                        >
+                          {" "}
+                          UX Events
+                        </NavLink>
+                        <NavLink
+                            className={"nav-link"}
+                            activeClassName={"active"}
+                            to={"/get-in-touch"}
+                            style={{
+                              WebkitTransform: `translate3d(${-z}px, 0, 0)`,
+                              transform: `translate3d(${-z}px, 0, 0)`,
+                              opacity: o
+                            }}
+                        >
+                          {" "}
+                          Get In Touch
+                        </NavLink>
+
+                        {!isLoggedIn ? (
+                            <NavLink
+                                className={"nav-link"}
+                                activeClassName={"active"}
+                                to={"/let-me-in"}
+                                style={{
+                                  WebkitTransform: `translate3d(${-z}px, 0, 0)`,
+                                  transform: `translate3d(${-z}px, 0, 0)`,
+                                  opacity: o
+                                }}
+                            >
+                              {" "}
+                              Let me in!
+                            </NavLink>
+                        ) : null}
+                      </div>
                   )}
                 </Motion>
 
@@ -330,11 +434,9 @@ const Navbar = props => {
                   </Link>
                 </div>
               </div>
-            )}
-          </Motion>
-        </div>
-      </div>
-    </Affix>
+          )}
+        </Motion>
+      </>
   );
 };
 export default withRouter(Navbar);

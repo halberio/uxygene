@@ -130,9 +130,9 @@ const HostsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"coworkingspacecheckbox"}
-                      name="coworkingspace"
+                      name="uxhostsradio"
                       value="coworkingspace"
                     />
                     <label htmlFor={"coworkingspacecheckbox"}>
@@ -146,9 +146,9 @@ const HostsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"universitycheckbox"}
-                      name="university"
+                      name="uxhostsradio"
                       value="university"
                     />
                     <label htmlFor={"universitycheckbox"}>University</label>
@@ -161,9 +161,9 @@ const HostsPage = () => {
                   >
                     {" "}
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"academycentercheckbox"}
-                      name="academycenter"
+                      name="uxhostsradio"
                       value="academycenter"
                     />
                     <label htmlFor={"academycentercheckbox"}>
@@ -177,9 +177,9 @@ const HostsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"ongcheckbox"}
-                      name="ong"
+                      name="uxhostsradio"
                       value="ong"
                     />
                     <label htmlFor={"ongcheckbox"}>Ong</label>
@@ -194,8 +194,9 @@ const HostsPage = () => {
       <div className="hosts-container">
         <HostJoinCard />
         {hosts && hosts.length > 0 ? (
-          hosts.map(item => (
+          hosts.map((item,index) => (
             <HostCard
+                idForanimation={index}
               key={item.id}
               id={item.id}
               image={

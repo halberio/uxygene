@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./profile-talent-page.scss";
 import ConfirmedBadge from "../../components/svg/ConfirmedBadge";
-import HatIcon from "../../components/svg/HatIcon";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
@@ -10,6 +9,10 @@ import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import InviteTalentForm from "../../components/invite-talent-form/InviteTalentForm";
 import { useDispatch } from "react-redux";
 import { addUserVote } from "../../actions/users-actions/actions";
+import BatrieIcon from "../../components/svg/BatrieIcon";
+import HatOutlineIcon from "../../components/svg/HatOutlineIcon";
+import AndroidOutlineSvg from "../../components/svg/AndroidOutlineIcon";
+import MoneyIcon from "../../components/svg/MoneyIcon";
 const ProfileTalentPage = props => {
   const [userData, setUserData] = useState({});
   const [isLoadingData, setIsloadingData] = useState(true);
@@ -95,7 +98,7 @@ const ProfileTalentPage = props => {
                 </div>
                 <div className="footer">
                   <div className="item">
-                    <HatIcon /> <h4>Public vote on training skills </h4>{" "}
+                    <AndroidOutlineSvg /> <h4>Public vote on training skills </h4>{" "}
                     {userData && userData.id ? (
                       <button
                         onClick={() => voteUpHandler(userData.id)}
@@ -111,13 +114,13 @@ const ProfileTalentPage = props => {
                     ) : null}
                   </div>
                   <div className="item">
-                    <HatIcon /> <h4>Skills </h4>{" "}
+                    <BatrieIcon/> <h4>Skills </h4>{" "}
                     <p>
                       {userData && userData.skills ? userData.skills : null}
                     </p>
                   </div>
                   <div className="item">
-                    <HatIcon /> <h4>Availability for training </h4>{" "}
+                    <HatOutlineIcon/> <h4>Availability for training </h4>{" "}
                     <p>
                       {userData && userData.availability
                         ? userData.availability
@@ -125,7 +128,7 @@ const ProfileTalentPage = props => {
                     </p>
                   </div>
                   <div className="item">
-                    <HatIcon /> <h4>Type of training </h4>{" "}
+                    <MoneyIcon /> <h4>Type of training </h4>{" "}
                     <p>
                       {userData && userData.training_type
                         ? userData.training_type

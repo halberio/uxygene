@@ -10,7 +10,7 @@ const Logo = props => {
       setIsHome(true);
       setTimeout(() => {
         setloaded(true);
-      }, 2100);
+      }, 2400);
     } else setIsHome(false);
     props.history.listen(location => {
       setTimeout(() => {
@@ -37,8 +37,8 @@ const Logo = props => {
               marginLeft: `${x}`
             }}
             xmlns="http://www.w3.org/2000/svg"
-            width="107.957"
-            height="56.472"
+            width="107"
+            height="50"
             viewBox="0 0 107.957 56.472"
           >
             <defs>

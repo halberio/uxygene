@@ -56,8 +56,8 @@
       position: absolute;
       bottom: 20px;
       left: 20px;
-      width: 100px;
-      height: 100px;
+      width: 70px;
+      height: 70px;
       @include border-radius(5px);
       overflow: hidden;
       img{
@@ -100,22 +100,7 @@
         color: $primary-color;
         text-transform: uppercase;
       }
-      .arrow-button{
-        position: relative;
-        background: transparent;
-        margin-right: 20px;
-        border: none;
-        z-index: 2;
-        &:focus{
-          outline: none;
-        }
-        svg{
-          width:60px;
-          padding: 8px;
-          height: 40px;
-          border-radius: 3px;
-        }
-      }
+
 
     }
     .bottom{
@@ -137,10 +122,41 @@
 
   }
   .infos-block{
+    min-height: 40%;
+    .arrow-button{
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 30px;
+      bottom: 10px;
+      @media (min-width: 992px) {
+        bottom: unset;
+        top: 10px;
+        width: 65px;
+        height: 47px;
+      }
+      box-sizing: border-box;
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      background: $white;
+      @include border-radius(5px);
+      margin-right: 10px;
+      border: none;
+      z-index: 2;
+      &:focus{
+        outline: none;
+      }
+      svg{
+        width:100%;
+      }
+    }
     pointer-events: none;
     @include transition(all, 0.2s, ease-in-out);
     @include flexbox();
-    padding: 20px;
+    @include flex-direction(column);
+
+    padding: 10px;
     @media (min-width: 992px) {
       padding: 20px;
     }
@@ -153,12 +169,80 @@
     z-index: 999999;
     font-family: "Avenir", sans-serif;
     @include justify-content(space-between);
-    .left,.right{
-      @include flex(1);
-      @include transition(all, 0.2s, 0.2s);
-      @include transform(translateX(20px));
-      opacity: 0;
+    .top-items{
+      @include flexbox();
+      @include align-items(flex-start);
+      width: 100%;
+      margin-bottom: 25px;
+      .text-infos-hover{
+        svg{
+          width: 15px;
+        }
+        h3{
+          margin: 0;
+          padding: 0;
+          margin-left: 10px;
+          font-family: "Babas", sans-serif;
+          color: $primary-color;
+          text-transform: uppercase;
+          font-size: 22px;
+          @media (min-width: 992px) {
+            font-size: 40px;
+          }
+        }
+        p{
+          margin: 0;
+          svg{
+            margin-right: 3px;
+          }
+          @media (min-width: 992px) {
+
+            margin-top: -10px;
+          }
+          padding: 0;
+          margin-left: 10px;
+          font-size: 11px;
+          @media (min-width: 992px) {
+            font-size: 13px;
+          }
+        }
+      }
+      .profile-image{
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+        min-width: 40px;
+        @media (min-width: 992px) {
+        max-width: 70px;
+          max-height: 70px;
+          min-height: 70px;
+          min-width: 70px;
+          width: 70px;
+          height: 70px;
+        }
+          overflow: hidden;
+        @include border-radius(5px);
+        img{
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
+    .bot-items{
+      display: none;
+      @media (min-width: 992px) {
+
+        @include flexbox();
+      }
+      .left,.right{
+        @include flex(1);
+        @include transition(all, 0.2s, 0.2s);
+        @include transform(translateX(20px));
+        opacity: 0;
+      }
+    }
+
     ul{
       list-style: none;
       padding: 0;
@@ -194,9 +278,6 @@
     .images-container{
       .img-bg{
         //filter:blur(5px);
-      }
-      .profile-image{
-        bottom: 41%;
       }
     }
     background: #232323;

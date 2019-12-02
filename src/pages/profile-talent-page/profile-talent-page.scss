@@ -167,6 +167,8 @@
           font-family: "Avenir", sans-serif;
           font-size: 10px;
           font-weight: 400;
+          margin: 0;
+          padding: 0;
           @media (min-width: 992px) {
             font-size: 14px;
           }
@@ -331,7 +333,6 @@
         }
         svg#ico-svg-back-plus{
           @include transform(rotate(315deg));
-
           -webkit-animation: fade-out .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
           -moz-animation: fade-out  .4s forwards 0.1s; /* Firefox < 16 */
           -ms-animation: fade-out  .4s forwards 0.1s; /* Internet Explorer */
@@ -340,6 +341,9 @@
           animation-delay: .1s;
         }
         .arrow-container-go-back{
+
+          max-width: 42px;
+          max-height: 40px;
           svg{
             -webkit-animation: fade_in_and_rotate .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
             -moz-animation: fade_in_and_rotate .4s forwards 0.1s; /* Firefox < 16 */

@@ -7,6 +7,7 @@
   @include align-items(center);
   #logo-part-top-ux{
     opacity: 0;
+    height: 100%;
     -webkit-animation: fade-in 1s forwards 1s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fade-in 1s forwards 1s; /* Firefox < 16 */
     -ms-animation: fade-in 1s forwards 1s; /* Internet Explorer */

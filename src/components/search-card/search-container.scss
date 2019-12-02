@@ -14,19 +14,58 @@
   @include flex-direction(column);
   @include align-items(center);
   @include justify-content(center);
+  .navs-search{
+    @include flexbox();
+    @include justify-content(space-between);
+    width: 100%;
+  }
+  .close-search-icon-container{
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(flex-end);
+    align-self: flex-start;
+    justify-self: flex-start;
+    right: 10%;
+    top: 10%;
+    width: 180px;
+    margin-top: 20px;
+    cursor: pointer;
+    @media (min-width: 992px) {
+      top: 5%;
+      width: 144px;
+    }
+    &:hover{
+      p{
+        opacity: 1;
+      }
+    }
+    svg{
+      cursor: pointer;
+      max-width: 30px;
+    }
+    p{
+      cursor: pointer;
+      margin: 0 10px;
+      @include transition(all, 0.2s,ease-in-out);
+      opacity: 0;
+      padding: 0;
+      font-family: "Avenir", sans-serif;
+      text-transform: uppercase;
+    }
+  }
   .logo-container {
     @include flexbox();
     @include align-items(flex-start);
     @include justify-content(flex-start);
     align-self: flex-start;
     justify-self: flex-start;
-    left: 10.248901903367496%;
-    top: 10.9282576866764276%;
+    left: 10%;
+    top: 10%;
     width: 110px;
     height: 76px;
     margin-top: 20px;
     @media (min-width: 992px) {
-      top: 5.9282576866764276%;
+      top: 5%;
       width: 144px;
       height: 76px;
     }
@@ -59,7 +98,7 @@
     font-family: "Babas", sans-serif;
     color: $dark-silver !important;
   }
-  .ant-form {
+  .form-search {
     @include flexbox();
     @include align-items(center);
     @include flex(1);
@@ -68,6 +107,11 @@
     @include flex-wrap(wrap);
     @media (min-width: 992px) {
       @include justify-content(space-between);
+    }
+    .ant-form-item{
+      &:last-child{
+        margin-right: 0;
+      }
     }
   }
   input {

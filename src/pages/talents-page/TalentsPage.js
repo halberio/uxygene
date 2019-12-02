@@ -124,9 +124,9 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"uxdesignercheckbox"}
-                      name="uxdesigner"
+                      name="uxtalentradio"
                       value="uxdesigner"
                     />
                     <label htmlFor={"uxdesignercheckbox"}>Ux designer</label>
@@ -138,9 +138,9 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"uidesignercheckbox"}
-                      name="uidesigner"
+                      name="uxtalentradio"
                       value="uidesigner"
                     />
                     <label htmlFor={"uidesignercheckbox"}>Ui designer</label>
@@ -153,9 +153,9 @@ const TalentsPage = () => {
                   >
                     {" "}
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"uxwritercheckbox"}
-                      name="uwriter"
+                      name="uxtalentradio"
                       value="uwriter"
                     />
                     <label htmlFor={"uxwritercheckbox"}>UX writer</label>
@@ -167,9 +167,9 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"illustratorcheckbox"}
-                      name="illustrator"
+                      name="uxtalentradio"
                       value="illustrator"
                     />
                     <label htmlFor={"illustratorcheckbox"}>illustrator</label>
@@ -181,9 +181,9 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       id={"motiondesignercheckbox"}
-                      name="motiondesigner"
+                      name="uxtalentradio"
                       value="motiondesigner"
                     />
                     <label htmlFor={"motiondesignercheckbox"}>
@@ -198,10 +198,11 @@ const TalentsPage = () => {
         <SearchCard />
         <JoinUsCard />
         {users && users.length > 0 ? (
-          users.map(item => (
+          users.map((item,index) => (
             <UserTalentCard
               key={item.id}
               id={item.id}
+              idForanimation={index}
               image={
                 item.image
                   ? process.env.REACT_APP_STORAGE_URL + item.image

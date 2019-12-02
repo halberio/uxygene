@@ -1,0 +1,260 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.let-me-in-page {
+  height: 100%;
+  @include flex(1);
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin: auto;
+  max-width: calc(1200px - 1%);
+  .row-container {
+    position: relative;
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(stretch);
+    @include flex-wrap(wrap);
+    @include flex-direction(column);
+    width: 100%;
+    padding: 4.9282576866764276% 10px;
+    @media (min-width: 992px) {
+      @include flex-direction(row);
+      margin-top: 30px;
+      padding: 0.9282576866764276% 1%;
+    }
+    @media (min-width: 1200px) {
+      padding: 0.9282576866764276% 10px;
+    }
+    .column {
+      @include flexbox();
+      @include flex-direction(row);
+      @include justify-content(space-around);
+      width: 100%;
+      @media (min-width: 992px) {
+        @include flex-direction(column);
+      }
+      &:after{
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(248, 247, 247);
+        -webkit-animation: slideinEffectImg .9s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: slideinEffectImg .9s forwards; /* Firefox < 16 */
+        -ms-animation: slideinEffectImg .9s forwards; /* Internet Explorer */
+        -o-animation: slideinEffectImg .9s forwards; /* Opera < 12.1 */
+        animation: slideinEffectImg .9s forwards;
+        animation-delay: 0.1s;
+        -webkit-animation-delay: 0.1s;
+        transform-origin: right;
+      }
+      position: relative;
+      @include flex(1);
+      @media (min-width: 992px) {
+        max-width: 352px;
+      }
+      h1 {
+        font-family: "BabasLight", sans-serif;
+        color: $black-text;
+        font-size: 20px;
+        line-height: 20px;
+        @media (min-width: 992px) {
+          font-size: 30px;
+          line-height: 30px;
+        }
+        margin: 0;
+        padding: 0;
+      }
+      .divider-main {
+        display: inline-block;
+        background: $primary-color;
+        margin: 15px 0;
+        height: 76px;
+        width: 5px;
+        @media (min-width: 992px) {
+          margin: 30px 0;
+          height: 5px;
+          width: 76px;
+        }
+      }
+      h2 {
+        font-family: "Babas", sans-serif;
+        color: $primary-color;
+        font-size: 30px;
+        line-height: 30px;
+        @media (min-width: 992px) {
+          font-size: 50px;
+          line-height: 50px;
+        }
+        margin: 0;
+        padding: 0;
+        &.black-h2 {
+          color: #5a574c;
+        }
+      }
+    }
+    .row-into-2-column {
+      position: relative;
+      @include flexbox();
+      @include flex-direction(column);
+      @include flex(2);
+      @media (min-width: 992px) {
+        @include flex-direction(row);
+      }
+      .card-auth-social {
+        &.active{
+          background: $white;
+        }
+        @include flex(1);
+        &:last-child {
+          margin-right: unset;
+        }
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding: 10px 10px;
+        margin-top: 30px;
+        @media (min-width: 992px) {
+
+          margin-top: unset;
+          margin-right: 30px;
+          padding: 40px 10px;
+        }
+        box-sizing: border-box;
+        @include flexbox();
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(space-around);
+        @include border-radius(10px);
+        @include transition(all,0.2s,ease-in-out);
+        background: transparent;
+        overflow: hidden;
+        .svg-container {
+          svg {
+            width: 100%;
+
+            path {
+              fill: $primary-color;
+            }
+          }
+          max-width: 40px;
+          @media (min-width: 992px) {
+            max-width: 50px;
+            max-height: 45px;
+          }
+          @include transition(all,0.2s,ease-in-out);
+        }
+        h3 {
+          @include transition(all,0.2s,ease-in-out);
+          font-family: "Babas", sans-serif;
+          font-size: 32px;
+          color: $black-text;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          @media (min-width: 992px) {
+            font-size: 52px;
+          }
+        }
+        p{
+          font-family: "Avenir", sans-serif;
+          text-align: center;
+        }
+        &:hover,&.active{
+          .footer-log-items{
+            @include flexbox();
+            opacity: 1;
+          }
+          background: $white;
+          h3{
+            @media (min-width: 992px) {
+
+              @include transform(translateY(-20px));
+            }
+          }
+          .svg-container{
+            @media (min-width: 992px) {
+
+              @include transform(translateY(-10px));
+            }
+          }
+        }
+        .footer-log-items{
+          opacity: 0;
+          position: relative;
+            height: 45%;
+          bottom: 0;
+          @include flexbox();
+          @include justify-content(space-between);
+          @include flex-direction(column);
+          @include transition(all,0.2s,ease-in-out);
+          @include transform-origin(bottom);
+          .items-links-social{
+            @include flexbox();
+            @include justify-content(space-around);
+            width: 100%;
+            z-index: 1;
+            .link-social-log{
+              background: transparent;
+              border: none;
+              cursor: pointer;
+              width: 50px;
+              position: relative;
+              height: 50px;
+              @media (min-width: 992px) {
+                width: 100px;
+                height: 100px;
+              }
+              &:focus{
+                outline: none;
+                border: none;
+              }
+              @include flexbox();
+              @include align-items(center);
+              @include justify-content(center);
+              box-sizing: border-box;
+              @include border-radius(100%);
+              overflow: hidden;
+              @include transition(all,0.2s,ease-in-out);
+              svg{
+                path{
+                  @include transition(all,0.2s,ease-in-out);
+                }
+              }
+              &:before{
+                content: "";
+                position: absolute;
+                display: block;
+                background: $primary-color;
+                @include border-radius(100%);
+                z-index: -1;
+                width: 0%;
+                left: 50%;
+                top: 50%;
+                height: 0%;
+                @include transition(all,0.2s,ease-in-out);
+              }
+              &:hover{
+                &:before{
+                  width: 100%;
+                  left: 0;
+                  top:0;
+                  height: 100%;
+                }
+                svg{
+                  path{
+                    fill: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

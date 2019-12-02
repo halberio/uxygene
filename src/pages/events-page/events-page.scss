@@ -16,7 +16,7 @@
     width: 100%;
     @include flex(1);
     @include flex-direction(column);
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       @include flex-direction(row);
       min-height: calc(100vh - 120px);
     }
@@ -49,6 +49,17 @@
       @media (min-width: 992px) {
         margin-left: 30px;
         @include align-items(flex-end);
+      }
+      .filter-card{
+        margin-top: 20px;
+
+        @media (min-width: 768px) {
+          margin-top: unset;
+        }
+        @media (min-width: 992px) {
+
+          min-height: 100px;
+        }
       }
     }
   }

@@ -12,7 +12,13 @@ import {
   GET_AUTH_SUCCESS,
   GET_AUTH_FAILURE,
   LOGOUT_FAILURE,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  SIGNIN_FACEBOOK_REQUEST,
+  SIGNIN_FACEBOOK_FAILURE,
+  SIGNIN_FACEBOOK_SUCCESS,
+  SIGNIN_GOOGLE_REQUEST,
+  SIGNIN_GOOGLE_FAILURE,
+  SIGNIN_GOOGLE_SUCCESS
 } from "../actions/auth-actions/types";
 
 const intialState = {
@@ -24,6 +30,50 @@ const intialState = {
 
 const authReducer = (state = intialState, action) => {
   switch (action.type) {
+      //start google
+    case SIGNIN_GOOGLE_REQUEST:
+      return {
+        ...state,
+        isLoadingUser: true
+      };
+    case SIGNIN_GOOGLE_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.access_token,
+        isLoadingUser: false,
+        isLoggedIn: true
+      };
+
+    case SIGNIN_GOOGLE_FAILURE:
+      return {
+        ...state,
+        isLoadingUser: false,
+        isLoggedIn: false
+      };
+      //end google
+    //start facebook
+    case SIGNIN_FACEBOOK_REQUEST:
+      return {
+        ...state,
+        isLoadingUser: true
+      };
+    case SIGNIN_FACEBOOK_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.access_token,
+        isLoadingUser: false,
+        isLoggedIn: true
+      };
+
+    case SIGNIN_FACEBOOK_FAILURE:
+      return {
+        ...state,
+        isLoadingUser: false,
+        isLoggedIn: false
+      };
+    //end facebook
     case GET_AUTH_REQUEST:
       return {
         ...state,
@@ -79,7 +129,8 @@ const authReducer = (state = intialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        token: null
+        token: null,
+        user: null
       };
     case LOGOUT_FAILURE:
       return state;

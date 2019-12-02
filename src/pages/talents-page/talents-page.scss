@@ -20,6 +20,21 @@
     padding: 0  10px;
     padding-bottom: 5%;
   }
+  .search-card{
+    .search-icon-container-bar{
+      @include flex(1);
+      svg{
+        max-width: 40px;
+      }
+    }
+    h1{
+      text-align: left;
+      @media (min-width: 768px) {
+        text-align: center;
+      }
+      width: 100%;
+    }
+  }
   .loading-flex-fixed{
     @include flexbox();
     @include align-items(center);

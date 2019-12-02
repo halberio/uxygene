@@ -52,7 +52,7 @@
         }
         text-align: left;
         color: #919191;
-        input[type='checkbox']{
+        input[type='checkbox'],input[type='radio']{
           cursor: pointer;
           display: none;
           &:checked + label{
@@ -95,7 +95,6 @@
       }
     }
   }
-  box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
   &.active{
     border: 0;
     outline: none;

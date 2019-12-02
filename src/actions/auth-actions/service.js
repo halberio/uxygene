@@ -6,6 +6,23 @@
 
 import axiosInstance from "../../config/axios-instance";
 
+
+function signInFacebookRequest(body) {
+  return axiosInstance({
+    method: "post",
+    url: "auth/social-login",
+    data: body
+  });
+}
+
+function signInGoogleRequest(body) {
+  return axiosInstance({
+    method: "post",
+    url: "auth/social-login",
+    data: body
+  });
+}
+
 function logoutRequest() {
   return axiosInstance({
     method: "get",
@@ -41,7 +58,9 @@ const AuthServices = {
   signinRequest,
   signupRequest,
   logoutRequest,
-  getAuthUserRequest
+  getAuthUserRequest,
+  signInFacebookRequest,
+  signInGoogleRequest
 };
 
 export default AuthServices;

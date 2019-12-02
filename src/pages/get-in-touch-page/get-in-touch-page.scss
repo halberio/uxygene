@@ -82,6 +82,9 @@
     .right {
       @include flex(3);
       width: 100%;
+      @media (min-width: 992px) {
+        margin-left: 30px;
+      }
       .get-in-touch-form {
         background: $primary-color;
         @include transform(scaleX(0));

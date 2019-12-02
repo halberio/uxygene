@@ -34,9 +34,9 @@
     color: $dark-silver;
     opacity: 0.7;
     padding: 3px 5px;
-    font-family: "Babas", sans-serif;
+    font-family: "Avenir", sans-serif;
     @include transition(all, 0.2s, ease-in-out);
-    font-size: 16px;
+    font-size: 12px;
     &:active {
       color: $white;
     }
@@ -51,20 +51,6 @@
         width: 100%;
       }
       color: $black-text;
-    }
-    &:before {
-      @include transition(all, 0.3s, ease-in-out);
-      display: block;
-      width: 0;
-      height: 50%;
-      background: $primary-color;
-      content: "";
-      position: absolute;
-      bottom: 20%;
-      z-index: -1;
-      left: 0;
-      transform-origin: left;
-      -webkit-transform-origin: left;
     }
   }
 }

@@ -2,6 +2,73 @@
 @import "../../stylesheets/mixins";
 
 .navbar {
+  .logged-user-infos {
+    &.only-mobile {
+      @include flexbox();
+      margin-left: auto;
+      @media (min-width: 992px) {
+        display: none;
+      }
+    }
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
+    background: $white;
+    padding: 5px 10px;
+    @include border-radius(35px);
+    @include transition(all, 0.2s, ease-in-out);
+    cursor: pointer;
+    &:hover {
+      background: $primary-color;
+      .img-profile-container{
+        .logout-icon{
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+    }
+    p {
+      margin: 0;
+      padding: 0;
+      font-family: "Avenir", sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      color: $black-text;
+    }
+    .img-profile-container {
+      position: relative;
+      .logout-icon {
+        pointer-events: none;
+        position: absolute;
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        @include transition(all,0.2s,ease-in-out);
+        opacity: 0;
+        background: $white;
+        height: 100%;
+        top: 0;
+        width: 100%;
+        svg{
+          max-width: 25px;
+          path{
+            fill: $primary-color;
+          }
+        }
+      }
+      width: 40px;
+      height: 40px;
+      @include border-radius(100%);
+      overflow: hidden;
+      margin-left: 5px;
+      img {
+        @include border-radius(100%);
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
   background: transparent;
   width: 100%;
   max-height: 140px;
@@ -82,7 +149,13 @@
   .text-specific-pages {
     pointer-events: none;
     @include flex(1);
-    padding-left: 3.6603221083455346%;
+    position: absolute;
+    padding-left: 110px;
+
+
+    @media (min-width: 992px) {
+      padding-left: 130px;
+    }
     h3.gold-text {
       &::selection {
         background: transparent;
@@ -93,15 +166,15 @@
       font-size: 20px;
       @media (min-width: 880px) {
         font-size: 20px !important;
-        line-height: 20px !important;
+        line-height: 25px !important;
       }
       @media (min-width: 992px) {
         font-size: 30px !important;
-        line-height: 30px !important;
+        line-height: 35px !important;
       }
       @media (min-width: 1200px) {
-        font-size: 60px !important;
-        line-height: 40px !important;
+        font-size: 50px !important;
+        line-height: 30px !important;
       }
       line-height: 20px;
       margin: 0;
@@ -109,12 +182,17 @@
       align-self: flex-start;
     }
     h4.bold-black {
+
       &::selection {
         background: transparent;
         color: unset;
       }
       color: $black-text;
       font-family: "Babas", sans-serif;
+      @media (max-width: 320px) {
+        font-size: 10px;
+        display: none;
+      }
       font-size: 14px;
       line-height: 14px;
       @media (min-width: 992px) {
@@ -122,8 +200,8 @@
         line-height: 20px;
       }
       @media (min-width: 1200px) {
-        font-size: 40px;
-        line-height: 40px;
+        font-size: 30px;
+        line-height: 35px;
       }
       margin: 0;
       padding: 0;
@@ -132,17 +210,34 @@
   }
   .navigation {
     width: 100%;
-    @include flex(1);
-    @include justify-content(space-between);
-    @include align-items(flex-start);
+    @include justify-content(flex-end);
+    @include align-items(center);
     @include align-content(flex-start);
     display: none;
-    min-width: 510px;
     @media (min-width: 992px) {
       @include flexbox();
     }
     position: relative;
     .nav-link {
+      &.btn-login {
+        background-color: transparent;
+        padding: 15px 30px;
+        box-sizing: border-box;
+        border: 1px solid $white;
+        @include border-radius(30px);
+        &:before {
+          display: none;
+        }
+        &.active {
+          background: $primary-color;
+          color: white;
+        }
+        &:hover {
+          background: $primary-color;
+          color: $white;
+          border-color: $primary-color;
+        }
+      }
       &::selection {
         background: transparent;
         color: unset;
@@ -159,7 +254,10 @@
         font-size: 15px !important;
       }
       padding: 0;
-      margin: 0 1.8301610541727673%;
+      margin: 0 1%;
+      &:last-child {
+        margin: 0;
+      }
       position: relative;
       text-transform: uppercase;
       z-index: 1;

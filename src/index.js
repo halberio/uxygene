@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 import { Provider, connect } from "react-redux";
@@ -12,6 +12,8 @@ import "antd/dist/antd.min.css";
 import "./stylesheets/main.scss";
 
 import { connectTheUser, getAuthUser } from "./actions/auth-actions/actions";
+import LoadingIcon from "./components/loading-icon/LoadingIcon";
+import {TimelineLite} from "gsap";
 
 export const history = createBrowserHistory();
 
@@ -35,6 +37,28 @@ store.subscribe(() => {
 });
 
 const WrappedApp = props => {
+
+  const [animationNotHiden, setanimationNotHiden] = useState(true);
+  const fadeOutOnLeave = new TimelineLite();
+
+  useEffect(()=>{
+    if(props.isLoadingUser && token ){
+      window.addEventListener(
+          "load",
+          function() {
+            setTimeout(() => {
+              fadeOutOnLeave.to(`#loading-animation-container`, 1, {
+                opacity: 0, onComplete:()=>{
+                  setanimationNotHiden(false);
+                }
+              });
+
+            }, 500);
+          },
+          false
+      );
+    }
+  },[props.isLoadingUser,fadeOutOnLeave])
   useEffect(() => {
     if (token) {
       // We need to check if the token are valid or not by getting the auth user
@@ -47,7 +71,11 @@ const WrappedApp = props => {
       {/*if token is available we try to get the user once each time the app gets reloaded, so we don't need to
       fetch the auth user everytime we need him,*/}
 
-      {token && props.isLoadingUser ? <h1> Loading... </h1> : props.children}
+      {  token && animationNotHiden===true ? <div id={"loading-animation-container"} className="loading-animation-container">
+        <div className="round-container">
+          <LoadingIcon />
+        </div>
+      </div> : props.children}
     </>
   );
 };

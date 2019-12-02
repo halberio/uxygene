@@ -17,11 +17,59 @@ import {
   LOGOUT_REQUEST,
   CONNECT_THE_USER,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  SIGNIN_FACEBOOK_REQUEST,
+  SIGNIN_FACEBOOK_FAILURE,
+  SIGNIN_FACEBOOK_SUCCESS,
+  SIGNIN_GOOGLE_REQUEST,
+  SIGNIN_GOOGLE_FAILURE,
+  SIGNIN_GOOGLE_SUCCESS
 } from "./types";
 
 import AuthServices from "./service";
 
+export function loginGoogle(body) {
+  return async dispatch => {
+    await dispatch({
+      type: SIGNIN_GOOGLE_REQUEST
+    });
+    try {
+      const response = await AuthServices.signInGoogleRequest(body);
+
+      await dispatch({
+        type: SIGNIN_GOOGLE_SUCCESS,
+        payload: response.data
+      });
+      localStorage.setItem("halber_token", response.data.access_token);
+    } catch (e) {
+      dispatch({
+        type: SIGNIN_GOOGLE_FAILURE
+      });
+    }
+  };
+}
+
+export function loginFacebook(body) {
+  return async dispatch => {
+    await dispatch({
+      type: SIGNIN_FACEBOOK_REQUEST
+    });
+    try {
+      const response = await AuthServices.signInFacebookRequest(body);
+      localStorage.setItem("halber_token", response.data.access_token);
+      console.log(response);
+      await dispatch({
+        type: SIGNIN_FACEBOOK_SUCCESS,
+        payload: response.data
+      });
+      localStorage.setItem("halber_token", response.data.access_token);
+    } catch (e) {
+      dispatch({
+        type: SIGNIN_FACEBOOK_FAILURE
+      });
+    }
+  };
+}
 export function getAuthUser() {
   return async dispatch => {
     await dispatch({
@@ -29,6 +77,7 @@ export function getAuthUser() {
     });
     try {
       const response = await AuthServices.getAuthUserRequest();
+
       await dispatch({
         type: GET_AUTH_SUCCESS,
         payload: {
