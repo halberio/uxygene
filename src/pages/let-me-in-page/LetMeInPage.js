@@ -5,7 +5,7 @@ import GoogleIcon from "../../components/svg/GoogleIcon";
 import FacebookIcon from "../../components/svg/FacebookIcon";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
-import {loginFacebook, loginGoogle} from "../../actions/auth-actions/actions";
+import { loginFacebook, loginGoogle } from "../../actions/auth-actions/actions";
 import { useDispatch } from "react-redux";
 import SpaceShip from "../../components/svg/SpaceShip";
 const LetMeInPage = () => {
@@ -13,28 +13,58 @@ const LetMeInPage = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const onFailure = error => {
-    alert(error);
+    console.log(error);
   };
 
   const googleResponse = response => {
-    const body = {
-      providerId: response.googleId,
-      email: response.profileObj.email,
-      name:  response.profileObj.givenName + " " +response.profileObj.familyName ,
-      socialImage: response.profileObj.imageUrl
-    };
-    dispatch(loginGoogle(body));
+    try {
+      const body = {
+        providerId: response.googleId,
+        email: response.profileObj.email,
+        name:
+          response.profileObj.givenName + " " + response.profileObj.familyName,
+        first_name: response.profileObj.givenName,
+        last_name: response.profileObj.familyName,
+        socialImage: response.profileObj.imageUrl
+      };
+      dispatch(loginGoogle(body));
+    } catch (e) {
+      console.log("error google", e);
+    }
+  };
+
+  const googleResponseHost = response => {
+    try {
+      const body = {
+        providerId: response.googleId,
+        email: response.profileObj.email,
+        name:
+          response.profileObj.givenName + " " + response.profileObj.familyName,
+        first_name: response.profileObj.givenName,
+        last_name: response.profileObj.familyName,
+        socialImage: response.profileObj.imageUrl
+      };
+      dispatch(loginGoogle(body));
+    } catch (e) {
+      console.log("error google", e);
+    }
   };
 
   const facebookResponse = response => {
-    const body = {
-      socialImage: response.picture.data.url,
-      name: response.name,
-      email: response.email,
-      providerId: response.id
-    };
+    try {
+      const body = {
+        socialImage: response.picture.data.url,
+        name: response.name,
+        first_name: response.first_name,
+        last_name: response.last_name,
+        email: response.email,
+        providerId: response.id
+      };
 
-    dispatch(loginFacebook(body));
+      dispatch(loginFacebook(body));
+    } catch (e) {
+      console.log("error facebook", e);
+    }
   };
 
   const changeSelectedTab = id => {
@@ -91,7 +121,7 @@ const LetMeInPage = () => {
                 <FacebookLogin
                   appId={process.env.REACT_APP_FACEBOOK_APP_ID}
                   autoLoad={false}
-                  fields="name,email,picture"
+                  fields="name,email,picture,first_name,last_name"
                   callback={facebookResponse}
                   render={renderProps => (
                     <button
@@ -121,7 +151,7 @@ const LetMeInPage = () => {
                 <GoogleLogin
                   clientId={process.env.REACT_APP_GOOGLE_APP_ID}
                   buttonText="Login"
-                  onSuccess={googleResponse}
+                  onSuccess={googleResponseHost}
                   onFailure={onFailure}
                   render={renderProps => (
                     <button

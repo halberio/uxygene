@@ -33,7 +33,8 @@
     @include justify-content(space-between);
     @include align-items(center);
     background: $white;
-    padding: 5px 10px;
+    padding: 5px 5px;
+    min-width: 150px;
     @include border-radius(35px);
     @include transition(all, 0.2s, ease-in-out);
     cursor: pointer;
@@ -52,6 +53,8 @@
       font-family: "Avenir", sans-serif;
       font-weight: 500;
       font-size: 12px;
+      text-align: center;
+      width: 100%;
       color: $black-text;
     }
     .img-profile-container {
@@ -77,6 +80,10 @@
       }
       width: 40px;
       height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      max-width: 40px;
+      max-height: 40px;
       @include border-radius(100%);
       overflow: hidden;
       margin-left: 5px;
@@ -127,7 +134,7 @@
       text-align: left;
       font-size: 34px;
       padding: 0 1%;
-      margin: 0% 1.8301610541727673%;
+      margin: 0;
       position: relative;
       text-transform: capitalize;
       z-index: 1;
@@ -149,8 +156,8 @@
       color: $light-silver;
       opacity: .7;
       padding: 3px 5px;
-      font-family: "Babas", sans-serif;
-      font-size: 16px;
+      font-family: "Avenir", sans-serif;
+      font-size: 12px;
       &:active{
         color: $white;
       }

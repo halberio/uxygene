@@ -7,8 +7,8 @@ import Logo from "../svg/logo/Logo";
 import { Affix } from "antd";
 import LogoWhite from "../svg/LogoWhite";
 import { useDispatch, useSelector } from "react-redux";
-import ArrowRightBlack from "../svg/ArrowRightBlack";
 import { logout } from "../../actions/auth-actions/actions";
+import LogoutIcon from "../svg/LogoutIcon";
 const Navbar = props => {
   const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
   const user = useSelector(state => state.authReducer.user);
@@ -83,360 +83,372 @@ const Navbar = props => {
     }
   });
   return (
-      <>
-    <Affix offsetTop={0}>
-      <div className={"navbar " + onScrollClassName}>
-        <div className="fixed-with-container">
-          <div className="brand">
-            <NavLink to={"/"}>
-              <Logo />
-            </NavLink>
+    <>
+      <Affix offsetTop={0}>
+        <div className={"navbar " + onScrollClassName}>
+          <div className="fixed-with-container">
+            <div className="brand">
+              <NavLink to={"/"}>
+                <Logo />
+              </NavLink>
+            </div>
+            <Motion
+              style={{
+                x: spring(textSpecificPageDisblyed ? 0 : 30),
+                o: spring(textSpecificPageDisblyed ? 1 : 0)
+              }}
+            >
+              {({ x, o }) => (
+                <div
+                  className="text-specific-pages"
+                  style={{
+                    WebkitTransform: `translateX(${x}px)`,
+                    transform: `translateX(${x}px)`,
+                    opacity: o
+                  }}
+                >
+                  <h3 className="gold-text">TUNISIA…</h3>
+                  <h4 className={"bold-black"}>{textSpecificPageText}</h4>
+                </div>
+              )}
+            </Motion>
+            <div className="navigation">
+              <NavLink
+                exact
+                className={"nav-link"}
+                activeClassName={"active"}
+                to={"/"}
+              >
+                {" "}
+                HI!
+              </NavLink>
+              <NavLink
+                className={"nav-link"}
+                activeClassName={"active"}
+                to={"/talents"}
+              >
+                {" "}
+                UX TALENTS
+              </NavLink>
+              <NavLink
+                className={"nav-link"}
+                activeClassName={"active"}
+                to={"/hosts"}
+              >
+                {" "}
+                UX HOSTS
+              </NavLink>
+              <NavLink
+                className={"nav-link"}
+                activeClassName={"active"}
+                to={"/events"}
+              >
+                {" "}
+                UX EVENTS
+              </NavLink>
+              <NavLink
+                className={"nav-link"}
+                activeClassName={"active"}
+                to={"/get-in-touch"}
+              >
+                {" "}
+                GET IN TOUCH
+              </NavLink>
+
+              <div className="navilink-btn-container">
+                {!isLoggedIn ? (
+                  <NavLink
+                    className={"nav-link btn-login"}
+                    activeClassName={"active"}
+                    to={"/let-me-in"}
+                  >
+                    {" "}
+                    Let me in!
+                  </NavLink>
+                ) : (
+                  <div className="logged-user-infos">
+                    <p>{user && user.first_name ? user.first_name : user && user.name ? user.name : null }</p>
+                    <Link
+                      className="img-profile-container"
+                      to={
+                        user && user.id ? "/talent-user/" + user.id : "/talents"
+                      }
+                    >
+                      {user && user.image ? (
+                        <img
+                          width={"50px"}
+                          height={"5px"}
+                          src={process.env.REACT_APP_STORAGE_URL + user.image}
+                          alt={user && user.name ? user.name : null}
+                        />
+                      ) : user && user.social_image ? (
+                        <img
+                          width={"50px"}
+                          height={"5px"}
+                          src={user.social_image}
+                          alt={user && user.name ? user.name : null}
+                        />
+                      ) : null}
+                    </Link>
+                    <div
+                      className="logout-icon"
+                      onClick={() => dispatch(logout())}
+                    >
+                      <LogoutIcon />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <Motion
+              style={{
+                x: spring(drawerOpened ? 255 : 0),
+                widthSpan: spring(drawerOpened ? 24 : 6),
+                heightSpan: spring(drawerOpened ? 4 : 6),
+                borderRadiusSpan: spring(drawerOpened ? 3 : 100),
+                rotation: spring(drawerOpened ? 45 : 0),
+                zeroWidth: spring(drawerOpened ? 5 : 6),
+                opacityValueMiddle: spring(drawerOpened ? 0 : 1)
+              }}
+            >
+              {({
+                x,
+                widthSpan,
+                borderRadiusSpan,
+                heightSpan,
+                rotation,
+                zeroWidth,
+                opacityValueMiddle
+              }) => (
+                <div className="menu-icon" onClick={handleDrawerStatus}>
+                  <span
+                    style={{
+                      background: `rgb(${x}, ${x}, ${x})`,
+                      width: ` ${widthSpan}px `,
+                      height: ` ${heightSpan}px `,
+                      borderRadius: `${borderRadiusSpan}%`,
+                      transformOrigin: "right",
+                      transform: `rotate(${-rotation}deg)`,
+                      WebkitTransformOrigin: "right",
+                      WebkitTransform: `rotate(${-rotation}deg)`
+                    }}
+                  />
+                  <span
+                    style={{
+                      transformOrigin: "center center",
+                      WebkitTransformOrigin: "center center",
+                      WebkitTransform: "center center",
+                      opacity: `${opacityValueMiddle}`,
+                      background: `rgb(${x}, ${x}, ${x})`,
+                      width: ` ${zeroWidth}px `,
+                      height: ` ${zeroWidth}px `,
+                      borderRadius: `${borderRadiusSpan}%`
+                    }}
+                  />
+                  <span
+                    style={{
+                      background: `rgb(${x}, ${x}, ${x})`,
+                      width: ` ${widthSpan}px `,
+                      height: ` ${heightSpan}px `,
+                      borderRadius: `${borderRadiusSpan}%`,
+                      transformOrigin: "right",
+                      transform: `rotate(${rotation}deg)`,
+                      WebkitTransformOrigin: "right",
+                      WebkitTransform: `rotate(${rotation}deg)`
+                    }}
+                  />
+                </div>
+              )}
+            </Motion>
           </div>
-          <Motion
+        </div>
+      </Affix>
+      <Motion
+        style={{
+          x: spring(drawerOpened ? 1 : 0),
+          i1: spring(drawerOpened ? 0 : 40, {
+            stiffness: 60,
+            damping: 10
+          }),
+          i2: spring(drawerOpened ? 0 : 50, {
+            stiffness: 60,
+            damping: 10
+          }),
+          o: spring(drawerOpened ? 1 : 0)
+        }}
+      >
+        {({ x, i1, i2, o }) => (
+          <div
+            className="drawer"
             style={{
-              x: spring(textSpecificPageDisblyed ? 0 : 30),
-              o: spring(textSpecificPageDisblyed ? 1 : 0)
+              opacity: x,
+              pointerEvents: drawerOpened ? "all" : "none"
             }}
           >
-            {({ x, o }) => (
-              <div
-                className="text-specific-pages"
+            <div className="brand">
+              <NavLink to={"/"}>
+                <LogoWhite />
+              </NavLink>
+            </div>
+
+            <Motion
+              style={{
+                x: spring(drawerOpened ? 0 : 200),
+                y: spring(drawerOpened ? 0 : 400),
+                w: spring(drawerOpened ? 0 : 600),
+                z: spring(drawerOpened ? 0 : 800),
+                o: spring(drawerOpened ? 1 : 0)
+              }}
+            >
+              {({ x, y, w, z, o }) => (
+                <div className="menu-items">
+
+                  <NavLink
+                    exact
+                    className={"nav-link"}
+                    activeClassName={"active"}
+                    to={"/"}
+                    style={{
+                      WebkitTransform: `translate3d(${-x}px, 0, 0)`,
+                      transform: `translate3d(${-x}px, 0, 0)`,
+                      opacity: o
+                    }}
+                  >
+                    {" "}
+                    Hi!
+                  </NavLink>
+                  <NavLink
+                    className={"nav-link"}
+                    activeClassName={"active"}
+                    to={"/talents"}
+                    style={{
+                      WebkitTransform: `translate3d(${-y}px, 0, 0)`,
+                      transform: `translate3d(${-y}px, 0, 0)`,
+                      opacity: o
+                    }}
+                  >
+                    {" "}
+                    UX Talents
+                  </NavLink>
+                  <NavLink
+                    className={"nav-link"}
+                    activeClassName={"active"}
+                    to={"/hosts"}
+                    style={{
+                      WebkitTransform: `translate3d(${-y}px, 0, 0)`,
+                      transform: `translate3d(${-y}px, 0, 0)`,
+                      opacity: o
+                    }}
+                  >
+                    {" "}
+                    UX Hosts
+                  </NavLink>
+                  <NavLink
+                    className={"nav-link"}
+                    activeClassName={"active"}
+                    to={"/events"}
+                    style={{
+                      WebkitTransform: `translate3d(${-w}px, 0, 0)`,
+                      transform: `translate3d(${-w}px, 0, 0)`,
+                      opacity: o
+                    }}
+                  >
+                    {" "}
+                    UX Events
+                  </NavLink>
+                  <NavLink
+                    className={"nav-link"}
+                    activeClassName={"active"}
+                    to={"/get-in-touch"}
+                    style={{
+                      WebkitTransform: `translate3d(${-z}px, 0, 0)`,
+                      transform: `translate3d(${-z}px, 0, 0)`,
+                      opacity: o
+                    }}
+                  >
+                    {" "}
+                    Get In Touch
+                  </NavLink>
+
+                  {!isLoggedIn ? (
+                    <NavLink
+
+                      className={"nav-link"}
+                      activeClassName={"active"}
+                      to={"/let-me-in"}
+                      style={{
+                        WebkitTransform: `translate3d(${-z}px, 0, 0)`,
+                        transform: `translate3d(${-z}px, 0, 0)`,
+                        opacity: o
+                      }}
+                    >
+                      {" "}
+                      Let me in!
+                    </NavLink>
+                  ) :  (
+                        <div className="logged-user-infos only-mobile" style={{
+                          opacity: o
+                        }}>
+                          <p>{user && user.first_name ? user.first_name : user && user.name ? user.name : null}</p>
+                          <div className="img-profile-container">
+                            {user && user.image ? (
+                                <img
+                                    width={"50px"}
+                                    height={"5px"}
+                                    src={process.env.REACT_APP_STORAGE_URL + user.image}
+                                    alt={user && user.name ? user.name : null}
+                                />
+                            ) : user && user.social_image ? (
+                                <img
+                                    width={"50px"}
+                                    height={"5px"}
+                                    src={user.social_image}
+                                    alt={user && user.name ? user.name : null}
+                                />
+                            ) : null}
+                            <div
+                                className="logout-icon"
+                                onClick={() => {
+                                  dispatch(logout());
+                                  setDrawerOpened(false);
+                                }}
+                            >
+                              <LogoutIcon />
+                            </div>
+                          </div>
+                        </div>
+                    ) }
+                </div>
+              )}
+            </Motion>
+
+            <div className="bottom-links">
+              <Link
+                to={"/privacy-policy"}
                 style={{
-                  WebkitTransform: `translateX(${x}px)`,
-                  transform: `translateX(${x}px)`,
+                  WebkitTransform: `translate3d(${-i1}px, 0, 0)`,
+                  transform: `translate3d(${-i1}px, 0, 0)`,
                   opacity: o
                 }}
               >
-                <h3 className="gold-text">TUNISIA…</h3>
-                <h4 className={"bold-black"}>{textSpecificPageText}</h4>
-              </div>
-            )}
-          </Motion>
-          <div className="navigation">
-            <NavLink
-              exact
-              className={"nav-link"}
-              activeClassName={"active"}
-              to={"/"}
-            >
-              {" "}
-              HI!
-            </NavLink>
-            <NavLink
-              className={"nav-link"}
-              activeClassName={"active"}
-              to={"/talents"}
-            >
-              {" "}
-              UX TALENTS
-            </NavLink>
-            <NavLink
-              className={"nav-link"}
-              activeClassName={"active"}
-              to={"/hosts"}
-            >
-              {" "}
-              UX HOSTS
-            </NavLink>
-            <NavLink
-              className={"nav-link"}
-              activeClassName={"active"}
-              to={"/events"}
-            >
-              {" "}
-              UX EVENTS
-            </NavLink>
-            <NavLink
-              className={"nav-link"}
-              activeClassName={"active"}
-              to={"/get-in-touch"}
-            >
-              {" "}
-              GET IN TOUCH
-            </NavLink>
-            {!isLoggedIn ? (
-              <NavLink
-                className={"nav-link btn-login"}
-                activeClassName={"active"}
-                to={"/let-me-in"}
+                Privacy Policy
+              </Link>
+              <Link
+                to={"/terms-and-conditions"}
+                style={{
+                  WebkitTransform: `translate3d(${-i2}px, 0, 0)`,
+                  transform: `translate3d(${-i2}px, 0, 0)`,
+                  opacity: o
+                }}
               >
-                {" "}
-                Let me in!
-              </NavLink>
-            ) : (
-              <div className="logged-user-infos">
-                <p>{user && user.name ? user.name : null}</p>
-                <div className="img-profile-container">
-                  {user && user.image ? (
-                    <img
-                      width={"50px"}
-                      height={"5px"}
-                      src={process.env.REACT_APP_STORAGE_URL + user.image}
-                      alt={user && user.name ? user.name : null}
-                    />
-                  ) : user && user.social_image ? (
-                    <img
-                      width={"50px"}
-                      height={"5px"}
-                      src={user.social_image}
-                      alt={user && user.name ? user.name : null}
-                    />
-                  ) : null}
-                  <div
-                    className="logout-icon"
-                    onClick={() => dispatch(logout())}
-                  >
-                    <ArrowRightBlack />
-                  </div>
-                </div>
-              </div>
-            )}
+                Terms and conditions
+              </Link>
+            </div>
           </div>
-
-          <Motion
-            style={{
-              x: spring(drawerOpened ? 255 : 0),
-              widthSpan: spring(drawerOpened ? 24 : 6),
-              heightSpan: spring(drawerOpened ? 4 : 6),
-              borderRadiusSpan: spring(drawerOpened ? 3 : 100),
-              rotation: spring(drawerOpened ? 45 : 0),
-              zeroWidth: spring(drawerOpened ? 5 : 6),
-              opacityValueMiddle: spring(drawerOpened ? 0 : 1)
-            }}
-          >
-            {({
-              x,
-              widthSpan,
-              borderRadiusSpan,
-              heightSpan,
-              rotation,
-              zeroWidth,
-              opacityValueMiddle
-            }) => (
-              <div className="menu-icon" onClick={handleDrawerStatus}>
-                <span
-                  style={{
-                    background: `rgb(${x}, ${x}, ${x})`,
-                    width: ` ${widthSpan}px `,
-                    height: ` ${heightSpan}px `,
-                    borderRadius: `${borderRadiusSpan}%`,
-                    transformOrigin: "right",
-                    transform: `rotate(${-rotation}deg)`,
-                    WebkitTransformOrigin: "right",
-                    WebkitTransform: `rotate(${-rotation}deg)`
-                  }}
-                />
-                <span
-                  style={{
-                    transformOrigin: "center center",
-                    WebkitTransformOrigin: "center center",
-                    WebkitTransform: "center center",
-                    opacity: `${opacityValueMiddle}`,
-                    background: `rgb(${x}, ${x}, ${x})`,
-                    width: ` ${zeroWidth}px `,
-                    height: ` ${zeroWidth}px `,
-                    borderRadius: `${borderRadiusSpan}%`
-                  }}
-                />
-                <span
-                  style={{
-                    background: `rgb(${x}, ${x}, ${x})`,
-                    width: ` ${widthSpan}px `,
-                    height: ` ${heightSpan}px `,
-                    borderRadius: `${borderRadiusSpan}%`,
-                    transformOrigin: "right",
-                    transform: `rotate(${rotation}deg)`,
-                    WebkitTransformOrigin: "right",
-                    WebkitTransform: `rotate(${rotation}deg)`
-                  }}
-                />
-              </div>
-            )}
-          </Motion>
-
-
-        </div>
-      </div>
-    </Affix>
-        <Motion
-            style={{
-              x: spring(drawerOpened ? 1 : 0),
-              i1: spring(drawerOpened ? 0 : 40, {
-                stiffness: 60,
-                damping: 10
-              }),
-              i2: spring(drawerOpened ? 0 : 50, {
-                stiffness: 60,
-                damping: 10
-              }),
-              o: spring(drawerOpened ? 1 : 0)
-            }}
-        >
-          {({ x, i1, i2, o }) => (
-              <div
-                  className="drawer"
-                  style={{
-                    opacity: x,
-                    pointerEvents: drawerOpened ? "all" : "none"
-                  }}
-              >
-                <div className="brand">
-                  <NavLink to={"/"}>
-                    <LogoWhite />
-                  </NavLink>
-                </div>
-
-                <Motion
-                    style={{
-                      x: spring(drawerOpened ? 0 : 200),
-                      y: spring(drawerOpened ? 0 : 400),
-                      w: spring(drawerOpened ? 0 : 600),
-                      z: spring(drawerOpened ? 0 : 800),
-                      o: spring(drawerOpened ? 1 : 0)
-                    }}
-                >
-                  {({ x, y, w, z, o }) => (
-                      <div className="menu-items">
-                        {isLoggedIn ? (
-                            <div className="logged-user-infos only-mobile">
-                              <p>{user && user.name ? user.name : null}</p>
-                              <div className="img-profile-container">
-                                {user && user.image ? (
-                                    <img
-                                        width={"50px"}
-                                        height={"5px"}
-                                        src={process.env.REACT_APP_STORAGE_URL + user.image}
-                                        alt={user && user.name ? user.name : null}
-                                    />
-                                ) : user && user.social_image ? (
-                                    <img
-                                        width={"50px"}
-                                        height={"5px"}
-                                        src={user.social_image}
-                                        alt={user && user.name ? user.name : null}
-                                    />
-                                ) : null}
-                                <div className="logout-icon" onClick={()=>{
-                                  dispatch(logout());
-                                  setDrawerOpened(false)
-                                }}>
-                                  <ArrowRightBlack />
-                                </div>
-                              </div>
-                            </div>
-                        ) : null}
-                        <NavLink
-                            exact
-                            className={"nav-link"}
-                            activeClassName={"active"}
-                            to={"/"}
-                            style={{
-                              WebkitTransform: `translate3d(${-x}px, 0, 0)`,
-                              transform: `translate3d(${-x}px, 0, 0)`,
-                              opacity: o
-                            }}
-                        >
-                          {" "}
-                          Hi!
-                        </NavLink>
-                        <NavLink
-                            className={"nav-link"}
-                            activeClassName={"active"}
-                            to={"/talents"}
-                            style={{
-                              WebkitTransform: `translate3d(${-y}px, 0, 0)`,
-                              transform: `translate3d(${-y}px, 0, 0)`,
-                              opacity: o
-                            }}
-                        >
-                          {" "}
-                          UX Talents
-                        </NavLink>
-                        <NavLink
-                            className={"nav-link"}
-                            activeClassName={"active"}
-                            to={"/hosts"}
-                            style={{
-                              WebkitTransform: `translate3d(${-y}px, 0, 0)`,
-                              transform: `translate3d(${-y}px, 0, 0)`,
-                              opacity: o
-                            }}
-                        >
-                          {" "}
-                          UX Hosts
-                        </NavLink>
-                        <NavLink
-                            className={"nav-link"}
-                            activeClassName={"active"}
-                            to={"/events"}
-                            style={{
-                              WebkitTransform: `translate3d(${-w}px, 0, 0)`,
-                              transform: `translate3d(${-w}px, 0, 0)`,
-                              opacity: o
-                            }}
-                        >
-                          {" "}
-                          UX Events
-                        </NavLink>
-                        <NavLink
-                            className={"nav-link"}
-                            activeClassName={"active"}
-                            to={"/get-in-touch"}
-                            style={{
-                              WebkitTransform: `translate3d(${-z}px, 0, 0)`,
-                              transform: `translate3d(${-z}px, 0, 0)`,
-                              opacity: o
-                            }}
-                        >
-                          {" "}
-                          Get In Touch
-                        </NavLink>
-
-                        {!isLoggedIn ? (
-                            <NavLink
-                                className={"nav-link"}
-                                activeClassName={"active"}
-                                to={"/let-me-in"}
-                                style={{
-                                  WebkitTransform: `translate3d(${-z}px, 0, 0)`,
-                                  transform: `translate3d(${-z}px, 0, 0)`,
-                                  opacity: o
-                                }}
-                            >
-                              {" "}
-                              Let me in!
-                            </NavLink>
-                        ) : null}
-                      </div>
-                  )}
-                </Motion>
-
-                <div className="bottom-links">
-                  <Link
-                      to={"/privacy-policy"}
-                      style={{
-                        WebkitTransform: `translate3d(${-i1}px, 0, 0)`,
-                        transform: `translate3d(${-i1}px, 0, 0)`,
-                        opacity: o
-                      }}
-                  >
-                    Privacy Policy
-                  </Link>
-                  <Link
-                      to={"/terms-and-conditions"}
-                      style={{
-                        WebkitTransform: `translate3d(${-i2}px, 0, 0)`,
-                        transform: `translate3d(${-i2}px, 0, 0)`,
-                        opacity: o
-                      }}
-                  >
-                    Terms and conditions
-                  </Link>
-                </div>
-              </div>
-          )}
-        </Motion>
-      </>
+        )}
+      </Motion>
+    </>
   );
 };
 export default withRouter(Navbar);

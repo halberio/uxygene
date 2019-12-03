@@ -57,7 +57,6 @@ export function loginFacebook(body) {
     try {
       const response = await AuthServices.signInFacebookRequest(body);
       localStorage.setItem("halber_token", response.data.access_token);
-      console.log(response);
       await dispatch({
         type: SIGNIN_FACEBOOK_SUCCESS,
         payload: response.data
