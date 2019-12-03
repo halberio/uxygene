@@ -17,6 +17,7 @@ import Footer from "./components/footer/Footer";
 import NotFoundPage from "./pages/404-page/NotFoundPage";
 import TermsAndConditionsPage from "./pages/terms-and-conditions-page/TermsAndConditionsPage";
 import LetMeInPage from "./pages/let-me-in-page/LetMeInPage";
+import GoogleFormPage from "./pages/google-form-page/GoogleFormPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
 
@@ -84,7 +85,7 @@ const App = props => {
                   path={"/get-in-touch"}
                   component={GetInTouchPage}
                 />
-
+                <Route exact path={"/g-form"} component={GoogleFormPage} />
                 <Route path="/talents" component={TalentsPage} />
                 <Route path="/hosts" component={HostsPage} />
                 <Route path="/events" component={EventsPage} />

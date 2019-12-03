@@ -92,7 +92,7 @@ const UpcomingEventsCardSlider = () => {
             <div className="free-or-paid">
               {item && item.is_paied
                 ? item.is_paied
-                  ? "paied"
+                  ? "paid"
                   : "free"
                 : "free"}
             </div>

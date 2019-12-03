@@ -2,10 +2,10 @@ import React from "react";
 import "./join-us-card.scss";
 import AndroidIcon from "../svg/AndroidIcon";
 import ArrowRightBlack from "../svg/ArrowRightBlack";
-
+import { Link } from "react-router-dom";
 const JoinUsCard = () => {
   return (
-    <div  className={"join-us-card"}>
+    <div className={"join-us-card"}>
       <AndroidIcon />
       <div className="text-big">
         <h1>YOU</h1>
@@ -16,19 +16,11 @@ const JoinUsCard = () => {
       </p>
       <div className={"text-form-j2"}>
         <p className={"text-link-join"} to={"/get-in-touch"}>
-          What’s your name?
+          Please fill out our form
         </p>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            console.log("sending");
-          }}
-        >
-          <input type={"text"} />
-          <button>
-            <ArrowRightBlack />
-          </button>
-        </form>
+        <Link to={"/g-form"}>
+          <ArrowRightBlack />
+        </Link>
       </div>
     </div>
   );

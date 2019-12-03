@@ -3,24 +3,24 @@ import "./talents-page.scss";
 import SearchCard from "../../components/search-card/SearchCard";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../actions/users-actions/actions";
+import { getTalents } from "../../actions/talents-actions/actions";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import AdjustIcon from "../../components/svg/AdjustIcon";
 import "../../components/filter-card/filter-card.scss";
 import { Motion, spring } from "react-motion";
 import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 const TalentsPage = () => {
   const dispatch = useDispatch();
-  const users = useSelector(state => state.usersReducer.users);
-  const isLoadingUsers = useSelector(
-    state => state.usersReducer.isLoadingUsers
+  const talents = useSelector(state => state.talentsReducer.talents);
+  const isLoadingTalents = useSelector(
+    state => state.talentsReducer.isLoadingTalents
   );
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getTalents());
   }, [dispatch]);
 
   const handleFilterStatus = () => {
@@ -47,7 +47,7 @@ const TalentsPage = () => {
           }, 80);
         }, 130);
       }
-    }, 500);
+    }, 300);
   };
   return (
     <div className={"talents-page"}>
@@ -55,7 +55,10 @@ const TalentsPage = () => {
         <meta charSet="utf-8" />
         <title>uxygène | UX Talents</title>
         <link rel="canonical" href="http://uxygène.org/talents" />
-          <meta name="description" content="uxygène | Talents : user experience camp"/>
+        <meta
+          name="description"
+          content="uxygène | Talents : user experience camp"
+        />
       </Helmet>
       <div className={"columns-container"}>
         <div className={`filter-card ${isFilterActive ? "active" : null}`}>
@@ -124,6 +127,7 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"uxdesignercheckbox"}
                       name="uxtalentradio"
@@ -138,6 +142,7 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"uidesignercheckbox"}
                       name="uxtalentradio"
@@ -153,6 +158,7 @@ const TalentsPage = () => {
                   >
                     {" "}
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"uxwritercheckbox"}
                       name="uxtalentradio"
@@ -167,6 +173,7 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"illustratorcheckbox"}
                       name="uxtalentradio"
@@ -181,6 +188,7 @@ const TalentsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"motiondesignercheckbox"}
                       name="uxtalentradio"
@@ -197,8 +205,8 @@ const TalentsPage = () => {
         </div>
         <SearchCard />
         <JoinUsCard />
-        {users && users.length > 0 ? (
-          users.map((item,index) => (
+        {talents && talents.length > 0 ? (
+          talents.map((item, index) => (
             <UserTalentCard
               key={item.id}
               id={item.id}
@@ -213,7 +221,7 @@ const TalentsPage = () => {
               position={item.title}
             />
           ))
-        ) : !isLoadingUsers && !users ? (
+        ) : !isLoadingTalents && !talents ? (
           <NoDataIcon msg={"No UX talents yet!"} />
         ) : (
           <div className="loading-flex-fixed">

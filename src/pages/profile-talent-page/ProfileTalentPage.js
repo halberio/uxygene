@@ -8,7 +8,7 @@ import { Motion, spring } from "react-motion";
 import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import InviteTalentForm from "../../components/invite-talent-form/InviteTalentForm";
 import { useDispatch } from "react-redux";
-import { addUserVote } from "../../actions/users-actions/actions";
+import { addTalentVote } from "../../actions/talents-actions/actions";
 import BatrieIcon from "../../components/svg/BatrieIcon";
 import HatOutlineIcon from "../../components/svg/HatOutlineIcon";
 import AndroidOutlineSvg from "../../components/svg/AndroidOutlineIcon";
@@ -23,7 +23,9 @@ const ProfileTalentPage = props => {
     setIsloadingData(true);
     (async () => {
       await axios
-        .get(process.env.REACT_APP_API_URL + "/users/" + props.match.params.id)
+        .get(
+          process.env.REACT_APP_API_URL + "/talents/" + props.match.params.id
+        )
         .then(function(response) {
           setUserData(response.data);
           setIsloadingData(false);
@@ -54,13 +56,13 @@ const ProfileTalentPage = props => {
 
   const voteUpHandler = id => {
     if (userData) {
-      dispatch(addUserVote(id));
-      setUserVotes(userVotes+1);
+      dispatch(addTalentVote(id));
+      setUserVotes(userVotes + 1);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     setUserVotes(userData.votes);
-  },[userData])
+  }, [userData]);
 
   return (
     <div className={"user-talent-profile-page"}>
@@ -98,7 +100,8 @@ const ProfileTalentPage = props => {
                 </div>
                 <div className="footer">
                   <div className="item">
-                    <AndroidOutlineSvg /> <h4>Public vote on training skills </h4>{" "}
+                    <AndroidOutlineSvg />{" "}
+                    <h4>Public vote on training skills </h4>{" "}
                     {userData && userData.id ? (
                       <button
                         onClick={() => voteUpHandler(userData.id)}
@@ -114,13 +117,13 @@ const ProfileTalentPage = props => {
                     ) : null}
                   </div>
                   <div className="item">
-                    <BatrieIcon/> <h4>Skills </h4>{" "}
+                    <BatrieIcon /> <h4>Skills </h4>{" "}
                     <p>
                       {userData && userData.skills ? userData.skills : null}
                     </p>
                   </div>
                   <div className="item">
-                    <HatOutlineIcon/> <h4>Availability for training </h4>{" "}
+                    <HatOutlineIcon /> <h4>Availability for training </h4>{" "}
                     <p>
                       {userData && userData.availability
                         ? userData.availability

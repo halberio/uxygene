@@ -22,7 +22,7 @@
     width: 100%;
     right: 0;
     position: relative;
-    background: $black-text;
+    background: #eaeaea;
     overflow: hidden;
     padding: 0;
     @include flex(1);
@@ -124,7 +124,7 @@
           @include flex(12);
           font-family: "Avenir", sans-serif;
           font-size: 14px;
-          margin:12px 0;
+          margin: 12px 0;
           font-weight: 800;
         }
       }

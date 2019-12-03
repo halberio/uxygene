@@ -1,0 +1,131 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.google-form-page {
+  @include flexbox();
+  @include flex-direction(column);
+  @include align-items(center);
+  .max-width-container {
+    max-width: calc(1200px - 1%);
+    padding: 0 10px;
+    @media (min-width: 992px) {
+      padding: 0 10px;
+    }
+    .row-container {
+      @include flexbox();
+      @include flex-direction(column);
+      @include justify-content(space-between);
+      @include align-items(flex-start);
+      @media (min-width: 992px) {
+        @include flex-direction(row);
+      }
+      width: 100%;
+      .left {
+        @include flex(1);
+        position: relative;
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #f8f7f7;
+          -webkit-animation: slideinEffectImg 0.9s forwards; /* Safari, Chrome and Opera > 12.1 */
+          -moz-animation: slideinEffectImg 0.9s forwards; /* Firefox < 16 */
+          -ms-animation: slideinEffectImg 0.9s forwards; /* Internet Explorer */
+          -o-animation: slideinEffectImg 0.9s forwards; /* Opera < 12.1 */
+          animation: slideinEffectImg 0.9s forwards;
+          animation-delay: 0.1s;
+          -webkit-animation-delay: 0.1s;
+          transform-origin: right;
+        }
+      }
+      &::-webkit-scrollbar {
+        height: 0 !important;
+      }
+      .right {
+        position: relative;
+        @include flexbox();
+        @include flex-direction(column);
+        @include flex(2);
+        width: 100%;
+        height: auto;
+        @include align-items(flex-end);
+        @include justify-content(flex-end);
+
+        iframe {
+          margin: 0;
+          padding: 0 !important;
+          @include transform(translateX(0));
+          @media (min-width: 992px) {
+            @include transform(translateX(7.6%));
+          }
+        }
+
+        &:after {
+          display: block;
+          content: "";
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          background: #f8f7f7;
+          height: 86px;
+          width: 100%;
+          pointer-events: none;
+        }
+      }
+    }
+    h1 {
+      font-family: "Babas", sans-serif;
+      font-size: 70px;
+      line-height: 70px;
+      @media (min-width: 992px) {
+        font-size: 90px;
+        line-height: 90px;
+      }
+      padding: 0;
+      margin: 0;
+    }
+    h2 {
+      font-family: "Babas", sans-serif;
+      font-size: 40px;
+      line-height: 40px;
+      @media (min-width: 992px) {
+        font-size: 60px;
+        line-height: 60px;
+      }
+      padding: 0;
+      margin: 0;
+      span {
+        color: $primary-color;
+      }
+    }
+    h3 {
+      font-family: "Avenir", sans-serif;
+      color: $black-text;
+      font-weight: 600;
+      font-size: 18px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
+    }
+    p {
+      font-family: "Avenir", sans-serif;
+      color: $black-text;
+    }
+
+    .divider-ux {
+      display: block;
+      width: 76px;
+      height: 5px;
+      background: $primary-color;
+      margin: 30px 0;
+      @media (min-width: 992px) {
+        margin: 80px 0;
+      }
+    }
+  }
+}

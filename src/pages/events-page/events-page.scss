@@ -36,9 +36,9 @@
       @include flex-direction(column);
       @include align-items(flex-start);
       @include justify-content(space-between);
-
     }
     .right {
+      height: auto;
       margin-left: 0px;
       @include flex(1);
       position: relative;
@@ -50,14 +50,14 @@
         margin-left: 30px;
         @include align-items(flex-end);
       }
-      .filter-card{
+      .filter-card {
         margin-top: 20px;
+        margin-bottom: 10px;
 
         @media (min-width: 768px) {
           margin-top: unset;
         }
         @media (min-width: 992px) {
-
           min-height: 100px;
         }
       }

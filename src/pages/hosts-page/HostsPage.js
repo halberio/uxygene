@@ -49,7 +49,7 @@ const HostsPage = () => {
           }, 80);
         }, 130);
       }
-    }, 500);
+    }, 300);
   };
 
   return (
@@ -58,7 +58,10 @@ const HostsPage = () => {
         <meta charSet="utf-8" />
         <title>uxygène | UX Hosts</title>
         <link rel="canonical" href="http://uxygène.org/hosts" />
-          <meta name="description" content="uxygène | Hosts : user experience camp"/>
+        <meta
+          name="description"
+          content="uxygène | Hosts : user experience camp"
+        />
       </Helmet>
       <div className="navigation-filters-container">
         <div
@@ -130,6 +133,7 @@ const HostsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"coworkingspacecheckbox"}
                       name="uxhostsradio"
@@ -146,6 +150,7 @@ const HostsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"universitycheckbox"}
                       name="uxhostsradio"
@@ -161,6 +166,7 @@ const HostsPage = () => {
                   >
                     {" "}
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"academycentercheckbox"}
                       name="uxhostsradio"
@@ -177,6 +183,7 @@ const HostsPage = () => {
                     }}
                   >
                     <input
+                      onChange={closeFilterWherever}
                       type="radio"
                       id={"ongcheckbox"}
                       name="uxhostsradio"
@@ -194,9 +201,9 @@ const HostsPage = () => {
       <div className="hosts-container">
         <HostJoinCard />
         {hosts && hosts.length > 0 ? (
-          hosts.map((item,index) => (
+          hosts.map((item, index) => (
             <HostCard
-                idForanimation={index}
+              idForanimation={index}
               key={item.id}
               id={item.id}
               image={
@@ -216,7 +223,7 @@ const HostsPage = () => {
               address={item.address}
             />
           ))
-        ) : !isLoadingHosts && !hosts ? (
+        ) : hosts && hosts.length === 0 && !isLoadingHosts ? (
           <NoDataIcon msg={"No UX hosts yet!"} />
         ) : (
           <div className="loading-flex-fixed">

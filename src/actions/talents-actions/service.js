@@ -6,26 +6,25 @@
 
 import axiosInstance from "../../config/axios-instance";
 
-function fetchUsersRequest() {
+function fetchTalentsRequest() {
   return axiosInstance({
     method: "get",
-    url: "/users",
+    url: "/talents",
     data: null
   });
 }
 
-function addUserVoteRequest(id) {
+function addTalentVoteRequest(id) {
   return axiosInstance({
     method: "post",
     url: "/add-vote-user",
-    data: {id:id}
+    data: { id: id }
   });
 }
 
-
 const UsersServices = {
-  fetchUsersRequest,
-  addUserVoteRequest
+  fetchTalentsRequest,
+  addTalentVoteRequest
 };
 
 export default UsersServices;

@@ -8,15 +8,18 @@ import { GoogleLogin } from "react-google-login";
 import { loginFacebook, loginGoogle } from "../../actions/auth-actions/actions";
 import { useDispatch } from "react-redux";
 import SpaceShip from "../../components/svg/SpaceShip";
+import ErrorModal from "../../components/error-modal/ErrorModal";
 const LetMeInPage = () => {
   const dispatch = useDispatch();
   const [selectedTab, setSelectedTab] = useState(0);
+  const [gotError, setGotError] = useState(false);
 
   const onFailure = error => {
     console.log(error);
+    setGotError(true);
   };
 
-  const googleResponse = response => {
+  const googleResponse = (response, error) => {
     try {
       const body = {
         providerId: response.googleId,
@@ -25,11 +28,12 @@ const LetMeInPage = () => {
           response.profileObj.givenName + " " + response.profileObj.familyName,
         first_name: response.profileObj.givenName,
         last_name: response.profileObj.familyName,
-        socialImage: response.profileObj.imageUrl
+        socialImage: response.profileObj.imageUrl,
+        is_talent: true
       };
       dispatch(loginGoogle(body));
     } catch (e) {
-      console.log("error google", e);
+      setGotError(true);
     }
   };
 
@@ -42,11 +46,13 @@ const LetMeInPage = () => {
           response.profileObj.givenName + " " + response.profileObj.familyName,
         first_name: response.profileObj.givenName,
         last_name: response.profileObj.familyName,
-        socialImage: response.profileObj.imageUrl
+        socialImage: response.profileObj.imageUrl,
+        is_host: true
       };
       dispatch(loginGoogle(body));
     } catch (e) {
       console.log("error google", e);
+      setGotError(true);
     }
   };
 
@@ -58,12 +64,14 @@ const LetMeInPage = () => {
         first_name: response.first_name,
         last_name: response.last_name,
         email: response.email,
-        providerId: response.id
+        providerId: response.id,
+        is_talent: true
       };
 
       dispatch(loginFacebook(body));
     } catch (e) {
       console.log("error facebook", e);
+      setGotError(true);
     }
   };
 
@@ -73,6 +81,12 @@ const LetMeInPage = () => {
 
   return (
     <div className={"let-me-in-page"}>
+      <ErrorModal
+        errorMsg={"It seems that something is not working as desired."}
+        secondaryMsg={"Try to check your internet connection"}
+        refreshPageBtnVisible={true}
+        isVisible={gotError}
+      />
       <div className="row-container">
         <div className="column">
           <div className="first">

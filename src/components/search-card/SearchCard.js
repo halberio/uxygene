@@ -40,34 +40,36 @@ const SearchForm = props => {
   useEffect(() => {
     let isSubscribed = true; // Succeeds
     if (isSubscribed) {
-      document.removeEventListener("keydown", () =>
-        setSearchContainerHidden(true)
-      );
-      document.addEventListener("keydown", event => {
-        if (
-          (event.keyCode >= 48 && event.keyCode <= 57) ||
-          (event.keyCode >= 65 && event.keyCode <= 90) ||
-          (event.keyCode >= 97 && event.keyCode <= 122 && isSubscribed)
-        ) {
-          if (
-            document.location.pathname.includes("talents") ||
-            document.location.pathname.includes("hosts")
-          ) {
-            setSearchContainerHidden(false);
-            if (refOfInput) {
-              if (refOfInput.current) {
-                refOfInput.current.focus();
+      (async () => {
+        if (isSubscribed && refOfInput) {
+          document.addEventListener("keydown", async event => {
+            if (
+              (event.keyCode >= 48 && event.keyCode <= 57) ||
+              (event.keyCode >= 65 && event.keyCode <= 90) ||
+              (event.keyCode >= 97 && event.keyCode <= 122)
+            ) {
+              if (
+                document.location.pathname.includes("talents") ||
+                document.location.pathname.includes("hosts")
+              ) {
+                setSearchContainerHidden(false);
+                let refTem = await refOfInput;
+                if (refTem) {
+                  if (refTem.current) {
+                    refTem.current.focus();
+                  }
+                }
               }
             }
-          }
+            if (event.keyCode === 27 && searchContainerHidden) {
+              setSearchContainerHidden(true);
+            }
+          });
         }
-        if (event.keyCode === 27) {
-          setSearchContainerHidden(true);
-        }
-      });
+      })();
     }
     return () => (isSubscribed = false);
-  }, []);
+  }, [refOfInput, searchContainerHidden]);
   return (
     <>
       <div

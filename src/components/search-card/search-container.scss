@@ -1,7 +1,7 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 .search-container {
-  .max-with-container{
+  .max-with-container {
     max-width: calc(1200px - 1%);
     width: 100%;
     height: 100%;
@@ -14,12 +14,12 @@
   @include flex-direction(column);
   @include align-items(center);
   @include justify-content(center);
-  .navs-search{
+  .navs-search {
     @include flexbox();
     @include justify-content(space-between);
     width: 100%;
   }
-  .close-search-icon-container{
+  .close-search-icon-container {
     @include flexbox();
     @include align-items(center);
     @include justify-content(flex-end);
@@ -34,21 +34,21 @@
       top: 5%;
       width: 144px;
     }
-    &:hover{
-      p{
+    &:hover {
+      p {
         opacity: 1;
       }
     }
-    svg{
+    svg {
       max-height: 30px;
       cursor: pointer;
       max-width: 30px;
     }
-    p{
+    p {
       cursor: pointer;
       margin: 0 10px;
       line-height: 14px;
-      @include transition(all, 0.2s,ease-in-out);
+      @include transition(all, 0.2s, ease-in-out);
       opacity: 0;
       padding: 0;
       font-family: "Avenir", sans-serif;
@@ -110,8 +110,8 @@
     @media (min-width: 992px) {
       @include justify-content(space-between);
     }
-    .ant-form-item{
-      &:last-child{
+    .ant-form-item {
+      &:last-child {
         margin-right: 0;
       }
     }
@@ -120,7 +120,7 @@
     font-size: 30px;
     @media (min-width: 992px) {
       font-size: 100px;
-  }
+    }
 
     max-width: 800px;
     height: unset;
@@ -159,12 +159,14 @@
       margin-right: 20px;
       margin-left: 20px;
       width: 30px;
+      @include transition(all, 0.2s, ease-in-out);
       @media (min-width: 992px) {
         width: 94px;
         height: 50px;
       }
       background-color: white;
       &:after {
+        @include transition(all, 0.2s, ease-in);
         background: $primary-color;
         box-shadow: none;
         height: 22px;

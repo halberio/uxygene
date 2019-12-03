@@ -24,21 +24,18 @@
     @include flex-direction(row);
     @include align-items(center);
     @include justify-content(flex-end);
-    p{
+    p {
       margin: 0;
       padding: 0;
       @include flex(1);
+      color: $dark-silver !important;
+      max-width: 148px;
+      opacity: 0;
+      @include transition(all, 0.3s, ease-in-out);
+      text-align: center;
+      margin: 0 auto;
     }
-    form{
-      @include flexbox();
-      @include align-items(center);
-      @include justify-content(center);
-      @media (min-width: 768px) {
-        @include flex-direction(column);
-      }
-      @include flex(1);
-      width: 100%;
-    }
+
     @media (min-width: 768px) {
       bottom: -50px;
       right: unset;
@@ -48,30 +45,21 @@
     }
     height: 0px;
     @include transform-origin(bottom);
-    input {
 
-      @include flex(1);
-      width: 90%;
-      max-width: 190px;
-      border: 0;
-      background: transparent;
-      font-family: "Babas", sans-serif;
-      color: $black-text;
-      font-size: 20px;
-      border-bottom: 2px solid $light-silver;
-      &:focus {
-        outline: none;
-      }
-      position: relative;
-    }
-    button {
+    a {
       position: relative;
       @include flex(1);
+      @include flexbox();
+      @include justify-content(center);
+      @include align-items(center);
       cursor: pointer;
       background: transparent;
       border: 0;
       margin: 0;
-      margin-top: 10px;
+      margin-top: unset;
+      @media (min-width: 768px) {
+        margin-top: 10px;
+      }
       width: 100%;
       padding: 5px 10px;
       outline: none;
@@ -86,40 +74,6 @@
         path {
           fill: $primary-color;
         }
-      }
-    }
-  }
-  &:hover {
-    .text-form-j2 {
-      opacity: 1;
-      height: auto;
-      @include transform(translateY(-40px));
-    }
-    background: $white;
-    box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
-    svg {
-      path {
-        fill: $primary-color;
-      }
-    }
-    .text-link-join {
-      color: $black-text;
-      font-size: 14px;
-      @media (min-width: 768px) {
-        font-size: 24px;
-      }
-    }
-    p {
-      &#text-j1 {
-        opacity: 0;
-        @include transform(translateY(-10px));
-      }
-    }
-    h1,h2{
-      opacity: 0;
-      @media (min-width: 768px) {
-        opacity: 1;
-        @include transform(translateY(-20px));
       }
     }
   }
@@ -139,10 +93,55 @@
     max-width: 30px;
     @include transition(all, 0.2s, ease-in-out);
     @media (min-width: 768px) {
+      @include transform(translateY(30px));
       max-width: 50px;
       min-width: 50px;
 
       min-height: 60px;
+    }
+  }
+
+  &:hover {
+    .text-form-j2 {
+      opacity: 1;
+      height: auto;
+
+      @include transform(translateY(-45px));
+      @media (min-width: 768px) {
+        @include transform(translateY(-35%));
+      }
+      p {
+        opacity: 1;
+      }
+    }
+    background: $white;
+    box-shadow: 20px 20px 20px rgba(255, 204, 0, 0.2);
+    svg {
+      @include transform(translateY(0));
+      path {
+        fill: $primary-color;
+      }
+    }
+    .text-link-join {
+      color: $black-text;
+      font-size: 14px;
+      @media (min-width: 768px) {
+        font-size: 24px;
+      }
+    }
+    p {
+      &#text-j1 {
+        opacity: 0;
+        @include transform(translateY(-10px));
+      }
+    }
+    h1,
+    h2 {
+      opacity: 0;
+      @media (min-width: 768px) {
+        opacity: 1;
+        @include transform(translateY(-20px));
+      }
     }
   }
   @media (min-width: 768px) {
