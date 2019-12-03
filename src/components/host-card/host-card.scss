@@ -1,7 +1,7 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 
-.host-card{
+.host-card {
   .badge-container {
     position: absolute;
     display: block;
@@ -21,7 +21,7 @@
   cursor: pointer;
   @include transition(all, 0.2s, ease-in-out);
   display: inline-block;
-  background: #FFFFFF;
+  background: #ffffff;
   position: relative;
   height: 100%;
   width: 100%;
@@ -31,27 +31,49 @@
   @media (min-width: 992px) {
     grid-row: span 3;
   }
-  .images-container{
+  .images-container {
     @include border-radius(10px 0);
     @include flex(1);
     overflow: hidden;
     position: relative;
+    background: #eaeaea;
+    z-index: 0;
     height: 220px;
     width: 100%;
     @media (min-width: 992px) {
       height: 250px;
     }
-    .img-bg{
+    .svg-onload-container {
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      @include flexbox();
+      @include justify-content(center);
+      @include align-items(center);
+      svg {
+        max-width: 100px;
+        max-height: 100px;
+        @media (min-width: 992px) {
+          max-width: 170px;
+          max-height: 170px;
+        }
+      }
+    }
+    .img-bg {
       @include transition(all, 0.2s, ease-in-out);
       @include border-radius(10px 0);
-      background: $black-text;
       overflow: hidden;
       object-fit: cover;
       object-position: top;
       width: 100%;
       height: 100%;
+      img {
+      }
     }
-    .profile-image{
+    .profile-image {
       @include transition(all, 0.2s, ease-in-out);
       position: absolute;
       bottom: 20px;
@@ -60,7 +82,7 @@
       height: 70px;
       @include border-radius(5px);
       overflow: hidden;
-      img{
+      img {
         @include border-radius(5px);
         overflow: hidden;
         object-fit: cover;
@@ -69,7 +91,7 @@
       }
     }
   }
-  .text-container{
+  .text-container {
     @include flex(1);
     @include flexbox();
     @include flex-direction(column);
@@ -77,21 +99,21 @@
     box-sizing: border-box;
     padding: 10px;
     @media (min-width: 992px) {
-      padding:20px;
+      padding: 20px;
     }
-    .description-h5{
-      color:#232323;
+    .description-h5 {
+      color: #232323;
       font-size: 13px;
       font-family: "Avenir", sans-serif;
       margin-top: 10px;
     }
-    .top{
+    .top {
       @include flex(1);
       width: 100%;
       @include flexbox();
       @include justify-content(space-between);
       @include align-items(flex-start);
-      h3{
+      h3 {
         font-size: 38px;
         line-height: 38px;
         margin: 0;
@@ -100,30 +122,27 @@
         color: $primary-color;
         text-transform: uppercase;
       }
-
-
     }
-    .bottom{
+    .bottom {
       @include flexbox();
       @include justify-content(space-between);
       @include align-items(center);
 
-      svg{
+      svg {
         height: 15px;
         width: 15px;
       }
-      p{
+      p {
         margin: 0;
         padding: 0;
         font-family: "Avenir", sans-serif;
-        color: #5A574C;
+        color: #5a574c;
       }
     }
-
   }
-  .infos-block{
+  .infos-block {
     min-height: 40%;
-    .arrow-button{
+    .arrow-button {
       position: absolute;
       right: 0;
       width: 50px;
@@ -144,11 +163,11 @@
       margin-right: 10px;
       border: none;
       z-index: 2;
-      &:focus{
+      &:focus {
         outline: none;
       }
-      svg{
-        width:100%;
+      svg {
+        width: 100%;
       }
     }
     pointer-events: none;
@@ -169,16 +188,16 @@
     z-index: 999999;
     font-family: "Avenir", sans-serif;
     @include justify-content(space-between);
-    .top-items{
+    .top-items {
       @include flexbox();
       @include align-items(flex-start);
       width: 100%;
       margin-bottom: 25px;
-      .text-infos-hover{
-        svg{
+      .text-infos-hover {
+        svg {
           width: 15px;
         }
-        h3{
+        h3 {
           margin: 0;
           padding: 0;
           margin-left: 10px;
@@ -190,13 +209,12 @@
             font-size: 40px;
           }
         }
-        p{
+        p {
           margin: 0;
-          svg{
+          svg {
             margin-right: 3px;
           }
           @media (min-width: 992px) {
-
             margin-top: -10px;
           }
           padding: 0;
@@ -207,35 +225,35 @@
           }
         }
       }
-      .profile-image{
+      .profile-image {
         width: 40px;
         height: 40px;
         min-height: 40px;
         min-width: 40px;
         @media (min-width: 992px) {
-        max-width: 70px;
+          max-width: 70px;
           max-height: 70px;
           min-height: 70px;
           min-width: 70px;
           width: 70px;
           height: 70px;
         }
-          overflow: hidden;
+        overflow: hidden;
         @include border-radius(5px);
-        img{
+        img {
           object-fit: cover;
           width: 100%;
           height: 100%;
         }
       }
     }
-    .bot-items{
+    .bot-items {
       display: none;
       @media (min-width: 992px) {
-
         @include flexbox();
       }
-      .left,.right{
+      .left,
+      .right {
         @include flex(1);
         @include transition(all, 0.2s, 0.2s);
         @include transform(translateX(20px));
@@ -243,69 +261,68 @@
       }
     }
 
-    ul{
+    ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      li{
+      li {
         padding: 0;
         margin: 0;
       }
     }
     width: 100%;
-    color:white;
-    h5{
-      color:white;
+    color: white;
+    h5 {
+      color: white;
       font-size: 15px;
       font-weight: bold;
     }
-    h4{
+    h4 {
       font-size: 16px;
       font-weight: bold;
-      color:white;
+      color: white;
     }
   }
-  &:hover{
-      height: auto;
+  &:hover {
+    height: auto;
 
-    .infos-block{
+    .infos-block {
       bottom: 0;
-      .left,.right{
+      .left,
+      .right {
         opacity: 1;
         @include transform(translateX(0px));
       }
     }
-    .images-container{
-      .img-bg{
+    .images-container {
+      .img-bg {
         //filter:blur(5px);
       }
     }
     background: #232323;
-    .bottom{
-      p{
-        color:white;
+    .bottom {
+      p {
+        color: white;
       }
     }
-    .text-container{
-      .top{
-        .arrow-button{
+    .text-container {
+      .top {
+        .arrow-button {
           border: 0;
-          svg{
-            path{
+          svg {
+            path {
               fill: $primary-color;
             }
           }
         }
-
       }
     }
   }
-
 }
 @include keyframes(fade-in) {
   0% {
     opacity: 0;
-    @include transform(scale(.95));
+    @include transform(scale(0.95));
   }
   100% {
     opacity: 1;

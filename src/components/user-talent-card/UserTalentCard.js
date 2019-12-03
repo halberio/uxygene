@@ -1,23 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./user-talent-card.scss";
 import { Link } from "react-router-dom";
+import SilverAndroidRound from "../svg/SilverAndroidRound";
 const UserTalentCard = props => {
   const [loaded, setLoaded] = useState(false);
 
   const imgLoadedHandler = () => {
-   setTimeout(()=>{
-     setLoaded(true);
-   },500)
+    setTimeout(() => {
+      setLoaded(true);
+    }, 500);
   };
 
-  useEffect(()=>{
-      let isSubscribed = true;
-      if(isSubscribed){
-          if(loaded){
-              clearTimeout();
-          }
+  useEffect(() => {
+    let isSubscribed = true;
+    if (isSubscribed) {
+      if (loaded) {
+        clearTimeout();
       }
-      return ()=> isSubscribed = false;
+    }
+    return () => (isSubscribed = false);
   });
 
   return (
@@ -28,21 +29,20 @@ const UserTalentCard = props => {
         animationDelay: `${props.idForanimation * 0.14}s`
       }}
     >
-
       <>
-        <div className="picture-container"
-             style={{
-                background:loaded?"#232323":'#232323'
-             }}>
+        <div className="picture-container">
+          <div className="svg-onload-container">
+            <SilverAndroidRound />
+          </div>
           {props.image ? (
-              <img
-                  style={{
-                      opacity:loaded ? 1 :0
-                  }}
-                  onLoad={imgLoadedHandler}
-                  src={props.image}
-                  alt={props.name + props.position}
-              />
+            <img
+              style={{
+                opacity: loaded ? 1 : 0
+              }}
+              onLoad={imgLoadedHandler}
+              src={props.image}
+              alt={props.name + props.position}
+            />
           ) : null}
         </div>
         {props.confirmed ? <div className="badge-container" /> : null}
