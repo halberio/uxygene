@@ -3,24 +3,23 @@
 .filter-card {
   border: none !important;
   outline: none !important;
-  &:hover{
+  &:hover {
     box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.1);
   }
   max-height: 60px;
   @media (min-width: 992px) {
     max-height: 100px;
   }
-  @include transition(all, 0.2s,ease-in-out);
+  @include transition(all, 0.2s, ease-in-out);
 
-  .list-filter{
-    cursor: pointer;
+  .list-filter {
     position: absolute;
-    @include border-radius( 10px);
+    @include border-radius(10px);
     @include flexbox();
     @include justify-content(flex-start);
     @include align-items(flex-start);
     @include transform(scaleY(0));
-    transform-origin: top ;
+    transform-origin: top;
     -webkit-transform-origin: top center;
     width: 100%;
     background: $white;
@@ -32,16 +31,14 @@
       padding-left: 30px;
       top: 80px;
     }
-    ul{
+    ul {
       position: relative;
       padding: 0;
       margin: 10px 0;
       list-style: none;
       font-family: "BabasLight", sans-serif;
       font-weight: 600;
-      li{
-
-        cursor: pointer;
+      li {
         position: relative;
         padding: 0;
         text-transform: uppercase;
@@ -52,13 +49,12 @@
         }
         text-align: left;
         color: #919191;
-        input[type='checkbox'],input[type='radio']{
-          cursor: pointer;
+        input[type="checkbox"],
+        input[type="radio"] {
           display: none;
-          &:checked + label{
-            cursor: pointer;
+          &:checked + label {
             color: $black-text;
-            &:before{
+            &:before {
               width: 20px;
               @media (min-width: 992px) {
                 width: 30px;
@@ -66,17 +62,17 @@
             }
           }
         }
-        label{
-          @include transition(all,0.2s,ease-in-out);
+        label {
+          @include transition(all, 0.2s, ease-in-out);
 
           position: relative;
-          @include transition(all, 0.2s,ease-in-out);
+          @include transition(all, 0.2s, ease-in-out);
           margin-left: 8px;
           @media (min-width: 992px) {
             margin-left: 10px;
           }
-          &:before{
-            @include transition(all, 0.2s,ease-in-out);
+          &:before {
+            @include transition(all, 0.2s, ease-in-out);
             transform-origin: right center;
             -webkit-transform-origin: right center;
             content: "";
@@ -95,19 +91,18 @@
       }
     }
   }
-  &.active{
+  &.active {
     border: 0;
     outline: none;
     box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.01);
-    .list-filter{
+    .list-filter {
       box-shadow: 20px 20px 20px rgba(35, 29, 6, 0.05);
-
     }
   }
   position: relative;
   padding: 0 20px;
   @include flexbox();
-  grid-row:span 1;
+  grid-row: span 1;
 
   width: 100%;
   justify-self: stretch;
@@ -132,26 +127,22 @@
   @include flex-direction(row);
   @include justify-content(space-between);
   svg {
-    cursor: pointer;
     max-width: 30px;
   }
-  @include border-radius( 10px);
+  @include border-radius(10px);
   background: $white;
 
-
   h1 {
-
-    &::selection{
+    &::selection {
       background: transparent;
     }
     position: relative;
     width: 100%;
-    @include transition(all,0.2s,ease-in-out);
-    &:active{
+    @include transition(all, 0.2s, ease-in-out);
+    &:active {
       outline: none;
-      @include transform(scale(.99));
+      @include transform(scale(0.99));
     }
-    cursor: pointer;
     color: $dark-silver;
     font-family: "Babas", sans-serif;
     text-transform: uppercase;

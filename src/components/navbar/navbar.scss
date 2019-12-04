@@ -2,14 +2,14 @@
 @import "../../stylesheets/mixins";
 
 .navbar {
-  .navilink-btn-container{
+  .navilink-btn-container {
     @include flexbox();
     @include align-items(center);
     @include justify-content(flex-end);
     position: relative;
     min-width: 200px;
   }
-  .logged-user-infos{
+  .logged-user-infos {
     position: relative;
 
     min-width: 120px;
@@ -17,14 +17,13 @@
     @include align-items(center);
     @include justify-content(space-between);
     @include border-radius(40px);
-    padding:20px 45px;
+    padding: 20px 45px;
     padding-left: 5px;
     height: 50px;
     box-sizing: border-box;
     background: $white;
-    cursor: pointer;
-    @include transition(all,0.4s,ease-in-out);
-    .logout-icon{
+    @include transition(all, 0.4s, ease-in-out);
+    .logout-icon {
       width: 40px;
       position: absolute;
       right: 5px;
@@ -33,19 +32,18 @@
       @include justify-content(center);
       @include align-items(center);
       @include border-radius(100%);
-      @include transition(all,0.2s,ease-in-out);
+      @include transition(all, 0.2s, ease-in-out);
       background: $white;
-      cursor: pointer;
-      &:hover{
-        svg{
-          path{
-            @include transition(all,0.3s,ease-in-out);
+      &:hover {
+        svg {
+          path {
+            @include transition(all, 0.3s, ease-in-out);
             fill: $black-text;
           }
         }
       }
     }
-    .img-profile-container{
+    .img-profile-container {
       position: absolute;
       width: 40px;
       height: 40px;
@@ -56,9 +54,9 @@
       @include justify-content(center);
       @include align-items(center);
       @include border-radius(100%);
-      @include transition(all,0.3s,ease-in-out);
+      @include transition(all, 0.3s, ease-in-out);
       overflow: hidden;
-      img{
+      img {
         @include border-radius(100%);
         object-fit: cover;
         width: 100%;
@@ -66,21 +64,20 @@
         margin: 0;
       }
     }
-    p{
-      cursor: pointer;
+    p {
       margin: 0 10px;
       text-align: center;
       @include flex(1);
-      padding:0;
+      padding: 0;
       font-size: 13px;
       font-family: "Avenir", sans-serif;
       text-transform: capitalize;
-      @include transition(all,0.3s,ease-in-out);
+      @include transition(all, 0.3s, ease-in-out);
     }
-    &:hover{
+    &:hover {
       background: $primary-color;
       padding-left: 45px;
-      .img-profile-container{
+      .img-profile-container {
         right: calc(100% - 45px);
       }
     }
@@ -168,7 +165,6 @@
     position: absolute;
     padding-left: 110px;
 
-
     @media (min-width: 992px) {
       padding-left: 130px;
     }
@@ -198,7 +194,6 @@
       align-self: flex-start;
     }
     h4.bold-black {
-
       &::selection {
         background: transparent;
         color: unset;

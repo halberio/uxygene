@@ -22,7 +22,7 @@
 
 html {
   font-size: 12px;
-  --antd-wave-shadow-color:$black-text !important;
+  --antd-wave-shadow-color: $black-text !important;
 }
 
 body {
@@ -32,8 +32,97 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: $light-silver;
   overflow: auto;
+  overflow-x: hidden;
+  @media (min-width: 992px) {
+    cursor: none;
+  }
 }
-::-moz-selection { /* Code for Firefox */
+
+@include keyframes(sclae-infinite-curs) {
+  0% {
+    opacity: 0.8;
+    @include transform(scale(0.9));
+  }
+  100% {
+    opacity: 1;
+    @include transform(scale(1.05));
+  }
+}
+
+@include keyframes(sclae-infinite-curs-into) {
+  0% {
+    opacity: 0.8;
+    @include transform(scale(0.9));
+  }
+  100% {
+    opacity: 1;
+    @include transform(scale(1.05));
+  }
+}
+
+@include keyframes(expand-curs-anim) {
+  0% {
+    @include transform(scale(1));
+  }
+  50% {
+    @include transform(scale(1.5));
+  }
+  100% {
+    @include transform(scale(1));
+    opacity: 0;
+  }
+}
+
+.ux-cursor {
+  width: 31px;
+  height: 31px;
+  pointer-events: none;
+  @include border-radius(100%);
+  position: absolute;
+  z-index: 9999999999999999999;
+  border: 2px solid $black-text;
+  -webkit-animation: sclae-infinite-curs 0.5s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: sclae-infinite-curs 0.5s infinite alternate; /* Firefox < 16 */
+  -ms-animation: sclae-infinite-curs 0.5s infinite alternate; /* Internet Explorer */
+  -o-animation: sclae-infinite-curs 0.5s infinite alternate; /* Opera < 12.1 */
+  animation: sclae-infinite-curs 0.5s infinite alternate;
+  display: none;
+  @media (min-width: 992px) {
+    display: block;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 9px;
+    top: 9px;
+    display: block;
+    @include border-radius(100%);
+    margin: auto;
+    background: $black-text;
+    -webkit-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Firefox < 16 */
+    -ms-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Internet Explorer */
+    -o-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Opera < 12.1 */
+    animation: sclae-infinite-curs-into 0.5s infinite alternate;
+  }
+  &.expand {
+    -webkit-animation: expand-curs-anim 0.5s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: expand-curs-anim 0.5s forwards; /* Firefox < 16 */
+    -ms-animation: expand-curs-anim 0.5s forwards; /* Internet Explorer */
+    -o-animation: expand-curs-anim 0.5s forwards; /* Opera < 12.1 */
+    animation: expand-curs-anim 0.5s forwards;
+  }
+}
+
+a:hover ~ .ux-cursor {
+  .ux-cursor {
+    background: red !important;
+  }
+}
+::-moz-selection {
+  /* Code for Firefox */
   color: $black-text;
   background: $primary-color;
 }
@@ -57,11 +146,11 @@ body {
     padding: 0 0;
   }
   opacity: 0;
-  -webkit-animation: fade-in .4s forwards; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fade-in .4s forwards; /* Firefox < 16 */
-  -ms-animation: fade-in .4s forwards; /* Internet Explorer */
-  -o-animation: fade-in .4s forwards; /* Opera < 12.1 */
-  animation: fade-in .4s forwards;
+  -webkit-animation: fade-in 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fade-in 0.4s forwards; /* Firefox < 16 */
+  -ms-animation: fade-in 0.4s forwards; /* Internet Explorer */
+  -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
+  animation: fade-in 0.4s forwards;
 }
 
 .page-container {
@@ -73,7 +162,6 @@ body {
 .fadetransition {
   top: 0;
   position: absolute;
-
 }
 .fadetransition-appear,
 .fadetransition-enter {

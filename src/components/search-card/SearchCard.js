@@ -6,20 +6,34 @@ import { Form, Switch } from "antd";
 import LogoWhite from "../svg/LogoWhite";
 import { Motion, spring } from "react-motion";
 import CloseIconWhite from "../svg/CloseIconWhite";
+import { withRouter } from "react-router-dom";
 const SearchForm = props => {
   const [searchContainerHidden, setSearchContainerHidden] = useState(true);
   const [taktatakText, setTakTakTakText] = useState("Type To search");
+  const [valueSwitchIsTalent, setValueSwitchIsTalent] = useState(false);
   const { getFieldDecorator } = props.form;
   const handleSubmit = e => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        if (valueSwitchIsTalent) {
+          props.history.push("/search-talent");
+        } else {
+          props.history.push("/search-host");
+        }
       }
     });
   };
+  const onChangeSwitch = checked => {
+    if (!checked) {
+      setValueSwitchIsTalent(true);
+    } else {
+      setValueSwitchIsTalent(false);
+    }
+  };
 
-  let refOfInput = useRef();
+  let refOfInput = useRef(null);
   const changeSearchContainerVisibility = () => {
     setSearchContainerHidden(!searchContainerHidden);
     if (searchContainerHidden) {
@@ -70,6 +84,7 @@ const SearchForm = props => {
     }
     return () => (isSubscribed = false);
   }, [refOfInput, searchContainerHidden]);
+
   return (
     <>
       <div
@@ -142,7 +157,8 @@ const SearchForm = props => {
                   })(
                     <div className={"container-switch"}>
                       <h3>UX Taltent</h3>
-                      <Switch defaultChecked /> <h3>UX Events</h3>
+                      <Switch defaultChecked onChange={onChangeSwitch} />{" "}
+                      <h3>UX Events</h3>
                     </div>
                   )}
                 </Form.Item>
@@ -154,5 +170,5 @@ const SearchForm = props => {
     </>
   );
 };
-const SearchCard = Form.create({ name: "search-form" })(SearchForm);
+const SearchCard = Form.create({ name: "search-form" })(withRouter(SearchForm));
 export default SearchCard;

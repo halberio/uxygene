@@ -1,51 +1,49 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
 
-.carousel-ux{
+.carousel-ux {
   top: 0;
   left: 0;
   height: 100%;
   max-height: 630px;
-  .ant-carousel{
+  .ant-carousel {
     height: 100%;
     max-height: 630px;
 
-    .slick-slide{
-
+    .slick-slide {
       background: $black-text;
-      div{
+      div {
         height: 100%;
 
         max-height: 400px;
 
         @media (min-width: 992px) {
-
           max-height: 630px;
         }
-        img{
+        img {
           max-height: 630px;
-          max-width:none;
-          min-width:100%;
-          width:100%;
+          max-width: none;
+          min-width: 100%;
+          width: 100%;
           height: 68vh;
           object-fit: cover;
         }
       }
     }
-    .slick-dots{
+    .slick-dots {
       position: absolute;
-      bottom:50px;
+      bottom: 50px;
       z-index: 1;
       height: 20px;
       @include flexbox();
       @include align-items(center);
       @include justify-content(center);
-      li{
+      li {
         height: 20px;
         width: 20px;
         border: 1px solid $primary-color;
         @include border-radius(100%);
-        button{
+        button {
           font-size: 0;
           background: transparent !important;
           @include border-radius(100%);
@@ -53,14 +51,14 @@
           width: 100% !important;
           top: 0;
         }
-        &.slick-active{
+        &.slick-active {
           background: $primary-color;
         }
       }
     }
   }
 
-  .navigation-items-carousel-ux{
+  .navigation-items-carousel-ux {
     width: 100%;
     @include flexbox();
     @include justify-content(space-between);
@@ -71,9 +69,9 @@
       height: 20px;
       bottom: 96px;
     }
-    button{
-      &:active{
-        @include transform(scale(.9));
+    button {
+      &:active {
+        @include transform(scale(0.9));
       }
       @include flexbox();
       @include align-items(center);
@@ -86,22 +84,21 @@
       position: relative;
       @include flex(1);
       border: none;
-      cursor: pointer;
       outline: none;
-      @include transition(all,0.2s,ease-in-out);
-      svg{
-        path{
+      @include transition(all, 0.2s, ease-in-out);
+      svg {
+        path {
           fill: $white;
-          @include transition(all,0.2s,ease-in-out);
+          @include transition(all, 0.2s, ease-in-out);
         }
       }
-      &:focus{
+      &:focus {
         outline: none;
       }
-      &:hover{
-        svg{
-          path{
-            fill:$primary-color
+      &:hover {
+        svg {
+          path {
+            fill: $primary-color;
           }
         }
       }

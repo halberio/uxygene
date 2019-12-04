@@ -14,11 +14,11 @@ function fetchTalentsRequest() {
   });
 }
 
-function addTalentVoteRequest(id) {
+function addTalentVoteRequest(body) {
   return axiosInstance({
     method: "post",
-    url: "/add-vote-talent",
-    data: { id: id }
+    url: "/votes",
+    data: { ...body }
   });
 }
 

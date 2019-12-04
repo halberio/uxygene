@@ -14,11 +14,11 @@ function fetchHostsRequest() {
   });
 }
 
-function addHostVoteRequest(id) {
+function addHostVoteRequest(body) {
   return axiosInstance({
     method: "post",
-    url: "/add-vote-host",
-    data: {id:id}
+    url: "/votes",
+    data: { ...body }
   });
 }
 

@@ -37,13 +37,13 @@ export function getTalents() {
   };
 }
 
-export function addTalentVote(id) {
+export function talentVote(body) {
   return async dispatch => {
     await dispatch({
       type: ADD_TALENT_VOTE_REQUEST
     });
     try {
-      await TalentsServices.addTalentVoteRequest(id);
+      await TalentsServices.addTalentVoteRequest(body);
       await dispatch({
         type: ADD_TALENT_VOTE_SUCCESS
       });

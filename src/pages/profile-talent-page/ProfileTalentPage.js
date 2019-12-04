@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./profile-talent-page.scss";
+import { Spin, Icon, message } from "antd";
 import ConfirmedBadge from "../../components/svg/ConfirmedBadge";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -7,34 +8,57 @@ import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import { Motion, spring } from "react-motion";
 import ArrowLeftBlack from "../../components/svg/ArrowLeftBlack";
 import InviteTalentForm from "../../components/invite-talent-form/InviteTalentForm";
-import { useDispatch } from "react-redux";
-import { addTalentVote } from "../../actions/talents-actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { talentVote } from "../../actions/talents-actions/actions";
 import BatrieIcon from "../../components/svg/BatrieIcon";
 import HatOutlineIcon from "../../components/svg/HatOutlineIcon";
 import AndroidOutlineSvg from "../../components/svg/AndroidOutlineIcon";
 import MoneyIcon from "../../components/svg/MoneyIcon";
 const ProfileTalentPage = props => {
-  const [userData, setUserData] = useState({});
+  const [talentData, setTalentData] = useState({});
   const [isLoadingData, setIsloadingData] = useState(true);
   const [formOpened, setFormOpened] = useState(false);
-  const [userVotes, setUserVotes] = useState(0);
+  const [isUpadingVotes, setIsUpadingVotes] = useState(false);
+  const [userVotes, setUserVotes] = useState({
+    votes: 0,
+    voted_by_me: false
+  });
   const dispatch = useDispatch();
+  const user = useSelector(state => state.authReducer.user);
+  const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
   useEffect(() => {
     setIsloadingData(true);
-    (async () => {
-      await axios
-        .get(
-          process.env.REACT_APP_API_URL + "/talents/" + props.match.params.id
-        )
-        .then(function(response) {
-          setUserData(response.data);
-          setIsloadingData(false);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    })();
+    if (user && isLoggedIn) {
+      (async () => {
+        await axios
+          .get(
+            `${process.env.REACT_APP_API_URL}/talents/${props.match.params.id}?user_id=${user.id}`
+          )
+          .then(function(response) {
+            setTalentData(response.data);
+            setIsloadingData(false);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      })();
+    } else {
+      (async () => {
+        await axios
+          .get(
+            `${process.env.REACT_APP_API_URL}/talents/${props.match.params.id}`
+          )
+          .then(function(response) {
+            setTalentData(response.data);
+            setIsloadingData(false);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      })();
+    }
   }, [props.match.params.id]);
+
   const closePageOrGoBack = () => {
     if (!formOpened) {
       props.history.push("/talents");
@@ -54,16 +78,45 @@ const ProfileTalentPage = props => {
     }, 400);
   };
 
-  const voteUpHandler = id => {
-    if (userData) {
-      dispatch(addTalentVote(id));
-      setUserVotes(userVotes + 1);
+  const voteHandler = async talentId => {
+    if (isLoggedIn && user) {
+      if (talentData) {
+        const body = {
+          talent_id: talentId,
+          user_id: user.id
+        };
+        setIsUpadingVotes(true);
+        await dispatch(talentVote(body));
+        if (userVotes.voted_by_me) {
+          setUserVotes({
+            votes: userVotes.votes - 1,
+            voted_by_me: false
+          });
+          setIsUpadingVotes(false);
+        } else {
+          setUserVotes({
+            votes: userVotes.votes + 1,
+            voted_by_me: true
+          });
+          setIsUpadingVotes(false);
+        }
+      }
+    } else {
+      message.warning("You should be logged in to make a vote :)", 3);
+      setTimeout(() => {
+        props.history.push("/let-me-in");
+      }, 3200);
     }
   };
-  useEffect(() => {
-    setUserVotes(userData.votes);
-  }, [userData]);
 
+  useEffect(() => {
+    setUserVotes({
+      votes: talentData.votes_count,
+      voted_by_me: talentData.voted_by_me
+    });
+  }, [talentData]);
+
+  const antIcon = <Icon type="loading" size={"small"} spin />;
   return (
     <div className={"user-talent-profile-page"}>
       {isLoadingData ? (
@@ -80,38 +133,45 @@ const ProfileTalentPage = props => {
               <div className="left">
                 <div className="top">
                   <div className="user-infos">
-                    <h1>{userData && userData.name ? userData.name : null}</h1>
+                    <h1>
+                      {talentData && talentData.name ? talentData.name : null}
+                    </h1>
                     <h2>
-                      {userData && userData.title ? userData.title : null}
+                      {talentData && talentData.title ? talentData.title : null}
                     </h2>
                   </div>
                   <div className="confirmed-container">
                     <span>
-                      {userData && userData.is_confirmed ? "confirmed" : null}
+                      {talentData && talentData.is_confirmed
+                        ? "confirmed"
+                        : null}
                     </span>
 
-                    {userData && userData.is_confirmed ? (
+                    {talentData && talentData.is_confirmed ? (
                       <ConfirmedBadge />
                     ) : null}
                   </div>
                 </div>
                 <div className="content">
-                  <p>{userData && userData.about ? userData.about : null}</p>
+                  <p>
+                    {talentData && talentData.about ? talentData.about : null}
+                  </p>
                 </div>
                 <div className="footer">
                   <div className="item">
                     <AndroidOutlineSvg />{" "}
                     <h4>Public vote on training skills </h4>{" "}
-                    {userData && userData.id ? (
+                    {talentData && talentData.id ? (
                       <button
-                        onClick={() => voteUpHandler(userData.id)}
+                        onClick={() => voteHandler(talentData.id)}
                         className={"vote-btn"}
                       >
-                        UPVOTE{" "}
+                        {talentData && userVotes.voted_by_me
+                          ? "DOWNVOTE "
+                          : "UPVOTE "}
                         <span className="number">
-                          {userData && userData.votes && userData.votes
-                            ? userVotes
-                            : null}
+                          {talentData ? userVotes.votes : null}{" "}
+                          {isUpadingVotes ? <Spin indicator={antIcon} /> : null}
                         </span>
                       </button>
                     ) : null}
@@ -119,22 +179,24 @@ const ProfileTalentPage = props => {
                   <div className="item">
                     <BatrieIcon /> <h4>Skills </h4>{" "}
                     <p>
-                      {userData && userData.skills ? userData.skills : null}
+                      {talentData && talentData.skills
+                        ? talentData.skills
+                        : null}
                     </p>
                   </div>
                   <div className="item">
                     <HatOutlineIcon /> <h4>Availability for training </h4>{" "}
                     <p>
-                      {userData && userData.availability
-                        ? userData.availability
+                      {talentData && talentData.availability
+                        ? talentData.availability
                         : null}
                     </p>
                   </div>
                   <div className="item">
                     <MoneyIcon /> <h4>Type of training </h4>{" "}
                     <p>
-                      {userData && userData.training_type
-                        ? userData.training_type
+                      {talentData && talentData.training_type
+                        ? talentData.training_type
                         : null}
                     </p>
                   </div>
@@ -196,12 +258,14 @@ const ProfileTalentPage = props => {
                 <div className="img-container">
                   <img
                     src={
-                      userData.image
-                        ? process.env.REACT_APP_STORAGE_URL + userData.image
+                      talentData.image
+                        ? process.env.REACT_APP_STORAGE_URL + talentData.image
                         : null
                     }
                     alt={
-                      userData && userData.name ? userData.name + "img" : null
+                      talentData && talentData.name
+                        ? talentData.name + "img"
+                        : null
                     }
                   />
                 </div>

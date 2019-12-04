@@ -1,8 +1,12 @@
 @import "mixins";
 @import "variables";
 
-
-
-.ant-input:focus, .ant-input:hover{
+.ant-input:focus,
+.ant-input:hover {
   border-color: $black-text;
+}
+
+.ant-message {
+  font-family: "Babas", sans-serif;
+  font-size: 20px;
 }

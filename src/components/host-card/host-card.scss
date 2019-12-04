@@ -18,7 +18,6 @@
   -ms-animation: fade-in 1s forwards; /* Internet Explorer */
   -o-animation: fade-in 1s forwards; /* Opera < 12.1 */
   animation: fade-in 1s forwards;
-  cursor: pointer;
   @include transition(all, 0.2s, ease-in-out);
   display: inline-block;
   background: #ffffff;

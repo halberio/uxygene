@@ -1,0 +1,78 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.right-aler-modal {
+  bottom: 30px;
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  max-width: 300px;
+  @media (min-width: 768px) {
+    width: 343px;
+  }
+  @include border-radius(10px);
+  overflow: hidden;
+  margin-right: 30px;
+  right: -500px;
+  box-sizing: border-box;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.05);
+  .header {
+    box-sizing: border-box;
+    background: $primary-color;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+    padding: 10px 20px;
+    h1 {
+      font-family: "Babas", sans-serif;
+      color: white;
+      font-size: 40px;
+      padding: 0;
+      margin: 0;
+    }
+    button {
+      background: transparent;
+      border: none;
+      outline: none;
+      @include transition(all, 0.2s, ease-in-out);
+      &:focus {
+        outline: none;
+      }
+      &:active {
+        @include transform(scale(0.96));
+      }
+      &:hover {
+        svg {
+          path {
+            fill: $white;
+          }
+        }
+      }
+      svg {
+        path {
+          @include transition(all, 0.2s, ease-in-out);
+          fill: $black-text;
+        }
+      }
+    }
+  }
+  .body {
+    background: $white;
+    padding: 20px;
+    h2 {
+      margin: 10px 0;
+      padding: 0;
+      font-family: "Avenir", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+    }
+    p {
+      font-family: "Avenir", sans-serif;
+      margin: 10px 0;
+      text-align: center;
+      padding: 0;
+    }
+  }
+}

@@ -62,7 +62,6 @@
       color: $primary-color;
       background: transparent;
       border-radius: 5px;
-      cursor: pointer;
       background: $black-text;
       @include transition(all, 0.2s, ease-in-out);
       overflow: hidden;
@@ -193,11 +192,15 @@
             outline: none;
             @include transform(scale(0.95));
           }
+          svg {
+            width: 18px;
+            path {
+              fill: $black-text;
+            }
+          }
           position: relative;
-          @include flex(1);
-          max-width: 100px;
-          top: 0;
-          max-height: 40px;
+          width: auto;
+          min-width: 100px;
           outline: none;
           background: $primary-color;
           border: none;

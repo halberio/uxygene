@@ -1,0 +1,13 @@
+/*
+@
+ This file contains the types constants
+@
+*/
+
+export const SHOW_RIGHT_MODAL_START = "SHOW_RIGHT_MODAL_START";
+export const HIDE_RIGHT_MODAL_START = "HIDE_RIGHT_MODAL_START";
+
+export const HIDE_RIGHT_MODAL_DONE = "HIDE_RIGHT_MODAL_DONE";
+export const SHOW_RIGHT_MODAL_DONE = "SHOW_RIGHT_MODAL_DONE";
+
+export const SHOW_RIGHT_MODAL_FAILURE = "SHOW_RIGHT_MODAL_FAILURE";

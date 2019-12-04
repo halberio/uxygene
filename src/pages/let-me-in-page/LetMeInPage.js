@@ -9,17 +9,24 @@ import { loginFacebook, loginGoogle } from "../../actions/auth-actions/actions";
 import { useDispatch } from "react-redux";
 import SpaceShip from "../../components/svg/SpaceShip";
 import ErrorModal from "../../components/error-modal/ErrorModal";
+import { showModalRight } from "../../actions/interface-actions/actions";
+
 const LetMeInPage = () => {
   const dispatch = useDispatch();
   const [selectedTab, setSelectedTab] = useState(0);
   const [gotError, setGotError] = useState(false);
 
+  const messageModal = {
+    title: "HEY YOU!",
+    subTitle: "You logged in successfully.",
+    content: "Enjoy using uxygène.org"
+  };
   const onFailure = error => {
     console.log(error);
     setGotError(true);
   };
 
-  const googleResponse = (response, error) => {
+  const googleResponse = async response => {
     try {
       const body = {
         providerId: response.googleId,
@@ -31,13 +38,14 @@ const LetMeInPage = () => {
         socialImage: response.profileObj.imageUrl,
         is_talent: true
       };
-      dispatch(loginGoogle(body));
+      await dispatch(loginGoogle(body));
+      await dispatch(showModalRight(messageModal));
     } catch (e) {
       setGotError(true);
     }
   };
 
-  const googleResponseHost = response => {
+  const googleResponseHost = async response => {
     try {
       const body = {
         providerId: response.googleId,
@@ -49,14 +57,15 @@ const LetMeInPage = () => {
         socialImage: response.profileObj.imageUrl,
         is_host: true
       };
-      dispatch(loginGoogle(body));
+      await dispatch(loginGoogle(body));
+      await dispatch(showModalRight(messageModal));
     } catch (e) {
       console.log("error google", e);
       setGotError(true);
     }
   };
 
-  const facebookResponse = response => {
+  const facebookResponse = async response => {
     try {
       const body = {
         socialImage: response.picture.data.url,
@@ -68,7 +77,8 @@ const LetMeInPage = () => {
         is_talent: true
       };
 
-      dispatch(loginFacebook(body));
+      await dispatch(loginFacebook(body));
+      await dispatch(showModalRight(messageModal));
     } catch (e) {
       console.log("error facebook", e);
       setGotError(true);

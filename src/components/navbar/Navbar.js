@@ -9,6 +9,7 @@ import LogoWhite from "../svg/LogoWhite";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/auth-actions/actions";
 import LogoutIcon from "../svg/LogoutIcon";
+import { showModalRight } from "../../actions/interface-actions/actions";
 const Navbar = props => {
   const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
   const user = useSelector(state => state.authReducer.user);
@@ -22,6 +23,15 @@ const Navbar = props => {
   );
   const [onScrollClassName, setOnScrollClassName] = useState("");
 
+  const messageModal = {
+    title: "See you again!",
+    subTitle: "You logged out successfully.",
+    content: "You can send us your feedback: hello@uxygène.com"
+  };
+  const logoutHandler = async () => {
+    await dispatch(logout());
+    dispatch(showModalRight(messageModal));
+  };
   useEffect(() => {
     if (
       window.location.pathname.includes("talents") ||
@@ -167,7 +177,13 @@ const Navbar = props => {
                   </NavLink>
                 ) : (
                   <div className="logged-user-infos">
-                    <p>{user && user.first_name ? user.first_name : user && user.name ? user.name : null }</p>
+                    <p>
+                      {user && user.first_name
+                        ? user.first_name
+                        : user && user.name
+                        ? user.name
+                        : null}
+                    </p>
                     <Link
                       className="img-profile-container"
                       to={
@@ -190,10 +206,7 @@ const Navbar = props => {
                         />
                       ) : null}
                     </Link>
-                    <div
-                      className="logout-icon"
-                      onClick={() => dispatch(logout())}
-                    >
+                    <div className="logout-icon" onClick={logoutHandler}>
                       <LogoutIcon />
                     </div>
                   </div>
@@ -303,7 +316,6 @@ const Navbar = props => {
             >
               {({ x, y, w, z, o }) => (
                 <div className="menu-items">
-
                   <NavLink
                     exact
                     className={"nav-link"}
@@ -373,7 +385,6 @@ const Navbar = props => {
 
                   {!isLoggedIn ? (
                     <NavLink
-
                       className={"nav-link"}
                       activeClassName={"active"}
                       to={"/let-me-in"}
@@ -386,39 +397,49 @@ const Navbar = props => {
                       {" "}
                       Let me in!
                     </NavLink>
-                  ) :  (
-                        <div className="logged-user-infos only-mobile" style={{
-                          opacity: o
-                        }}>
-                          <p>{user && user.first_name ? user.first_name : user && user.name ? user.name : null}</p>
-                          <div className="img-profile-container">
-                            {user && user.image ? (
-                                <img
-                                    width={"50px"}
-                                    height={"5px"}
-                                    src={process.env.REACT_APP_STORAGE_URL + user.image}
-                                    alt={user && user.name ? user.name : null}
-                                />
-                            ) : user && user.social_image ? (
-                                <img
-                                    width={"50px"}
-                                    height={"5px"}
-                                    src={user.social_image}
-                                    alt={user && user.name ? user.name : null}
-                                />
-                            ) : null}
-                            <div
-                                className="logout-icon"
-                                onClick={() => {
-                                  dispatch(logout());
-                                  setDrawerOpened(false);
-                                }}
-                            >
-                              <LogoutIcon />
-                            </div>
-                          </div>
+                  ) : (
+                    <div
+                      className="logged-user-infos only-mobile"
+                      style={{
+                        opacity: o
+                      }}
+                    >
+                      <p>
+                        {user && user.first_name
+                          ? user.first_name
+                          : user && user.name
+                          ? user.name
+                          : null}
+                      </p>
+                      <div className="img-profile-container">
+                        {user && user.image ? (
+                          <img
+                            width={"50px"}
+                            height={"5px"}
+                            src={process.env.REACT_APP_STORAGE_URL + user.image}
+                            alt={user && user.name ? user.name : null}
+                          />
+                        ) : user && user.social_image ? (
+                          <img
+                            width={"50px"}
+                            height={"5px"}
+                            src={user.social_image}
+                            alt={user && user.name ? user.name : null}
+                          />
+                        ) : null}
+                        <div
+                          className="logout-icon"
+                          onClick={() => {
+                            logoutHandler();
+
+                            setDrawerOpened(false);
+                          }}
+                        >
+                          <LogoutIcon />
                         </div>
-                    ) }
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </Motion>

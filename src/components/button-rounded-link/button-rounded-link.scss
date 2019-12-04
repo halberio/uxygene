@@ -4,7 +4,6 @@
 .button-rounded-link {
   @include flexbox();
   overflow: hidden;
-  cursor: pointer;
   @include flex(1);
   position: relative;
   @include align-items(center);
@@ -16,7 +15,7 @@
     }
   }
 
-  &:before{
+  &:before {
     content: "";
     display: block;
     width: 0;
@@ -26,17 +25,17 @@
     left: 50%;
     top: 50%;
 
-    transform-origin:  center center;
+    transform-origin: center center;
     -webkit-transform-origin: center center;
     @include transform(translate(-50%, -50%));
     border-radius: 100%;
     background: $light-silver;
     @include transition(all, 0.53s, ease-in-out);
   }
-  &:active{
+  &:active {
     outline: none;
     background: transparent;
-    @include transform(scale(.97));
+    @include transform(scale(0.97));
 
     border-color: $light-silver;
   }
@@ -54,12 +53,12 @@
   color: $black-text;
   border-radius: 100px;
   @include transition(all, 0.2s, ease-in-out);
-  span{
+  span {
     height: 100%;
     z-index: 1;
     position: relative;
   }
-  span.arrow-container-span{
+  span.arrow-container-span {
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
@@ -80,20 +79,18 @@
       font-size: 16px;
     }
   }
-  svg{
-    @include transition(all,0.2s,ease-in-out);
+  svg {
+    @include transition(all, 0.2s, ease-in-out);
   }
   &:hover {
     background: $white;
     border-color: $white;
     span {
       color: $black-text;
-      svg{
-
+      svg {
         @include transform(translateX(10px));
       }
     }
-
   }
   &:visited,
   &:focus {

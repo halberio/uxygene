@@ -102,6 +102,8 @@
     <title>uxygene.org</title>
   </head>
   <body>
+    <div class="ux-cursor"></div>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -114,5 +116,26 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      const cursor = document.querySelector(".ux-cursor");
+
+      document.addEventListener("mousemove", e => {
+        if (cursor) {
+          cursor.setAttribute(
+            "style",
+            "top: " + (e.pageY - 15) + "px; left: " + (e.pageX - 15) + "px"
+          );
+        }
+      });
+
+      document.addEventListener("click", () => {
+        if (cursor) {
+          cursor.classList.add("expand");
+          setTimeout(() => {
+            cursor.classList.remove("expand");
+          }, 600);
+        }
+      });
+    </script>
   </body>
 </html>

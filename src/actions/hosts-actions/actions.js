@@ -36,13 +36,13 @@ export function getHosts() {
   };
 }
 
-export function addHostVote(id) {
+export function hostVote(body) {
   return async dispatch => {
     await dispatch({
       type: ADD_HOST_VOTE_REQUEST
     });
     try {
-      await HostsServices.addHostVoteRequest(id);
+      await HostsServices.addHostVoteRequest(body);
       await dispatch({
         type: ADD_HOST_VOTE_SUCCESS
       });

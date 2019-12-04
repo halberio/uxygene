@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import HomePage from "./pages/home-page/HomePage";
 import Navbar from "./components/navbar/Navbar";
-import SigninPage from "./pages/signin-page/SigninPage";
 import { logout } from "./actions/auth-actions/actions";
 import TalentsPage from "./pages/talents-page/TalentsPage";
 import GetInTouchPage from "./pages/get-in-touch-page/GetInTouchPage";
@@ -18,9 +17,11 @@ import NotFoundPage from "./pages/404-page/NotFoundPage";
 import TermsAndConditionsPage from "./pages/terms-and-conditions-page/TermsAndConditionsPage";
 import LetMeInPage from "./pages/let-me-in-page/LetMeInPage";
 import GoogleFormPage from "./pages/google-form-page/GoogleFormPage";
+import ResultSearchTalentsPage from "./pages/result-search-talents-page/ResultSearchTalentsPage";
+import ResultSearchHostsPage from "./pages/result-search-hosts-page/ResultSearchHostsPage";
+import RightAlertModal from "./components/right-alert-modal/RightAlertModal";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
-
   useEffect(() => {
     if (window.location.pathname === "/") {
       setBackgroundColor("#F0F0F0");
@@ -38,80 +39,86 @@ const App = props => {
   }, [props.history]);
 
   return (
-    <div
-      className={"app"}
-      style={{
-        background: backgroundColor
-      }}
-    >
-      <Navbar
-        user={props.user}
-        isLoggedIn={props.isLoggedIn}
-        logout={props.logout}
-      />
+    <>
+      <RightAlertModal />
+      <div
+        className={"app"}
+        style={{
+          background: backgroundColor
+        }}
+      >
+        <Navbar
+          user={props.user}
+          isLoggedIn={props.isLoggedIn}
+          logout={props.logout}
+        />
 
-      <Route
-        render={({ location }) => (
-          <TransitionGroup className={"page-container"}>
-            <CSSTransition
-              key={location.key}
-              timeout={500}
-              classNames="fadetransition"
-            >
-              <Switch location={location}>
-                <Route exact path={"/"} component={HomePage} />
-                <Route
-                  exact
-                  path={"/talent-user/:id"}
-                  component={ProfileTalentPage}
-                />
-                <Route
-                  exact
-                  path={"/privacy-policy"}
-                  component={PrivacyPolicyPage}
-                />
-                <Route
-                  exact
-                  path={"/terms-and-conditions"}
-                  component={TermsAndConditionsPage}
-                />
-                <Route
-                  exact
-                  path={"/hosts-profile/:id"}
-                  component={ProfileHostPage}
-                />
-                <Route
-                  exact
-                  path={"/get-in-touch"}
-                  component={GetInTouchPage}
-                />
-                <Route exact path={"/g-form"} component={GoogleFormPage} />
-                <Route path="/talents" component={TalentsPage} />
-                <Route path="/hosts" component={HostsPage} />
-                <Route path="/events" component={EventsPage} />
-                <GuestRoute
-                  authenticated={props.isLoggedIn}
-                  path="/let-me-in"
-                  component={LetMeInPage}
-                />
-                <AuthRoute
-                  authenticated={props.isLoggedIn}
-                  path="/profile"
-                  component={HomePage}
-                />
-                <GuestRoute
-                  authenticated={props.isLoggedIn}
-                  path="/signin"
-                  component={SigninPage}
-                />
-                <Route component={NotFoundPage} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
-        )}
-      />
-      <Footer />
-    </div>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup className={"page-container"}>
+              <CSSTransition
+                key={location.key}
+                timeout={500}
+                classNames="fadetransition"
+              >
+                <Switch location={location}>
+                  <Route exact path={"/"} component={HomePage} />
+                  <Route
+                    exact
+                    path={"/talent-user/:id"}
+                    component={ProfileTalentPage}
+                  />
+                  <Route
+                    exact
+                    path={"/privacy-policy"}
+                    component={PrivacyPolicyPage}
+                  />
+                  <Route
+                    exact
+                    path={"/terms-and-conditions"}
+                    component={TermsAndConditionsPage}
+                  />
+                  <Route
+                    exact
+                    path={"/hosts-profile/:id"}
+                    component={ProfileHostPage}
+                  />
+                  <Route
+                    exact
+                    path={"/get-in-touch"}
+                    component={GetInTouchPage}
+                  />
+                  <Route exact path={"/g-form"} component={GoogleFormPage} />
+                  <Route path="/talents" component={TalentsPage} />
+                  <Route path="/hosts" component={HostsPage} />
+                  <Route path="/events" component={EventsPage} />
+                  <GuestRoute
+                    authenticated={props.isLoggedIn}
+                    path="/let-me-in"
+                    component={LetMeInPage}
+                  />
+                  <AuthRoute
+                    authenticated={props.isLoggedIn}
+                    path="/profile"
+                    component={HomePage}
+                  />
+                  <Route
+                    path="/search-talent"
+                    component={ResultSearchTalentsPage}
+                  />
+                  <Route
+                    path="/search-host"
+                    component={ResultSearchHostsPage}
+                  />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
+        <Footer />
+      </div>
+    </>
   );
 };
 function AuthRoute({ component: Component, authenticated, ...rest }) {
