@@ -1,7 +1,6 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
-*{
-
+* {
   box-sizing: border-box;
 }
 .home-page {
@@ -11,12 +10,11 @@
   box-sizing: border-box;
   display: block;
   margin: auto;
-   max-width: calc(1200px - 1%);
+  max-width: calc(1200px - 1%);
   .row-container {
     margin-top: 10px;
     padding: 4.9282576866764276% 10px;
     @media (min-width: 992px) {
-
       margin-top: 30px;
       padding: 0.9282576866764276% 1%;
     }
@@ -35,7 +33,7 @@
     @include align-items(center);
     height: 100%;
     .left {
-      &:after{
+      &:after {
         content: "";
         display: block;
         position: absolute;
@@ -44,11 +42,11 @@
         width: 100%;
         height: 100%;
         background: $light-silver;
-        -webkit-animation: slideinEffectImg .9s forwards; /* Safari, Chrome and Opera > 12.1 */
-        -moz-animation: slideinEffectImg .9s forwards; /* Firefox < 16 */
-        -ms-animation: slideinEffectImg .9s forwards; /* Internet Explorer */
-        -o-animation: slideinEffectImg .9s forwards; /* Opera < 12.1 */
-        animation: slideinEffectImg .9s forwards;
+        -webkit-animation: slideinEffectImg 0.9s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: slideinEffectImg 0.9s forwards; /* Firefox < 16 */
+        -ms-animation: slideinEffectImg 0.9s forwards; /* Internet Explorer */
+        -o-animation: slideinEffectImg 0.9s forwards; /* Opera < 12.1 */
+        animation: slideinEffectImg 0.9s forwards;
         animation-delay: 0.1s;
         -webkit-animation-delay: 0.1s;
         transform-origin: right;
@@ -65,10 +63,9 @@
       }
       position: relative;
       h1.big {
-
-        &::selection{
+        &::selection {
           background: transparent;
-          color:unset;
+          color: unset;
         }
         color: $primary-color;
         font-size: 80px;
@@ -93,10 +90,9 @@
       }
 
       h3.dark {
-
-        &::selection{
+        &::selection {
           background: transparent;
-          color:unset;
+          color: unset;
         }
         color: $black-text;
         font-family: "Babas", sans-serif;
@@ -108,21 +104,22 @@
       }
 
       p.sub-title-p {
-
-        &::selection{
+        font-family: "Avenir", sans-serif;
+        &::selection {
           background: transparent;
-          color:unset;
+          color: unset;
         }
         color: $dark-silver;
         font-size: 14px;
-        text-align: justify;
+        text-align: left;
         margin: 20px 0;
         max-width: 510px;
         padding: 0;
-        strong{
-          &::selection{
+        strong {
+          font-family: "Avenir", sans-serif;
+          &::selection {
             background: transparent;
-            color:unset;
+            color: unset;
           }
         }
       }
@@ -175,15 +172,16 @@
         width: 100%;
         height: 100%;
         max-width: 450px;
-        path{
-          @include transition(all, 0.6s,ease-in-out);
+        path {
+          @include transition(all, 0.6s, ease-in-out);
         }
-        &:hover{
-          #Path_11{
-            fill:$primary-color;
+        &:hover {
+          #Path_11 {
+            fill: $primary-color;
           }
-          #Path_12, #Path_13{
-            fill:$white;
+          #Path_12,
+          #Path_13 {
+            fill: $white;
           }
         }
       }

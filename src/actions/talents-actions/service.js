@@ -17,7 +17,7 @@ function fetchTalentsRequest() {
 function addTalentVoteRequest(id) {
   return axiosInstance({
     method: "post",
-    url: "/add-vote-user",
+    url: "/add-vote-talent",
     data: { id: id }
   });
 }

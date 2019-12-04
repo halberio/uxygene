@@ -5,7 +5,7 @@
   width: 100%;
   @include flexbox();
   @include justify-content(center);
-  .max-width-container{
+  .max-width-container {
     @include flexbox();
     width: 100%;
     position: relative;
@@ -29,6 +29,7 @@
   .left {
     @include flexbox();
     @include flex-direction(column);
+    @include justify-content(flex-start);
     @include align-items(stretch);
     @include flex(1);
     width: 100%;
@@ -38,8 +39,8 @@
       height: 100%;
     }
     position: relative;
-    .dark-btn{
-      &:focus{
+    .dark-btn {
+      &:focus {
         outline: none;
       }
       justify-self: flex-end;
@@ -58,19 +59,19 @@
       @media (min-width: 992px) {
         font-size: 30px;
       }
-      color:$primary-color;
+      color: $primary-color;
       background: transparent;
       border-radius: 5px;
       cursor: pointer;
-     background: $black-text;
+      background: $black-text;
       @include transition(all, 0.2s, ease-in-out);
       overflow: hidden;
-      &:active{
-        @include transform(scale(.97));
+      &:active {
+        @include transform(scale(0.97));
       }
-      &:hover{
+      &:hover {
         color: white;
-        &:before{
+        &:before {
           width: 800px;
           height: 800px;
         }
@@ -81,22 +82,23 @@
       justify-self: flex-start;
       position: relative;
       @include flexbox();
+      @include flex(1);
       @include align-items(flex-start);
       @include justify-content(space-between);
       @include flex-direction(row);
-      background: #F8F7F7;
+      background: #f8f7f7;
       z-index: 2;
       max-width: 90%;
-      padding:10px 10px ;
+      padding: 10px 10px;
       margin-left: 5%;
       @media (min-width: 992px) {
         margin-top: 0;
         margin-left: unset;
-        padding:unset;
+        padding: unset;
         max-width: unset;
 
         width: 100%;
-        background: #F8F7F7;
+        background: #f8f7f7;
       }
       h1 {
         font-family: "Babas", sans-serif;
@@ -133,6 +135,8 @@
       }
     }
     .content {
+      height: auto;
+      @include flex(1);
       @include align-self(stretch);
       justify-self: flex-start;
       position: relative;
@@ -145,9 +149,10 @@
     .footer {
       position: relative;
       @include flexbox();
-      @include flex(1);
+      height: auto;
+      @include flex(3);
       width: 100%;
-      top:0;
+      top: 0;
       @include flex-direction(column);
       @include align-items(flex-start);
       @include align-self(flex-start);
@@ -184,9 +189,9 @@
           font-weight: 700;
         }
         button.vote-btn {
-          &:active{
+          &:active {
             outline: none;
-            @include transform(scale(.95));
+            @include transform(scale(0.95));
           }
           position: relative;
           @include flex(1);
@@ -269,7 +274,7 @@
       max-height: 100%;
     }
     position: relative;
-    .img-container{
+    .img-container {
       position: absolute;
       @include flexbox();
       top: 0;
@@ -281,9 +286,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position:  50%  20%;
+        object-position: 50% 20%;
       }
-      &:after{
+      &:after {
         content: "";
         display: block;
         position: absolute;
@@ -292,11 +297,11 @@
         width: 100%;
         height: 100%;
         background: $light-silver;
-        -webkit-animation: slideinEffectImg .6s forwards; /* Safari, Chrome and Opera > 12.1 */
-        -moz-animation: slideinEffectImg .6s forwards; /* Firefox < 16 */
-        -ms-animation: slideinEffectImg .6s forwards; /* Internet Explorer */
-        -o-animation: slideinEffectImg .6s forwards; /* Opera < 12.1 */
-        animation: slideinEffectImg .6s forwards;
+        -webkit-animation: slideinEffectImg 0.6s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: slideinEffectImg 0.6s forwards; /* Firefox < 16 */
+        -ms-animation: slideinEffectImg 0.6s forwards; /* Internet Explorer */
+        -o-animation: slideinEffectImg 0.6s forwards; /* Opera < 12.1 */
+        animation: slideinEffectImg 0.6s forwards;
         animation-delay: 0.3s;
         -webkit-animation-delay: 0.3s;
         transform-origin: right;
@@ -304,13 +309,13 @@
       }
     }
 
-    .close-btn-round{
+    .close-btn-round {
       cursor: pointer;
-      &:active{
+      &:active {
         outline: none;
-        @include transform(scale(.95));
+        @include transform(scale(0.95));
       }
-      &:before{
+      &:before {
         content: "";
         display: block;
         position: absolute;
@@ -322,54 +327,52 @@
         background: $black-text;
         transform-origin: center center;
         -webkit-transform-origin: center center;
-        @include transition(all, 0.2s,ease-in-out);
+        @include transition(all, 0.2s, ease-in-out);
       }
-      &:hover{
-        &:before{
+      &:hover {
+        &:before {
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
         }
-        svg#ico-svg-back-plus{
+        svg#ico-svg-back-plus {
           @include transform(rotate(315deg));
-          -webkit-animation: fade-out .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
-          -moz-animation: fade-out  .4s forwards 0.1s; /* Firefox < 16 */
-          -ms-animation: fade-out  .4s forwards 0.1s; /* Internet Explorer */
-          -o-animation: fade-out  .4s forwards 0.1s; /* Opera < 12.1 */
-          animation: fade-out  .4s forwards 0.1s;
-          animation-delay: .1s;
+          -webkit-animation: fade-out 0.4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+          -moz-animation: fade-out 0.4s forwards 0.1s; /* Firefox < 16 */
+          -ms-animation: fade-out 0.4s forwards 0.1s; /* Internet Explorer */
+          -o-animation: fade-out 0.4s forwards 0.1s; /* Opera < 12.1 */
+          animation: fade-out 0.4s forwards 0.1s;
+          animation-delay: 0.1s;
         }
-        .arrow-container-go-back{
-
+        .arrow-container-go-back {
           max-width: 42px;
           max-height: 40px;
-          svg{
-            -webkit-animation: fade_in_and_rotate .4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
-            -moz-animation: fade_in_and_rotate .4s forwards 0.1s; /* Firefox < 16 */
-            -ms-animation: fade_in_and_rotate .4s forwards 0.1s; /* Internet Explorer */
-            -o-animation: fade_in_and_rotate .4s forwards 0.1s; /* Opera < 12.1 */
-            animation: fade_in_and_rotate .4s forwards 0.1s;
-
+          svg {
+            -webkit-animation: fade_in_and_rotate 0.4s forwards 0.1s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fade_in_and_rotate 0.4s forwards 0.1s; /* Firefox < 16 */
+            -ms-animation: fade_in_and_rotate 0.4s forwards 0.1s; /* Internet Explorer */
+            -o-animation: fade_in_and_rotate 0.4s forwards 0.1s; /* Opera < 12.1 */
+            animation: fade_in_and_rotate 0.4s forwards 0.1s;
           }
         }
       }
-      svg{
-        @include transition(all, .3s,ease-out);
+      svg {
+        @include transition(all, 0.3s, ease-out);
       }
-      svg#ico-svg-back-plus{
+      svg#ico-svg-back-plus {
         opacity: 1;
       }
-      .arrow-container-go-back{
+      .arrow-container-go-back {
         position: absolute;
         z-index: 1;
         left: 20px;
         top: 29px;
-        svg{
+        svg {
           opacity: 0;
-          width:100%;
+          width: 100%;
           height: 100%;
-          path{
+          path {
             fill: $primary-color;
           }
         }
@@ -377,7 +380,7 @@
       @include flexbox();
       @include justify-content(center);
       @include align-items(center);
-      @include transition(all, 0.2s,ease-in-out);
+      @include transition(all, 0.2s, ease-in-out);
       position: absolute;
       z-index: 3;
       width: 80px;
@@ -392,73 +395,110 @@
         right: unset;
       }
 
-      background: #F8F7F7;
+      background: #f8f7f7;
     }
   }
 }
 
-
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
 
 // slide img animation
 
 @keyframes slideinEffectImg {
-  from { @include transform(scaleX(1)); }
-  to   { @include transform(scaleX(0)); }
+  from {
+    @include transform(scaleX(1));
+  }
+  to {
+    @include transform(scaleX(0));
+  }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes slideinEffectImg {
-  from { @include transform(scaleX(1)); }
-  to   { @include transform(scaleX(0)); }
+  from {
+    @include transform(scaleX(1));
+  }
+  to {
+    @include transform(scaleX(0));
+  }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes slideinEffectImg {
-  from { @include transform(scaleX(1)); }
-  to   { @include transform(scaleX(0)); }
+  from {
+    @include transform(scaleX(1));
+  }
+  to {
+    @include transform(scaleX(0));
+  }
 }
 
 /* Internet Explorer */
 @-ms-keyframes slideinEffectImg {
-  from { @include transform(scaleX(1)); }
-  to   { @include transform(scaleX(0)); }
+  from {
+    @include transform(scaleX(1));
+  }
+  to {
+    @include transform(scaleX(0));
+  }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes slideinEffectImg {
-  from { @include transform(scaleX(1)); }
-  to   { @include transform(scaleX(0)); }
+  from {
+    @include transform(scaleX(1));
+  }
+  to {
+    @include transform(scaleX(0));
+  }
 }
-
 
 @include keyframes(fade-out) {
   0% {
@@ -468,7 +508,6 @@
     opacity: 0;
   }
 }
-
 
 @include keyframes(fade_in_and_rotate) {
   0% {
