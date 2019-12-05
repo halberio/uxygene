@@ -38,6 +38,47 @@ const App = props => {
     });
   }, [props.history]);
 
+  useEffect(() => {
+    const cursor = document.querySelector(".ux-cursor");
+    if (document.getElementsByTagName) {
+      let aElements = document.getElementsByTagName("a");
+      let buttonsElements = document.getElementsByTagName("button");
+      let inputsElements = document.getElementsByTagName("input");
+      for (let i = 0; aElements[i]; i++) {
+        if (aElements && aElements[i]) {
+          aElements[i].addEventListener("mouseover", function(event) {
+            cursor.classList.add("on-hover");
+          });
+          aElements[i].addEventListener("mouseleave", function(event) {
+            cursor.classList.remove("on-hover");
+          });
+        }
+      }
+      for (let i = 0; buttonsElements[i]; i++) {
+        if (buttonsElements && buttonsElements[i]) {
+          buttonsElements[i].addEventListener("mouseover", function(event) {
+            cursor.classList.add("on-hover");
+          });
+          buttonsElements[i].addEventListener("mouseleave", function(event) {
+            cursor.classList.remove("on-hover");
+          });
+        }
+      }
+      for (let i = 0; inputsElements[i]; i++) {
+        if (inputsElements && inputsElements[i]) {
+          inputsElements[i].addEventListener("focus", function(event) {
+            cursor.classList.add("on-focus");
+          });
+          inputsElements[i].addEventListener("mouseover", function(event) {
+            cursor.classList.add("on-focus");
+          });
+          inputsElements[i].addEventListener("mouseleave", function(event) {
+            cursor.classList.remove("on-focus");
+          });
+        }
+      }
+    }
+  }, []);
   return (
     <>
       <RightAlertModal />

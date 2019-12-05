@@ -40,6 +40,28 @@ body {
     cursor: none;
   }
 }
+a {
+  @media (min-width: 992px) {
+    cursor: none;
+  }
+  &:focus,
+  &:hover {
+    @media (min-width: 992px) {
+      cursor: none;
+    }
+  }
+}
+input {
+  @media (min-width: 992px) {
+    cursor: none;
+  }
+  &:focus,
+  &:hover {
+    @media (min-width: 992px) {
+      cursor: none;
+    }
+  }
+}
 
 @include keyframes(sclae-infinite-curs) {
   0% {
@@ -84,11 +106,6 @@ body {
   position: absolute;
   z-index: 9999999999999999999;
   border: 2px solid $black-text;
-  -webkit-animation: sclae-infinite-curs 0.5s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: sclae-infinite-curs 0.5s infinite alternate; /* Firefox < 16 */
-  -ms-animation: sclae-infinite-curs 0.5s infinite alternate; /* Internet Explorer */
-  -o-animation: sclae-infinite-curs 0.5s infinite alternate; /* Opera < 12.1 */
-  animation: sclae-infinite-curs 0.5s infinite alternate;
   display: none;
   @media (min-width: 992px) {
     display: block;
@@ -117,13 +134,22 @@ body {
     -o-animation: expand-curs-anim 0.5s forwards; /* Opera < 12.1 */
     animation: expand-curs-anim 0.5s forwards;
   }
-}
-
-a:hover ~ .ux-cursor {
-  .ux-cursor {
-    background: red !important;
+  &.on-hover {
+    -webkit-animation: sclae-infinite-curs 0.3s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: sclae-infinite-curs 0.3s infinite alternate; /* Firefox < 16 */
+    -ms-animation: sclae-infinite-curs 0.3s infinite alternate; /* Internet Explorer */
+    -o-animation: sclae-infinite-curs 0.3s infinite alternate; /* Opera < 12.1 */
+    animation: sclae-infinite-curs 0.3s infinite alternate;
+    &:after {
+      background: $primary-color;
+    }
+  }
+  &.on-focus {
+    width: 3px;
+    @include border-radius(0);
   }
 }
+
 ::-moz-selection {
   /* Code for Firefox */
   color: $black-text;
