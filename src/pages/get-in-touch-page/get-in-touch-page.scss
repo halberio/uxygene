@@ -27,7 +27,7 @@
     @include justify-content(space-between);
     @include align-items(stretch);
     height: 100%;
-    min-height: calc(100vh - 300px);
+    min-height: 550px;
     position: relative;
     .left {
       position: relative;
