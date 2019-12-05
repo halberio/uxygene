@@ -5,19 +5,22 @@
   width: 100%;
   @include flexbox();
   @include justify-content(center);
-  .max-width-container {
+  padding-top: 30px;
+  .row-container {
     @include flexbox();
     width: 100%;
     position: relative;
     @include flex-wrap(flex-reverse);
     @include flex-direction(column-reverse);
     @include justify-content(space-between);
-    @include align-items(flex-start);
+    @include align-items(stretch);
     max-width: calc(1200px - 1%);
-    padding-bottom: 12%;
     @media (min-width: 992px) {
       padding-bottom: unset;
+      height: 100%;
       @include flex-direction(row);
+      @include align-items(stretch);
+      @include justify-content(space-between);
     }
     opacity: 0;
     -webkit-animation: fadein 1s forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -29,14 +32,14 @@
   .left {
     @include flexbox();
     @include flex-direction(column);
-    @include justify-content(flex-start);
     @include align-items(stretch);
+    @include justify-content(flex-start);
     @include flex(1);
     width: 100%;
-    padding-bottom: 20px;
+    height: auto;
     @media (min-width: 992px) {
+      width: 50%;
       max-width: calc(50% - 30px);
-      height: 100%;
     }
     position: relative;
     .dark-btn {
@@ -46,9 +49,9 @@
       justify-self: flex-end;
       align-self: flex-end;
       outline: none;
+      margin: 0;
+      margin-top: auto;
       border: none;
-      bottom: 0;
-      top: 0;
       position: relative;
       max-height: 70px;
       min-height: 60px;
@@ -77,11 +80,9 @@
       }
     }
     .top {
-      @include align-self(stretch);
       justify-self: flex-start;
       position: relative;
       @include flexbox();
-      @include flex(1);
       @include align-items(flex-start);
       @include justify-content(space-between);
       @include flex-direction(row);
@@ -91,13 +92,11 @@
       padding: 10px 10px;
       margin-left: 5%;
       @media (min-width: 992px) {
-        margin-top: 0;
+        margin-top: unset;
         margin-left: unset;
         padding: unset;
         max-width: unset;
-
         width: 100%;
-        background: #f8f7f7;
       }
       h1 {
         font-family: "Babas", sans-serif;
@@ -135,7 +134,6 @@
     }
     .content {
       height: auto;
-      @include flex(1);
       @include align-self(stretch);
       justify-self: flex-start;
       position: relative;
@@ -145,17 +143,20 @@
       }
       border-bottom: 2px solid $light-silver;
     }
-    .footer {
+    .bottom-elements {
       position: relative;
       @include flexbox();
-      height: auto;
-      @include flex(3);
+      @include flex(1);
       width: 100%;
-      top: 0;
       @include flex-direction(column);
       @include align-items(flex-start);
-      @include align-self(flex-start);
-      justify-self: flex-start;
+      @include justify-content(space-between);
+      height: auto;
+      .items-list {
+        @include flexbox();
+        @include flex-direction(column);
+        width: 100%;
+      }
       .item {
         @include flexbox();
         @include justify-content(space-between);
@@ -222,40 +223,6 @@
           span.number {
             color: white;
             @include transition(all, 0.2s, ease-in-out);
-          }
-        }
-        .next-btns {
-          @include flexbox();
-          @include align-items(center);
-          p {
-            margin: 0;
-            margin-right: 10px;
-            padding: 0;
-          }
-          button {
-            background: transparent;
-            @include flexbox();
-            @include align-items(center);
-            min-height: 31px;
-            border-radius: 5px;
-            border: 1px solid $light-silver;
-            svg {
-              margin-left: 6px;
-              width: 16px;
-            }
-            font-family: "Babas", sans-serif;
-            color: $black-text;
-            font-size: 16px;
-            cursor: pointer;
-            @include transition(all, 0.2s, ease-in-out);
-            &:hover {
-              background: $primary-color;
-              svg {
-                path {
-                  fill: $black-text;
-                }
-              }
-            }
           }
         }
       }
@@ -369,8 +336,14 @@
       .arrow-container-go-back {
         position: absolute;
         z-index: 1;
-        left: 20px;
-        top: 29px;
+        left: 16px;
+        top: 22px;
+        width: 28px;
+        @media (min-width: 992px) {
+          left: 21px;
+          top: 29px;
+          width: 35px;
+        }
         svg {
           opacity: 0;
           width: 100%;
@@ -386,13 +359,15 @@
       @include transition(all, 0.2s, ease-in-out);
       position: absolute;
       z-index: 3;
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       border-radius: 100%;
-      top: -40px;
+      top: -30px;
       right: 20px;
       left: unset;
       @media (min-width: 992px) {
+        width: 80px;
+        height: 80px;
         top: calc(50% - 50px);
         left: -40px;
         right: unset;

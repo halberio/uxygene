@@ -7,6 +7,7 @@
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
+  padding-top: 30px;
   .row-container {
     @include flexbox();
     @include justify-content(space-between);
@@ -15,7 +16,7 @@
     @media (min-width: 992px) {
       @include flex-direction(row);
       @include align-items(stretch);
-
+      height: 100%;
       padding-bottom: unset;
     }
     max-width: calc(1200px - 10px);
@@ -26,6 +27,7 @@
   .left {
     @include flex(1);
     width: 100%;
+    height: auto;
     max-width: 550px;
     @include flexbox();
     @include flex-direction(column);
@@ -135,7 +137,7 @@
       position: relative;
       @include flexbox();
       @include flex-direction(column);
-      margin-top: 20px;
+      margin-top: auto;
       width: 100%;
       textarea {
         margin-bottom: 0 !important;

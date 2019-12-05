@@ -8,16 +8,19 @@
     url("../assets/fonts/bebas.woff") format("woff"),
     url("../assets/fonts/bebas.ttf") format("truetype"),
     url("../assets/fonts/bebas.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
   font-family: "Avenir";
   src: url("../assets/fonts/avenir.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "BabasLight";
   src: url("../assets/fonts/BebasNeueLight.otf") format("otf"),
     url("../assets/fonts/BebasNeueLight.ttf") format("truetype");
+  font-display: swap;
 }
 
 html {

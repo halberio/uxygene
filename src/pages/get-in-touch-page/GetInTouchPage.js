@@ -2,19 +2,35 @@ import React from "react";
 import "./get-in-touch-page.scss";
 import { Input, Form } from "antd";
 import BannerGroupFb from "../../components/svg/BannerGroupFb";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import { useDispatch, useSelector } from "react-redux";
+import { sendContact } from "../../actions/contact-actions/actions";
+import { Spin, Icon } from "antd";
 const GetInTouchForm = props => {
+  const disptach = useDispatch();
+  const isSending = useSelector(state => state.contactReducer.isSending);
   const { getFieldDecorator } = props.form;
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.form.validateFields(async (err, values) => {
+      if (!err) {
+        await disptach(sendContact(values));
+        props.form.resetFields();
+      }
+    });
   };
+
+  const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
   return (
     <div className={"get-in-touch-page"}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>uxygène | Contact</title>
         <link rel="canonical" href="http://uxygène.org/get-in-touch" />
-        <meta name="description" content="uxygène | Contact : user experience camp"/>
+        <meta
+          name="description"
+          content="uxygène | Contact : user experience camp"
+        />
       </Helmet>
       <div className="row-container">
         <div className="left">
@@ -31,27 +47,33 @@ const GetInTouchForm = props => {
           </div>
         </div>
         <div className="right">
-          <Form onSubmit={handleSubmit}  className="get-in-touch-form">
+          <Form onSubmit={handleSubmit} className="get-in-touch-form">
             <Form.Item>
               {getFieldDecorator("name", {
                 rules: [{ required: true, message: "Please input your name!" }]
-              })(<Input  placeholder="Your Full Name" />)}
+              })(<Input placeholder="Your Full Name" />)}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator("email", {
                 rules: [{ required: true, message: "Please input your email!" }]
-              })(<Input  placeholder="Your Email" />)}
+              })(<Input placeholder="Your Email" />)}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator("message", {
                 rules: [
                   { required: true, message: "Please input your Message!" }
                 ]
-              })(<Input    type="text" placeholder="Message" />)}
+              })(<Input type="text" placeholder="Message" />)}
             </Form.Item>
-            <button type={"submit"} className={"submit-btn-get-in-touch"}><span>Send Now</span></button>
+            <button
+              disabled={isSending}
+              type={"submit"}
+              className={"submit-btn-get-in-touch"}
+            >
+              <span>Send Now</span>
+              {isSending ? <Spin indicator={antIcon} /> : null}
+            </button>
           </Form>
-
         </div>
       </div>
     </div>

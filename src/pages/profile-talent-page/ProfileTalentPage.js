@@ -125,7 +125,7 @@ const ProfileTalentPage = props => {
         <Motion style={{ grayScaleValue: spring(isLoadingData ? 90 : 0) }}>
           {({ grayScaleValue }) => (
             <div
-              className="max-width-container"
+              className="row-container"
               style={{
                 filter: `grayscale(${grayScaleValue}%)`
               }}
@@ -157,65 +157,69 @@ const ProfileTalentPage = props => {
                     {talentData && talentData.about ? talentData.about : null}
                   </p>
                 </div>
-                <div className="footer">
-                  <div className="item">
-                    <AndroidOutlineSvg />{" "}
-                    <h4>Public vote on training skills </h4>{" "}
-                    {talentData && talentData.id ? (
-                      <button
-                        onClick={() => voteHandler(talentData.id)}
-                        className={"vote-btn"}
-                      >
-                        {talentData && userVotes.voted_by_me
-                          ? "DOWNVOTE "
-                          : "UPVOTE "}
-                        <span className="number">
-                          {talentData ? userVotes.votes : null}{" "}
-                          {isUpadingVotes ? <Spin indicator={antIcon} /> : null}
-                        </span>
-                      </button>
-                    ) : null}
+                <div className="bottom-elements">
+                  <div className="items-list">
+                    <div className="item">
+                      <AndroidOutlineSvg />{" "}
+                      <h4>Public vote on training skills </h4>{" "}
+                      {talentData && talentData.id ? (
+                        <button
+                          onClick={() => voteHandler(talentData.id)}
+                          className={"vote-btn"}
+                        >
+                          {talentData && userVotes.voted_by_me
+                            ? "DOWNVOTE "
+                            : "UPVOTE "}
+                          <span className="number">
+                            {talentData ? userVotes.votes : null}{" "}
+                            {isUpadingVotes ? (
+                              <Spin indicator={antIcon} />
+                            ) : null}
+                          </span>
+                        </button>
+                      ) : null}
+                    </div>
+                    <div className="item">
+                      <BatrieIcon /> <h4>Skills </h4>{" "}
+                      <p>
+                        {talentData && talentData.skills
+                          ? talentData.skills
+                          : null}
+                      </p>
+                    </div>
+                    <div className="item">
+                      <HatOutlineIcon /> <h4>Availability for training </h4>{" "}
+                      <p>
+                        {talentData && talentData.availability
+                          ? talentData.availability
+                          : null}
+                      </p>
+                    </div>
+                    <div className="item">
+                      <MoneyIcon /> <h4>Type of training </h4>{" "}
+                      <p>
+                        {talentData && talentData.training_type
+                          ? talentData.training_type
+                          : null}
+                      </p>
+                    </div>
                   </div>
-                  <div className="item">
-                    <BatrieIcon /> <h4>Skills </h4>{" "}
-                    <p>
-                      {talentData && talentData.skills
-                        ? talentData.skills
-                        : null}
-                    </p>
-                  </div>
-                  <div className="item">
-                    <HatOutlineIcon /> <h4>Availability for training </h4>{" "}
-                    <p>
-                      {talentData && talentData.availability
-                        ? talentData.availability
-                        : null}
-                    </p>
-                  </div>
-                  <div className="item">
-                    <MoneyIcon /> <h4>Type of training </h4>{" "}
-                    <p>
-                      {talentData && talentData.training_type
-                        ? talentData.training_type
-                        : null}
-                    </p>
-                  </div>
+                  <button
+                    className={"dark-btn"}
+                    onClick={openFormIfNotOpened}
+                    style={{
+                      WebkitTransform: `translate3d(0, ${
+                        formOpened ? "50" : "0"
+                      }%, 0)`,
+                      transform: `translate3d(0, ${
+                        formOpened ? "-50" : "0"
+                      }%, 0)`,
+                      opacity: ` ${formOpened ? "0" : "1"}`
+                    }}
+                  >
+                    INVITE ME To animate An ux session
+                  </button>
                 </div>
-                <button
-                  className={"dark-btn"}
-                  onClick={openFormIfNotOpened}
-                  style={{
-                    WebkitTransform: `translate3d(0, ${
-                      formOpened ? "50" : "0"
-                    }%, 0)`,
-                    transform: `translate3d(0, ${
-                      formOpened ? "-50" : "0"
-                    }%, 0)`,
-                    opacity: ` ${formOpened ? "0" : "1"}`
-                  }}
-                >
-                  INVITE ME To animate An ux session
-                </button>
               </div>
               <div className="right">
                 <Motion style={{ x: spring(formOpened ? 0 : 100) }}>

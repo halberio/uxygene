@@ -100,6 +100,9 @@
         transform-origin: right;
         padding: 7.2727272727272725% 11.594202898550725%;
         .submit-btn-get-in-touch {
+          @include flexbox();
+          @include justify-content(center);
+          @include align-items(center);
           width: 100%;
           position: relative;
           opacity: 0;
@@ -120,6 +123,12 @@
           @include transition(all, 0.3s, ease-in-out);
           span {
             height: 100%;
+          }
+          svg {
+            margin-left: 10px;
+            path {
+              fill: $primary-color;
+            }
           }
           &:hover {
             background: white;
