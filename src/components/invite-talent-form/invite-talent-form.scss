@@ -38,10 +38,153 @@
   }
   z-index: 2;
   right: 0;
-  .ant-form {
+  .back-btn {
+    margin-top: auto;
     width: 100%;
+    position: relative;
+    height: 45px;
+    max-width: 120px;
+    @include border-radius(5px);
+    font-family: "Babas", sans-serif;
+    font-size: 20px;
+    @media (min-width: 992px) {
+      font-size: 30px;
+      height: 65px;
+      max-width: 180px;
+    }
+    color: $white;
+    border: none;
+    background: transparent;
+    &:focus {
+      outline: none;
+    }
+    @include transition(all, 0.2s, ease-in-out);
+    &:hover {
+      color: $black-text;
+    }
+    &:active {
+      @include transform(scale(0.97));
+    }
+  }
+  .next-btn {
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+    height: 45px;
+    max-width: 120px;
+    @include border-radius(5px);
+    font-family: "Babas", sans-serif;
+    font-size: 20px;
+    @media (min-width: 992px) {
+      font-size: 30px;
+      height: 65px;
+      max-width: 180px;
+    }
+    color: $primary-color;
+    border: none;
+    background: #232323;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      @include transform(scale(0.97));
+    }
+    @include transition(all, 0.2s, ease-in-out);
+    &:hover {
+      color: $white;
+    }
+  }
+  .btns-holder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include flexbox();
+    @include flex-direction(row);
+    @include justify-content(flex-end);
+    width: 100%;
+    padding: 20px;
+    @media (min-width: 768px) {
+      padding: 50px 50px;
+    }
+  }
+  .ant-form {
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
 
-    @include flex(2);
+    @media (min-width: 768px) {
+      padding-top: 10%;
+    }
+    @include align-items(stretch);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: auto;
+    .ant-carousel {
+      .slick-dots {
+        bottom: 0 !important;
+        width: auto;
+        height: 20px;
+        @include flexbox();
+        @include align-items(center);
+        margin: 14px 0;
+        @media (min-width: 768px) {
+          margin: 20px 10px;
+          width: 120px;
+        }
+        li {
+          button {
+            height: 20px;
+            width: 20px;
+            border-radius: 100%;
+          }
+        }
+      }
+      position: relative;
+
+      height: 100%;
+      .slick-slider {
+        position: relative;
+        height: 100%;
+        max-height: 100%;
+      }
+      .slick-track {
+        position: relative !important;
+        height: auto;
+        min-height: 400px;
+      }
+      .slick-list {
+        position: relative !important;
+      }
+      .slick-slide {
+        height: 100% !important;
+        position: relative;
+        min-height: 500px;
+        display: block !important;
+        width: 100%;
+        @include flexbox();
+        @include align-items(stretch);
+        @include justify-content(space-around);
+        div {
+          @include flex(1);
+          position: relative !important;
+          min-height: 100%;
+          height: 100% !important;
+          width: 100% !important;
+          top: 0;
+          bottom: 0;
+          div {
+            position: relative !important;
+            display: block !important;
+            height: 100% !important;
+          }
+        }
+      }
+      .slick-dots-bottom {
+        position: absolute !important;
+        bottom: 0px;
+      }
+    }
   }
   .form-header {
     @include flex(1);
@@ -148,7 +291,6 @@
   }
 }
 
-
 @include keyframes(fade-in-opacity) {
   0% {
     opacity: 0;
@@ -157,7 +299,6 @@
     opacity: 1;
   }
 }
-
 
 @include keyframes(fade-in-opacity-slide-left) {
   0% {

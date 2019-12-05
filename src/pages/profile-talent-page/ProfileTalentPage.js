@@ -68,14 +68,18 @@ const ProfileTalentPage = props => {
   };
 
   const openFormIfNotOpened = () => {
-    setFormOpened(true);
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      });
-    }, 400);
+    if (isLoggedIn) {
+      setFormOpened(true);
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      }, 400);
+    } else {
+      message.warning("You should be logged in to make this request :)", 3);
+    }
   };
 
   const voteHandler = async talentId => {
