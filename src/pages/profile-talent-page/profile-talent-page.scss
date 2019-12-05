@@ -236,7 +236,9 @@
     height: auto;
     max-width: 100%;
     width: 100%;
-    min-height: 300px;
+    min-height: 360px;
+    margin: auto;
+    max-width: 500px;
     @media (min-width: 992px) {
       min-height: 560px;
       max-width: calc(50% - 30px);

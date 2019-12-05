@@ -5,6 +5,7 @@ import hostsReducer from "./hosts-reducer";
 import eventsReducer from "./events-reducer";
 import interfaceReducer from "./interface-reducer";
 import contactReducer from "./contact-reducer";
+import invitationsReducer from "./invitation-reducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   hostsReducer,
   eventsReducer,
   interfaceReducer,
-  contactReducer
+  contactReducer,
+  invitationsReducer
 });
 
 export default rootReducer;

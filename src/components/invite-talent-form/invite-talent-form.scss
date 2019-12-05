@@ -104,7 +104,7 @@
     width: 100%;
     padding: 20px;
     @media (min-width: 768px) {
-      padding: 50px 50px;
+      padding: 40px 40px;
     }
   }
   .ant-form {
@@ -116,6 +116,99 @@
       padding-top: 10%;
     }
     @include align-items(stretch);
+    .check-paid-item {
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(space-between);
+      @include flex-direction(row);
+      font-family: "Avenir", sans-serif;
+      font-weight: 600;
+      @include flexbox();
+
+      p {
+        @include flex(1);
+        max-width: 100px;
+        position: absolute;
+        line-height: 20px;
+        width: auto;
+        background: red;
+      }
+      .ant-switch {
+        @include flex(1);
+        position: relative;
+        float: right;
+        margin-top: -20px;
+        height: 30px;
+        width: 30px;
+        @include transition(all, 0.2s, ease-in-out);
+        @media (min-width: 992px) {
+          width: 94px;
+          height: 50px;
+        }
+        .ant-switch-inner {
+          color: $black-text;
+          width: 100%;
+          height: 100%;
+          line-height: 50px;
+          left: 0;
+          right: 0;
+        }
+        background-color: white;
+        &:after {
+          @include transition(all, 0.2s, ease-in);
+          background: $primary-color;
+          box-shadow: none;
+          height: 22px;
+          top: 3px;
+          margin-left: 0;
+          width: 22px;
+          border-radius: 100%;
+          @media (min-width: 992px) {
+            width: 42px;
+            top: 3px;
+            height: 42px;
+          }
+        }
+      }
+      width: 100%;
+      //arja
+      .ant-form-item-label {
+        @include flex(1);
+        float: left;
+        margin-right: auto;
+        margin-top: 0;
+        left: 0;
+        text-align: left;
+        width: 100%;
+        opacity: 0;
+        -webkit-animation: fade-in-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fade-in-opacity 1s forwards; /* Firefox < 16 */
+        -ms-animation: fade-in-opacity 1s forwards; /* Internet Explorer */
+        -o-animation: fade-in-opacity 1s forwards; /* Opera < 12.1 */
+        animation: fade-in-opacity 1s forwards;
+        background: $primary-color;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        font-size: 40px;
+        text-transform: uppercase;
+        font-family: "Babas", sans-serif;
+
+        label {
+          padding: 0;
+          margin: 0;
+          font-size: 20px;
+          line-height: 20px;
+          @media (min-width: 768px) {
+            font-size: 35px;
+            line-height: 20px;
+          }
+          font-weight: 500;
+          color: $white;
+        }
+      }
+    }
     position: relative;
     width: 100%;
     height: 100%;
@@ -129,7 +222,7 @@
         @include align-items(center);
         margin: 14px 0;
         @media (min-width: 768px) {
-          margin: 20px 10px;
+          margin: 0px 10px;
           width: 120px;
         }
         li {
@@ -229,6 +322,12 @@
       line-height: 40px;
     }
   }
+  .ant-form-item-children {
+    width: 100%;
+    .ant-calendar-picker {
+      width: 100%;
+    }
+  }
   input {
     opacity: 0;
     -webkit-animation: fade-in-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -287,6 +386,79 @@
     animation: fade-in-opacity-slide-left 1s forwards;
     &:focus {
       outline: none;
+    }
+  }
+
+  .success-ms-container {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: $black-text;
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+    padding: 20px;
+    h1 {
+      font-family: "Babas", sans-serif;
+      color: $primary-color;
+      text-align: center;
+      font-size: 30px;
+      line-height: 30px;
+      margin: 10px 0;
+      @media (min-width: 768px) {
+        font-size: 40px;
+        line-height: 40px;
+      }
+    }
+    h2 {
+      font-family: "Babas", sans-serif;
+      color: $white;
+      text-align: center;
+      font-size: 20px;
+      line-height: 20px;
+      margin: 0 0;
+      margin-bottom: 4%;
+      @media (min-width: 768px) {
+        font-size: 28px;
+        line-height: 28px;
+      }
+    }
+    p {
+      font-family: "Avenir", sans-serif;
+      color: $white;
+      opacity: 0.7;
+      margin: 6% 0;
+      text-align: center;
+      font-size: 16px;
+      line-height: 16px;
+      max-width: 360px;
+    }
+    button {
+      padding: 16px 30px;
+      background: $white;
+      font-family: "Babas", sans-serif;
+      font-size: 20px;
+      @media (min-width: 768px) {
+        font-size: 30px;
+      }
+      border: none;
+      color: $primary-color;
+      @include transition(all, 0.2s, ease-in-out);
+      @include border-radius(5px);
+      &:hover {
+        background: $primary-color;
+        color: $white;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:active {
+        @include transform(scale(0.97));
+      }
     }
   }
 }

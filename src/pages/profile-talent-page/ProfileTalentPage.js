@@ -236,7 +236,11 @@ const ProfileTalentPage = props => {
                           transform: `translateX(${x}%)`
                         }}
                       >
-                        {formOpened ? <InviteTalentForm /> : null}
+                        <InviteTalentForm
+                          talent_id={
+                            talentData && talentData.id ? talentData.id : null
+                          }
+                        />
                       </span>
                     </span>
                   )}
