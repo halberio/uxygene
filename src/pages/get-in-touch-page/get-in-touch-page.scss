@@ -91,6 +91,8 @@
         height: 100%;
         background: $primary-color;
         @include transform(scaleX(0));
+        @include flexbox();
+        @include flex-direction(column);
         -webkit-animation: scaleFromLeft 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
         -moz-animation: scaleFromLeft 0.4s forwards; /* Firefox < 16 */
         -ms-animation: scaleFromLeft 0.4s forwards; /* Internet Explorer */
@@ -119,7 +121,8 @@
           text-transform: uppercase;
           border-radius: 3px;
           border: none;
-          margin-top: 15%;
+
+          margin-top: auto;
           @include transition(all, 0.3s, ease-in-out);
           span {
             height: 100%;
