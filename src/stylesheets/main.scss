@@ -160,6 +160,15 @@ input {
   color: $black-text;
   background: $primary-color;
 }
+
+@include keyframes(fade-opacity) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .app {
   position: relative;
   width: 100%;
@@ -175,11 +184,11 @@ input {
     padding: 0 0;
   }
   opacity: 0;
-  -webkit-animation: fade-in 0.4s forwards; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fade-in 0.4s forwards; /* Firefox < 16 */
-  -ms-animation: fade-in 0.4s forwards; /* Internet Explorer */
-  -o-animation: fade-in 0.4s forwards; /* Opera < 12.1 */
-  animation: fade-in 0.4s forwards;
+  -webkit-animation: fade-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fade-opacity 1s forwards; /* Firefox < 16 */
+  -ms-animation: fade-opacity 1s forwards; /* Internet Explorer */
+  -o-animation: fade-opacity 1s forwards; /* Opera < 12.1 */
+  animation: fade-opacity 1s forwards;
 }
 
 .page-container {

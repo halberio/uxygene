@@ -97,6 +97,8 @@
   }
   @media (min-width: 992px) {
     padding: 30px 10px;
+
+    margin-bottom: 30px;
   }
   .fixed-with-container {
     @include flexbox();
