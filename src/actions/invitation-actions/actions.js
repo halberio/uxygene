@@ -19,7 +19,7 @@ export function sendInvitation(body) {
       type: POST_INVITATION_REQUEST
     });
     try {
-      const res = await InvitationsServices.PostInvitationRequest(body);
+      await InvitationsServices.PostInvitationRequest(body);
 
       await dispatch({
         type: POST_INVITATION_SUCCESS

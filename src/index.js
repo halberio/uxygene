@@ -55,6 +55,15 @@ const WrappedApp = props => {
         },
         false
       );
+    } else {
+      setTimeout(() => {
+        fadeOutOnLeave.to(`#loading-animation-container`, 1, {
+          opacity: 0,
+          onComplete: () => {
+            setanimationNotHiden(false);
+          }
+        });
+      }, 500);
     }
   }, [props.isLoadingUser, fadeOutOnLeave]);
 

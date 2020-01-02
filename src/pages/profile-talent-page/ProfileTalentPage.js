@@ -57,7 +57,7 @@ const ProfileTalentPage = props => {
           });
       })();
     }
-  }, [props.match.params.id]);
+  }, [props.match.params.id, isLoggedIn, user]);
 
   const closePageOrGoBack = () => {
     if (!formOpened) {

@@ -53,7 +53,7 @@ const ProfileHostForm = props => {
           });
       })();
     }
-  }, [props.match.params.id, user]);
+  }, [props.match.params.id, user, isLoggedIn]);
 
   const closePageOrGoBack = () => {
     if (!formOpened) {

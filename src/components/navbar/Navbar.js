@@ -22,7 +22,7 @@ const Navbar = props => {
     "a mine of creative talents"
   );
   const [onScrollClassName, setOnScrollClassName] = useState("");
-
+  const [userTabShowen, setUserTabShowen] = useState(false);
   const messageModal = {
     title: "See you again!",
     subTitle: "You logged out successfully.",
@@ -32,6 +32,7 @@ const Navbar = props => {
     await dispatch(logout());
     dispatch(showModalRight(messageModal));
   };
+
   useEffect(() => {
     if (
       window.location.pathname.includes("talents") ||
@@ -92,6 +93,17 @@ const Navbar = props => {
       setOnScrollClassName("");
     }
   });
+
+  const logoutHandlerMobile = async () => {
+    await setUserTabShowen(false);
+    setTimeout(async () => {
+      await dispatch(logout());
+      dispatch(showModalRight(messageModal));
+    }, 400);
+  };
+  const showUserTabOnMobile = () => {
+    setUserTabShowen(!userTabShowen);
+  };
   return (
     <>
       <Affix offsetTop={0}>
@@ -213,7 +225,40 @@ const Navbar = props => {
                 )}
               </div>
             </div>
+            {isLoggedIn ? (
+              <button
+                onClick={showUserTabOnMobile}
+                className="logged-user-infos only-mobile"
+              >
+                <div className="img-profile-container">
+                  {user && user.image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={process.env.REACT_APP_STORAGE_URL + user.image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : user && user.social_image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={user.social_image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : null}
+                  <div
+                    className="logout-icon"
+                    onClick={() => {
+                      logoutHandler();
 
+                      setDrawerOpened(false);
+                    }}
+                  >
+                    <LogoutIcon />
+                  </div>
+                </div>
+              </button>
+            ) : null}
             <Motion
               style={{
                 x: spring(drawerOpened ? 255 : 0),
@@ -277,6 +322,7 @@ const Navbar = props => {
           </div>
         </div>
       </Affix>
+
       <Motion
         style={{
           x: spring(drawerOpened ? 1 : 0),
@@ -385,7 +431,7 @@ const Navbar = props => {
 
                   {!isLoggedIn ? (
                     <NavLink
-                      className={"nav-link"}
+                      className={"nav-link let-me-in"}
                       activeClassName={"active"}
                       to={"/let-me-in"}
                       style={{
@@ -397,49 +443,7 @@ const Navbar = props => {
                       {" "}
                       Let me in!
                     </NavLink>
-                  ) : (
-                    <div
-                      className="logged-user-infos only-mobile"
-                      style={{
-                        opacity: o
-                      }}
-                    >
-                      <p>
-                        {user && user.first_name
-                          ? user.first_name
-                          : user && user.name
-                          ? user.name
-                          : null}
-                      </p>
-                      <div className="img-profile-container">
-                        {user && user.image ? (
-                          <img
-                            width={"50px"}
-                            height={"5px"}
-                            src={process.env.REACT_APP_STORAGE_URL + user.image}
-                            alt={user && user.name ? user.name : null}
-                          />
-                        ) : user && user.social_image ? (
-                          <img
-                            width={"50px"}
-                            height={"5px"}
-                            src={user.social_image}
-                            alt={user && user.name ? user.name : null}
-                          />
-                        ) : null}
-                        <div
-                          className="logout-icon"
-                          onClick={() => {
-                            logoutHandler();
-
-                            setDrawerOpened(false);
-                          }}
-                        >
-                          <LogoutIcon />
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  ) : null}
                 </div>
               )}
             </Motion>
@@ -469,6 +473,44 @@ const Navbar = props => {
           </div>
         )}
       </Motion>
+      {isLoggedIn ? (
+        <Motion style={{ x: spring(userTabShowen ? 0 : 200) }}>
+          {({ x }) => (
+            <div
+              onMouseLeave={() => setUserTabShowen(false)}
+              onMouseOutCapture={() => setUserTabShowen(false)}
+              style={{
+                WebkitTransform: `translateY(${x}%)`,
+                transform: `translateY(${x}%)`
+              }}
+              className="user-tab-only-mobile"
+            >
+              <>
+                <div className="img-container">
+                  {user && user.image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={process.env.REACT_APP_STORAGE_URL + user.image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : user && user.social_image ? (
+                    <img
+                      width={"50px"}
+                      height={"5px"}
+                      src={user.social_image}
+                      alt={user && user.name ? user.name : null}
+                    />
+                  ) : null}
+                </div>
+
+                <h1>Hi {user && user.first_name ? user.first_name : null}</h1>
+                <button onClick={logoutHandlerMobile}>DISCONNECT</button>
+              </>
+            </div>
+          )}
+        </Motion>
+      ) : null}
     </>
   );
 };

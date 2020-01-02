@@ -1,5 +1,60 @@
 @import "../../stylesheets/variables";
 @import "../../stylesheets/mixins";
+
+.user-tab-only-mobile {
+  z-index: 999;
+  @include flexbox();
+  @media (min-width: 992px) {
+    display: none;
+  }
+  @include flex-direction(column);
+  background: $white;
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  padding-bottom: 2rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  button {
+    font-size: 1.3rem;
+    font-family: "Avenir", sans-serif;
+    color: $black-text;
+    border: 0.1rem solid $primary-color;
+    background: transparent;
+    @include border-radius(4rem);
+    &:focus {
+      outline: none;
+    }
+    padding: 1rem;
+    margin: 0.2rem 10%;
+  }
+  h1 {
+    color: $dark-silver;
+    font-family: "Babas", sans-serif;
+    text-align: center;
+    font-size: 4.3rem;
+  }
+  .img-container {
+    display: block;
+    width: 8rem;
+    min-width: 8rem;
+    min-height: 8rem;
+    @include border-radius(100%);
+    padding: 0.4rem;
+    margin: 0 auto;
+    margin-top: -3.6rem;
+    overflow: hidden;
+    height: 8rem;
+    background: $white;
+    img {
+      @include border-radius(100%);
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 .menu-icon {
   z-index: 9999999;
   padding-left: 10px;
@@ -25,73 +80,6 @@
   }
 }
 .drawer {
-  .logged-user-infos {
-    @include align-self(flex-start);
-    @include flexbox();
-    @include justify-content(space-between);
-    @include align-items(center);
-    background: $white;
-    padding: 5px 5px;
-    min-width: 150px;
-    @include border-radius(35px);
-    @include transition(all, 0.2s, ease-in-out);
-    &:hover {
-      background: $primary-color;
-      .img-profile-container {
-        .logout-icon {
-          opacity: 1;
-          pointer-events: all;
-        }
-      }
-    }
-    p {
-      margin: 0;
-      padding: 0;
-      font-family: "Avenir", sans-serif;
-      font-weight: 500;
-      font-size: 12px;
-      text-align: center;
-      width: 100%;
-      color: $black-text;
-    }
-    .img-profile-container {
-      position: relative;
-      .logout-icon {
-        pointer-events: none;
-        position: absolute;
-        @include flexbox();
-        @include justify-content(center);
-        @include align-items(center);
-        @include transition(all, 0.2s, ease-in-out);
-        opacity: 0;
-        background: $white;
-        height: 100%;
-        top: 0;
-        width: 100%;
-        svg {
-          max-width: 25px;
-          path {
-            fill: $primary-color;
-          }
-        }
-      }
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      min-height: 40px;
-      max-width: 40px;
-      max-height: 40px;
-      @include border-radius(100%);
-      overflow: hidden;
-      margin-left: 5px;
-      img {
-        @include border-radius(100%);
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
   background: #232323;
   @include flexbox();
   @media (min-width: 992px) {
@@ -136,7 +124,17 @@
       position: relative;
       text-transform: capitalize;
       z-index: 1;
-
+      &.let-me-in {
+        color: $white;
+        font-size: 1.4rem;
+        width: 100%;
+        text-align: center;
+        border: 0.1rem solid $white;
+        @include border-radius(4rem);
+        padding: 0.6rem 0rem;
+        margin-top: auto;
+        margin-bottom: 1rem;
+      }
       &:hover {
         color: white;
       }
