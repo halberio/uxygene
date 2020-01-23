@@ -1,21 +1,30 @@
 import React, { useEffect } from "react";
 import "./result-search-talents-page.scss";
 import SearchCard from "../../components/search-card/SearchCard";
-import { getTalents } from "../../actions/talents-actions/actions";
+import {
+  clearTalents,
+  searchTalents
+} from "../../actions/talents-actions/actions";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useParams } from "react-router-dom";
 const ResultSearchTalentsPage = () => {
   const dispatch = useDispatch();
   const talents = useSelector(state => state.talentsReducer.talents);
   const isLoadingTalents = useSelector(
     state => state.talentsReducer.isLoadingTalents
   );
+  const { name } = useParams();
   useEffect(() => {
-    dispatch(getTalents());
-  }, [dispatch]);
+    if (name) {
+      dispatch(clearTalents());
+      dispatch(searchTalents(name));
+    } else {
+      dispatch(searchTalents());
+    }
+  }, [dispatch, name]);
   return (
     <div className={"result-search-talents-page"}>
       <div className="max-width-container">
@@ -24,9 +33,12 @@ const ResultSearchTalentsPage = () => {
             <div className="text-title-of-search">
               <h1>You are searching for</h1>
               <h2>
-                Hamdi <span>/ UX Talent</span>
+                {name ? name : null} <span>/ UX Talent</span>
               </h2>
-              <p>We got 4 result matching your request.</p>
+              <p>
+                We got {talents && talents.length ? talents.length : 0} results
+                matching your request.
+              </p>
             </div>
             <SearchCard />
           </div>

@@ -13,6 +13,9 @@
     margin: 0;
     padding: 0;
   }
+  &:focus {
+    @include transform(scale(0.97));
+  }
   .text-form-j2 {
     opacity: 0;
     width: 90%;
@@ -80,7 +83,6 @@
   display: inline-flex;
   @include flex-direction(row);
   @include align-items(center);
-  background: red;
   @include justify-content(space-between);
   @include transition(all, 0.2s, ease-in-out);
   width: 100%;

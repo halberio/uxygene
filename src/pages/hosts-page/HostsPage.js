@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./hosts-page.scss";
 import AdjustIcon from "../../components/svg/AdjustIcon";
 import HostCard from "../../components/host-card/HostCard";
@@ -8,21 +8,46 @@ import { Motion, spring } from "react-motion";
 import SearchCard from "../../components/search-card/SearchCard";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
-import { getHosts } from "../../actions/hosts-actions/actions";
+import {
+  clearHosts,
+  getHosts,
+  getHostsWithFilter
+} from "../../actions/hosts-actions/actions";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
 import { Helmet } from "react-helmet";
+import { getHostsCategories } from "../../actions/host-categories-actions/actions";
+
 const HostsPage = () => {
   const dispatch = useDispatch();
-
+  const [selectedFilter, setSelectedFiler] = useState("");
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
   const hosts = useSelector(state => state.hostsReducer.hosts);
+  const host_categories = useSelector(
+    state => state.hostCategoriesReducer.host_categories
+  );
+  const isLoadingHostsCategories = useSelector(
+    state => state.hostCategoriesReducer.isLoadingHostsCategories
+  );
   const isLoadingHosts = useSelector(
     state => state.hostsReducer.isLoadingHosts
   );
-
+  const formRefUL = useRef();
+  const ResetFilter = async () => {
+    await dispatch(clearHosts());
+    await dispatch(getHosts());
+    setSelectedFiler("");
+    if (formRefUL) {
+      if (formRefUL.current) {
+        formRefUL.current.reset();
+      }
+    }
+  };
   useEffect(() => {
-    dispatch(getHosts());
+    (async () => {
+      await dispatch(getHostsCategories());
+      dispatch(getHosts());
+    })();
   }, [dispatch]);
 
   const handleFilterStatus = () => {
@@ -38,7 +63,12 @@ const HostsPage = () => {
       }, 130);
     }
   };
-
+  const handleFilterHosts = async categorySelected => {
+    await dispatch(clearHosts());
+    closeFilterWherever();
+    dispatch(getHostsWithFilter([categorySelected.value]));
+    setSelectedFiler(categorySelected.name);
+  };
   const closeFilterWherever = () => {
     setTimeout(() => {
       if (isFilterItemsActive) {
@@ -57,7 +87,7 @@ const HostsPage = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>uxygène | UX Hosts</title>
-        <link rel="canonical" href="http://uxygène.org/hosts" />
+        <link rel="canonical" href="http://uxygene.org/hosts" />
         <meta
           name="description"
           content="uxygène | Hosts : user experience camp"
@@ -71,8 +101,17 @@ const HostsPage = () => {
         >
           <h1 onClick={handleFilterStatus}>
             {" "}
-            {isFilterActive ? "Filter view by" : "Display filter"}
+            {isFilterActive
+              ? "Filter view by"
+              : selectedFilter.length > 1
+              ? `Filter applied: ${selectedFilter}`
+              : "Display Filter"}
           </h1>
+          {selectedFilter.length > 1 ? (
+            <button onClick={ResetFilter} className={"reset-btn"}>
+              Reset
+            </button>
+          ) : null}
           <span onClick={handleFilterStatus}>
             <AdjustIcon />
           </span>
@@ -90,33 +129,10 @@ const HostsPage = () => {
               translate: spring(isFilterItemsActive ? 0 : -15, {
                 stiffness: 60,
                 damping: 10
-              }),
-              translate2: spring(isFilterItemsActive ? 0 : -20, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate3: spring(isFilterItemsActive ? 0 : -25, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate4: spring(isFilterItemsActive ? 0 : -30, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate5: spring(isFilterItemsActive ? 0 : -45, {
-                stiffness: 60,
-                damping: 10
               })
             }}
           >
-            {({
-              scale,
-              opacity,
-              translate,
-              translate2,
-              translate3,
-              translate4
-            }) => (
+            {({ scale, opacity, translate }) => (
               <div
                 className="list-filter"
                 onMouseLeave={closeFilterWherever}
@@ -125,73 +141,39 @@ const HostsPage = () => {
                   transform: `scaleY(${scale}`
                 }}
               >
-                <ul>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"coworkingspacecheckbox"}
-                      name="uxhostsradio"
-                      value="coworkingspace"
-                    />
-                    <label htmlFor={"coworkingspacecheckbox"}>
-                      Coworking space
-                    </label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate2}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"universitycheckbox"}
-                      name="uxhostsradio"
-                      value="university"
-                    />
-                    <label htmlFor={"universitycheckbox"}>University</label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate3}px`
-                    }}
-                  >
-                    {" "}
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"academycentercheckbox"}
-                      name="uxhostsradio"
-                      value="academycenter"
-                    />
-                    <label htmlFor={"academycentercheckbox"}>
-                      Academy center
-                    </label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate4}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"ongcheckbox"}
-                      name="uxhostsradio"
-                      value="ong"
-                    />
-                    <label htmlFor={"ongcheckbox"}>Ong</label>
-                  </li>
-                </ul>
+                <form ref={formRefUL} action="#">
+                  {!isLoadingHostsCategories ? (
+                    <ul className={"fade-in-element"}>
+                      {host_categories.map(category => (
+                        <li
+                          key={category.id}
+                          style={{
+                            opacity: opacity,
+                            transform: `translateY(${translate}px`
+                          }}
+                        >
+                          <input
+                            onChange={() =>
+                              handleFilterHosts({
+                                value: category.id,
+                                name: category.name
+                              })
+                            }
+                            type="radio"
+                            id={`${category.id}id`}
+                            name="hostcategoriesradio"
+                            value={category.id}
+                          />
+                          <label htmlFor={`${category.id}id`}>
+                            {category.name}
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <LoadingIcon scale={0.2} />
+                  )}
+                </form>
               </div>
             )}
           </Motion>

@@ -13,10 +13,21 @@ function fetchEventsRequest() {
     data: null
   });
 }
-
+function searchEventsRequest(keyword) {
+  let params = "/search-events";
+  if (keyword) {
+    params = `/search-events?name=${keyword}`;
+  }
+  return axiosInstance({
+    method: "get",
+    url: params,
+    data: null
+  });
+}
 
 const EventsServices = {
-  fetchEventsRequest
+  fetchEventsRequest,
+  searchEventsRequest
 };
 
 export default EventsServices;

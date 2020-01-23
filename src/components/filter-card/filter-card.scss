@@ -11,7 +11,30 @@
     max-height: 100px;
   }
   @include transition(all, 0.2s, ease-in-out);
-
+  .reset-btn {
+    background: transparent;
+    @include border-radius(3rem);
+    @include transition(all, 0.2s, ease);
+    &:hover {
+      background: $primary-color;
+      border-color: $primary-color;
+    }
+    border: 0.1rem solid $black-text;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-animation: fade-opacity 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fade-opacity 1s forwards; /* Firefox < 16 */
+    -ms-animation: fade-opacity 1s forwards; /* Internet Explorer */
+    -o-animation: fade-opacity 1s forwards; /* Opera < 12.1 */
+    animation: fade-opacity 1s forwards;
+    font-family: "Babas", sans-serif;
+    padding: 0.1rem 1rem;
+    margin-right: 1rem;
+    font-size: 1.4rem;
+    &:focus {
+      outline: none;
+    }
+  }
   .list-filter {
     position: absolute;
     @include border-radius(10px);

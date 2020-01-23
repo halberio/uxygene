@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./talents-page.scss";
 import SearchCard from "../../components/search-card/SearchCard";
 import UserTalentCard from "../../components/user-talent-card/UserTalentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getTalents } from "../../actions/talents-actions/actions";
+import {
+  clearTalents,
+  getTalents,
+  getTalentsWithFilter
+} from "../../actions/talents-actions/actions";
 import LoadingIcon from "../../components/loading-icon/LoadingIcon";
 import AdjustIcon from "../../components/svg/AdjustIcon";
 import "../../components/filter-card/filter-card.scss";
@@ -11,18 +15,40 @@ import { Motion, spring } from "react-motion";
 import JoinUsCard from "../../components/join-us-card/JoinUsCard";
 import NoDataIcon from "../../components/no-data-icon/NoDataIcon";
 import { Helmet } from "react-helmet";
+import { getUxCategories } from "../../actions/ux-categories-actions/actions";
 const TalentsPage = () => {
   const dispatch = useDispatch();
   const talents = useSelector(state => state.talentsReducer.talents);
+  const [selectedFilter, setSelectedFiler] = useState("");
+  const ux_categories = useSelector(
+    state => state.uxCategoriesReducer.ux_categories
+  );
+  const isLoadingUXCategories = useSelector(
+    state => state.uxCategoriesReducer.isLoadingUXCategories
+  );
   const isLoadingTalents = useSelector(
     state => state.talentsReducer.isLoadingTalents
   );
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isFilterItemsActive, setIsFilterItemsActive] = useState(false);
   useEffect(() => {
-    dispatch(getTalents());
+    (async () => {
+      await dispatch(getUxCategories());
+      dispatch(getTalents());
+    })();
   }, [dispatch]);
 
+  const formRefUL = useRef();
+  const ResetFilter = async () => {
+    await dispatch(clearTalents());
+    await dispatch(getTalents());
+    setSelectedFiler("");
+    if (formRefUL) {
+      if (formRefUL.current) {
+        formRefUL.current.reset();
+      }
+    }
+  };
   const handleFilterStatus = () => {
     if (isFilterItemsActive) {
       setIsFilterItemsActive(false);
@@ -36,7 +62,12 @@ const TalentsPage = () => {
       }, 130);
     }
   };
-
+  const handleFilterTalents = async categorySelected => {
+    await dispatch(clearTalents());
+    dispatch(getTalentsWithFilter([categorySelected.value]));
+    closeFilterWherever();
+    setSelectedFiler(categorySelected.name);
+  };
   const closeFilterWherever = () => {
     setTimeout(() => {
       if (isFilterItemsActive) {
@@ -54,7 +85,7 @@ const TalentsPage = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>uxygène | UX Talents</title>
-        <link rel="canonical" href="http://uxygène.org/talents" />
+        <link rel="canonical" href="http://uxygene.org/talents" />
         <meta
           name="description"
           content="uxygène | Talents : user experience camp"
@@ -64,8 +95,17 @@ const TalentsPage = () => {
         <div className={`filter-card ${isFilterActive ? "active" : null}`}>
           <h1 onClick={handleFilterStatus}>
             {" "}
-            {isFilterActive ? "Filter view by" : "Display filter"}
+            {isFilterActive
+              ? "Filter view by"
+              : selectedFilter.length > 1
+              ? `Filter applied: ${selectedFilter}`
+              : "Display Filter"}
           </h1>
+          {selectedFilter.length > 1 ? (
+            <button onClick={ResetFilter} className={"reset-btn"}>
+              Reset
+            </button>
+          ) : null}
           <span onClick={handleFilterStatus}>
             <AdjustIcon />
           </span>
@@ -83,34 +123,10 @@ const TalentsPage = () => {
               translate: spring(isFilterItemsActive ? 0 : -15, {
                 stiffness: 60,
                 damping: 10
-              }),
-              translate2: spring(isFilterItemsActive ? 0 : -20, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate3: spring(isFilterItemsActive ? 0 : -25, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate4: spring(isFilterItemsActive ? 0 : -30, {
-                stiffness: 60,
-                damping: 10
-              }),
-              translate5: spring(isFilterItemsActive ? 0 : -45, {
-                stiffness: 60,
-                damping: 10
               })
             }}
           >
-            {({
-              scale,
-              opacity,
-              translate,
-              translate2,
-              translate3,
-              translate4,
-              translate5
-            }) => (
+            {({ scale, opacity, translate }) => (
               <div
                 className="list-filter"
                 onMouseLeave={closeFilterWherever}
@@ -119,86 +135,40 @@ const TalentsPage = () => {
                   transform: `scaleY(${scale}`
                 }}
               >
-                <ul>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"uxdesignercheckbox"}
-                      name="uxtalentradio"
-                      value="uxdesigner"
-                    />
-                    <label htmlFor={"uxdesignercheckbox"}>Ux designer</label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate2}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"uidesignercheckbox"}
-                      name="uxtalentradio"
-                      value="uidesigner"
-                    />
-                    <label htmlFor={"uidesignercheckbox"}>Ui designer</label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate3}px`
-                    }}
-                  >
-                    {" "}
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"uxwritercheckbox"}
-                      name="uxtalentradio"
-                      value="uwriter"
-                    />
-                    <label htmlFor={"uxwritercheckbox"}>UX writer</label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate4}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"illustratorcheckbox"}
-                      name="uxtalentradio"
-                      value="illustrator"
-                    />
-                    <label htmlFor={"illustratorcheckbox"}>illustrator</label>
-                  </li>
-                  <li
-                    style={{
-                      opacity: opacity,
-                      transform: `translateY(${translate5}px`
-                    }}
-                  >
-                    <input
-                      onChange={closeFilterWherever}
-                      type="radio"
-                      id={"motiondesignercheckbox"}
-                      name="uxtalentradio"
-                      value="motiondesigner"
-                    />
-                    <label htmlFor={"motiondesignercheckbox"}>
-                      Motion designer
-                    </label>
-                  </li>
-                </ul>
+                <form ref={formRefUL} action="#">
+                  {!isLoadingUXCategories ? (
+                    <ul className={"fade-in-element"}>
+                      {ux_categories.map((category, index) => (
+                        <li
+                          key={category.id}
+                          style={{
+                            opacity: opacity,
+                            transform: `translateY(${translate}px`,
+                            animationDelay: `${0.3 * index}s`
+                          }}
+                        >
+                          <input
+                            onChange={() =>
+                              handleFilterTalents({
+                                value: category.id,
+                                name: category.name
+                              })
+                            }
+                            type="radio"
+                            id={`${category.id}id`}
+                            name="uxcategoriesradio"
+                            value={category.id}
+                          />
+                          <label htmlFor={`${category.id}id`}>
+                            {category.name}
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <LoadingIcon scale={0.2} />
+                  )}
+                </form>
               </div>
             )}
           </Motion>
@@ -221,7 +191,7 @@ const TalentsPage = () => {
               position={item.title}
             />
           ))
-        ) : !isLoadingTalents && !talents ? (
+        ) : !isLoadingTalents && !talents.length > 0 ? (
           <NoDataIcon msg={"No UX talents yet!"} />
         ) : (
           <div className="loading-flex-fixed">

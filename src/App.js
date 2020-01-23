@@ -18,8 +18,8 @@ import TermsAndConditionsPage from "./pages/terms-and-conditions-page/TermsAndCo
 import LetMeInPage from "./pages/let-me-in-page/LetMeInPage";
 import GoogleFormPage from "./pages/google-form-page/GoogleFormPage";
 import ResultSearchTalentsPage from "./pages/result-search-talents-page/ResultSearchTalentsPage";
-import ResultSearchHostsPage from "./pages/result-search-hosts-page/ResultSearchHostsPage";
 import RightAlertModal from "./components/right-alert-modal/RightAlertModal";
+import ResultSearchEventsPage from "./pages/result-search-events-page/ResultSearchEventsPage";
 const App = props => {
   const [backgroundColor, setBackgroundColor] = useState("#F8F7F7");
   useEffect(() => {
@@ -143,13 +143,14 @@ const App = props => {
                     path="/profile"
                     component={HomePage}
                   />
+
                   <Route
-                    path="/search-talent"
+                    path="/search-talents/:name"
                     component={ResultSearchTalentsPage}
                   />
                   <Route
-                    path="/search-host"
-                    component={ResultSearchHostsPage}
+                    path="/search-events/:name"
+                    component={ResultSearchEventsPage}
                   />
                   <Route component={NotFoundPage} />
                 </Switch>

@@ -20,6 +20,9 @@ const ProfileHostForm = props => {
   const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
   const { getFieldDecorator } = props.form;
   const dispatch = useDispatch();
+  const showMessage = () => {
+    message.success("Your message was sent! Thank you");
+  };
   useEffect(() => {
     setIsloadingData(true);
     if (user && isLoggedIn) {
@@ -147,7 +150,7 @@ const ProfileHostForm = props => {
                   ]
                 })(<TextArea rows={7} placeholder={""} />)}
               </Form.Item>
-              <button className={"submit-btn-host"}>
+              <button onClick={showMessage} className={"submit-btn-host"}>
                 <span>suggest a UX event</span>
               </button>
             </Form>

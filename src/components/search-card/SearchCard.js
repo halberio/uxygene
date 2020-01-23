@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "../svg/SearchIcon";
 import "./search-card.scss";
 import "./search-container.scss";
-import { Form, Switch } from "antd";
+import { Form, Switch, Input } from "antd";
 import LogoWhite from "../svg/LogoWhite";
 import { Motion, spring } from "react-motion";
 import CloseIconWhite from "../svg/CloseIconWhite";
@@ -16,20 +16,27 @@ const SearchForm = props => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         if (valueSwitchIsTalent) {
-          props.history.push("/search-talent");
+          const params = `${values.keyword}`;
+          props.history.push(`/search-talents/${params}`);
         } else {
-          props.history.push("/search-host");
+          const params = `${values.keyword}`;
+          props.history.push(`/search-events/${params}`);
         }
       }
     });
   };
-  const onChangeSwitch = checked => {
+  const onChangeSwitch = async checked => {
     if (!checked) {
       setValueSwitchIsTalent(true);
     } else {
       setValueSwitchIsTalent(false);
+    }
+    let refTem = await refOfInput;
+    if (refTem) {
+      if (refTem.current !== null) {
+        refTem.current.focus();
+      }
     }
   };
 
@@ -38,7 +45,7 @@ const SearchForm = props => {
     setSearchContainerHidden(!searchContainerHidden);
     if (searchContainerHidden) {
       if (refOfInput) {
-        if (refOfInput.current) {
+        if (refOfInput.current !== null) {
           refOfInput.current.focus();
         }
       }
@@ -64,15 +71,16 @@ const SearchForm = props => {
             ) {
               if (
                 document.location.pathname.includes("talents") ||
-                document.location.pathname.includes("hosts")
+                document.location.pathname.includes("hosts") ||
+                document.location.pathname.includes("search")
               ) {
                 setSearchContainerHidden(false);
-                let refTem = await refOfInput;
-                if (refTem) {
-                  if (refTem.current) {
-                    refTem.current.focus();
-                  }
-                }
+                /* let refTem = await refOfInput;
+                 if (refTem) {
+                   if (refTem.current!==null) {
+                     refTem.current.focus();
+                   }
+                 }*/
               }
             }
             if (event.keyCode === 27 && searchContainerHidden) {
@@ -149,11 +157,23 @@ const SearchForm = props => {
                 </div>
               </div>
 
-              <form className={"form-search"} onSubmit={handleSubmit}>
-                <input ref={refOfInput} placeholder="Search..." />
+              <Form className={"form-search"} onSubmit={handleSubmit}>
+                <Form.Item>
+                  {getFieldDecorator("keyword", {
+                    rules: [
+                      { required: true, message: "Please input your keyword!" }
+                    ]
+                  })(
+                    <Input
+                      autoFocus={true}
+                      ref={refOfInput}
+                      placeholder="Search..."
+                    />
+                  )}
+                </Form.Item>
                 <Form.Item>
                   {getFieldDecorator("type", {
-                    rules: [{ message: "Please select your keyword!" }]
+                    rules: [{ message: "Please select Events or talent!" }]
                   })(
                     <div className={"container-switch"}>
                       <h3>UX Taltent</h3>
@@ -162,7 +182,7 @@ const SearchForm = props => {
                     </div>
                   )}
                 </Form.Item>
-              </form>
+              </Form>
             </div>
           </div>
         )}

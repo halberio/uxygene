@@ -6,7 +6,8 @@ import eventsReducer from "./events-reducer";
 import interfaceReducer from "./interface-reducer";
 import contactReducer from "./contact-reducer";
 import invitationsReducer from "./invitation-reducer";
-
+import uxCategoriesReducer from "./ux_categories-reducer";
+import hostCategoriesReducer from "./host-categories-reducer";
 const rootReducer = combineReducers({
   authReducer,
   talentsReducer,
@@ -14,7 +15,9 @@ const rootReducer = combineReducers({
   eventsReducer,
   interfaceReducer,
   contactReducer,
-  invitationsReducer
+  invitationsReducer,
+  uxCategoriesReducer,
+  hostCategoriesReducer
 });
 
 export default rootReducer;

@@ -13,7 +13,17 @@ function fetchTalentsRequest() {
     data: null
   });
 }
-
+function searchTalentsRequest(keyword) {
+  let params = "/search-talents";
+  if (keyword) {
+    params = `/search-talents?name=${keyword}`;
+  }
+  return axiosInstance({
+    method: "get",
+    url: params,
+    data: null
+  });
+}
 function addTalentVoteRequest(body) {
   return axiosInstance({
     method: "post",
@@ -22,9 +32,20 @@ function addTalentVoteRequest(body) {
   });
 }
 
+function fetchTalentsWithFilterRequest(body) {
+  const params = `?categories=${body}`;
+  return axiosInstance({
+    method: "get",
+    url: `/talents/filter${params}`,
+    data: { ...body }
+  });
+}
+
 const UsersServices = {
   fetchTalentsRequest,
-  addTalentVoteRequest
+  addTalentVoteRequest,
+  fetchTalentsWithFilterRequest,
+  searchTalentsRequest
 };
 
 export default UsersServices;

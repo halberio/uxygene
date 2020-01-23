@@ -2,10 +2,15 @@ import React from "react";
 import "./join-us-card.scss";
 import AndroidIcon from "../svg/AndroidIcon";
 import ArrowRightBlack from "../svg/ArrowRightBlack";
-import { Link } from "react-router-dom";
-const JoinUsCard = () => {
+import { Link, withRouter } from "react-router-dom";
+const JoinUsCard = props => {
+  const gotToForm = () => {
+    setTimeout(() => {
+      props.history.push("/g-form");
+    }, 300);
+  };
   return (
-    <div className={"join-us-card"}>
+    <div onClick={gotToForm} className={"join-us-card"}>
       <AndroidIcon />
       <div className="text-big">
         <h1>YOU</h1>
@@ -26,4 +31,4 @@ const JoinUsCard = () => {
   );
 };
 
-export default JoinUsCard;
+export default withRouter(JoinUsCard);

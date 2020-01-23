@@ -14,6 +14,15 @@ function fetchHostsRequest() {
   });
 }
 
+function fetchHostsWithFilterRequest(body) {
+  const params = `?categories=${body}`;
+  return axiosInstance({
+    method: "get",
+    url: `/hosts/filter${params}`,
+    data: { ...body }
+  });
+}
+
 function addHostVoteRequest(body) {
   return axiosInstance({
     method: "post",
@@ -24,7 +33,8 @@ function addHostVoteRequest(body) {
 
 const HostsServices = {
   fetchHostsRequest,
-  addHostVoteRequest
+  addHostVoteRequest,
+  fetchHostsWithFilterRequest
 };
 
 export default HostsServices;

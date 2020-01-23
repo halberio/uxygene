@@ -36,9 +36,6 @@ body {
   background: $light-silver;
   overflow: auto;
   overflow-x: hidden;
-  @media (min-width: 992px) {
-    cursor: none;
-  }
 }
 a {
   @media (min-width: 992px) {
@@ -121,11 +118,7 @@ input {
     @include border-radius(100%);
     margin: auto;
     background: $black-text;
-    -webkit-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Firefox < 16 */
-    -ms-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Internet Explorer */
-    -o-animation: sclae-infinite-curs-into 0.5s infinite alternate; /* Opera < 12.1 */
-    animation: sclae-infinite-curs-into 0.5s infinite alternate;
+    @include transition(all, 0.2s, ease);
   }
   &.expand {
     -webkit-animation: expand-curs-anim 0.5s forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -135,18 +128,10 @@ input {
     animation: expand-curs-anim 0.5s forwards;
   }
   &.on-hover {
-    -webkit-animation: sclae-infinite-curs 0.3s infinite alternate; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: sclae-infinite-curs 0.3s infinite alternate; /* Firefox < 16 */
-    -ms-animation: sclae-infinite-curs 0.3s infinite alternate; /* Internet Explorer */
-    -o-animation: sclae-infinite-curs 0.3s infinite alternate; /* Opera < 12.1 */
-    animation: sclae-infinite-curs 0.3s infinite alternate;
     &:after {
-      background: $primary-color;
+      @include transform(scale(0.4));
     }
-  }
-  &.on-focus {
-    width: 3px;
-    @include border-radius(0);
+    @include transform(scale(1.4));
   }
 }
 
