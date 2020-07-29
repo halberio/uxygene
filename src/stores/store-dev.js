@@ -15,6 +15,10 @@ const logger = createLogger({
     error: () => "#FF534D"
   }
 });
-const store = createStore(rootReducer, applyMiddleware(reduxThunk, logger));
-
+let store = null;
+if (process.env.NODE_ENV === "development") {
+  store = createStore(rootReducer, applyMiddleware(reduxThunk, logger));
+} else {
+  store = createStore(rootReducer, applyMiddleware(reduxThunk));
+}
 export default store;

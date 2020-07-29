@@ -64,7 +64,7 @@ const EventsPage = () => {
           <UpcomingEventsCardSlider />
         </div>
         <div className="right">
-          <div className={`filter-card ${isFilterActive ? "active" : null}`}>
+          {/*<div className={`filter-card ${isFilterActive ? "active" : null}`}>
             <h1 onClick={handleFilterStatus}>
               {" "}
               {isFilterActive ? "Filter view by" : "Display filter"}
@@ -209,7 +209,7 @@ const EventsPage = () => {
                 </div>
               )}
             </Motion>
-          </div>
+          </div>*/}
           {events && events.length > 0 && !isLoadingEvents ? (
             events.map(item => (
               <EventCard

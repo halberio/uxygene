@@ -196,12 +196,7 @@ const Navbar = props => {
                         ? user.name
                         : null}
                     </p>
-                    <Link
-                      className="img-profile-container"
-                      to={
-                        user && user.id ? "/talent-user/" + user.id : "/talents"
-                      }
-                    >
+                    <div className="img-profile-container">
                       {user && user.image ? (
                         <img
                           width={"50px"}
@@ -217,7 +212,7 @@ const Navbar = props => {
                           alt={user && user.name ? user.name : null}
                         />
                       ) : null}
-                    </Link>
+                    </div>
                     <div className="logout-icon" onClick={logoutHandler}>
                       <LogoutIcon />
                     </div>
